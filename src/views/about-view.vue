@@ -1,7 +1,7 @@
 <template>
     <div class="hero bg-base-200 min-h-[86vh]">
         <div class="hero-content text-center">
-            <div class="max-w-md">
+            <div class="max-w-md" v-motion-fade>
                 <h1 class="text-5xl font-bold w-full">About this project</h1>
                 <p class="py-6 text-start">
                     This project was built around a simple idea: lost doesn’t mean gone. It’s a place where seekers and

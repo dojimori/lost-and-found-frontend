@@ -45,24 +45,6 @@
   </nav>
   <router-view></router-view>
 </template>
-
-<style scoped>
-.animate-fade {
-  animation: fade 1s;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-</style>
 <script>
 import { PhCheckCircle, PhChartBarHorizontal, PhChecks } from '@phosphor-icons/vue'
 
