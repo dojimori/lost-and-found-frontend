@@ -35,7 +35,7 @@
             </ul>
           </details>
         </li> -->
-        <li><a>Developer</a></li>
+        <li><router-link to="/developer">Developer</router-link></li>
       </ul>
     </div>
     <div class="navbar-end">
