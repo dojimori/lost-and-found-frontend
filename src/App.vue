@@ -21,11 +21,11 @@
           <li><a>Item 3</a></li>
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">Seekr</a>
+      <router-link to="/" class="btn btn-ghost text-xl">Seekr</router-link>
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a>About</a></li>
+        <li><router-link to="/about">About</router-link></li>
         <!-- <li>
           <details>
             <summary>Parent</summary>
@@ -43,20 +43,7 @@
       <a class="btn">Register</a>
     </div>
   </nav>
-
-  <div class="hero bg-base-200 min-h-[86vh]">
-    <div class="hero-content text-center">
-      <div class="max-w-md animate-fade">
-        <h1 class="text-5xl font-bold">Found something in the campus?</h1>
-        <p class="py-6">
-          A simple place where seekers and finders meet; bring lost items back home!
-        </p>
-        <button class="btn btn-primary animate-bounce ">Get Started</button>
-      </div>
-    </div>
-  </div>
-
-
+  <router-view></router-view>
 </template>
 
 <style scoped>
