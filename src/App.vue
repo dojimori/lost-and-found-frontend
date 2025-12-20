@@ -41,7 +41,7 @@
     <div class="navbar-end">
       <!-- <a class="btn mr-2">Login</a> -->
       <router-link to="/login" class="btn mr-2">Login</router-link>
-      <a class="btn">Register</a>
+      <router-link to="/register" class="btn mr-2">Register</router-link>
     </div>
   </nav>
   <router-view></router-view>
