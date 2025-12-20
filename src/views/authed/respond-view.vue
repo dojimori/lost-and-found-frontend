@@ -28,9 +28,9 @@
 
             <!-- comments -->
             <div>
-                <div class="flex flex-row gap-4">
+                <div class="flex flex-row gap-4 ">
                     <div class="avatar">
-                        <div class="w-10 rounded-full">
+                        <div class="w-[55px] h-[55px] rounded-full">
                             <img src="https://i.pinimg.com/736x/a8/47/9a/a8479a922b151b03df56a6db105dc5dd.jpg"
                                 class="object-cover" alt="">
                         </div>
