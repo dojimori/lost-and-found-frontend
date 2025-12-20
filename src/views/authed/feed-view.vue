@@ -1,4 +1,39 @@
 <template>
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn" onclick="post_item_modal.showModal()">Post Item</button>
+    <dialog id="post_item_modal" class="modal">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Post Item</h3>
+            <div class="divider"></div>
+            <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
+
+            <form action="">
+                <div class="flex flex-col gap-3">
+
+                    <label class="floating-label">
+                        <span>Item Name</span>
+                        <input type="text" class="input w-full" placeholder="Item Name">
+                    </label>
+                    <label class="floating-label">
+                        <span>Description</span>
+                        <input type="text" class="input w-full" placeholder="Description">
+                    </label>
+                    <label>
+                        <span class="text-sm">Item Image</span>
+                        <input type="file" class="file-input file-input-secondary w-full" />
+                    </label>
+                </div>
+
+            </form>
+
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
     <div class="divider"> </div>
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">

@@ -29,7 +29,7 @@
         </div>
     </nav>
     <main class="p-8">
-        <button class="btn">Post Item</button>
+
 
         <router-view></router-view>
     </main>
