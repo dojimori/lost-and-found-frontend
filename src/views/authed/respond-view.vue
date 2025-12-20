@@ -1,19 +1,34 @@
 <template>
 
-    <div class="flex flex-row justify-between gap-8">
-        <div>
-            <img :src="lostItem.img" alt="" class="w-[300px] rounded-md">
-            <span>{{ lostItem.itemName }}</span>
+    <div class="flex flex-col justify-center gap-8 items-center">
+        <div class="bg-base-200 p-4 rounded-xl flex flex-col gap-3 max-w-sm">
 
-            <div class="flex items-center gap-4">
+            <!-- Item Image -->
+            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full h-48 object-cover rounded-lg" />
+
+            <!-- Item Name -->
+            <h2 class="text-lg font-semibold">
+                {{ lostItem.itemName }}
+            </h2>
+
+            <!-- Posted By -->
+            <div class="flex items-center gap-3">
                 <div class="avatar">
-                    <div class="w-8 rounded-full">
-                        <img :src="lostItem.user.profile" />
+                    <div class="w-9 h-9 rounded-full">
+                        <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
                     </div>
                 </div>
 
-                <p class="text-[12px] font-bold">{{ lostItem.user.name }}</p>
+                <div class="flex flex-col leading-tight">
+                    <p class="text-sm font-medium">
+                        {{ lostItem.user.name }}
+                    </p>
+                    <span class="text-xs text-base-content/60">
+                        Posted a lost item
+                    </span>
+                </div>
             </div>
+
         </div>
 
         <div class="flex-1 bg-base-200 p-2 rounded-md">
@@ -27,23 +42,75 @@
 
 
             <!-- comments -->
-            <div>
-                <div class="flex flex-row gap-4 ">
+            <div class="flex flex-col gap-6 overflow-y-scroll h-[400px]">
+                <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
                     <div class="avatar">
-                        <div class="w-[55px] h-[55px] rounded-full">
-                            <img src="https://i.pinimg.com/736x/a8/47/9a/a8479a922b151b03df56a6db105dc5dd.jpg"
-                                class="object-cover" alt="">
+                        <div class="w-12 h-12 rounded-full">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Cruz">
                         </div>
                     </div>
+
                     <div class="flex flex-col">
-                        <p class="text-[12px] font-bold">{{ lostItem.user.name }}</p>
-                        <span class="text-sm">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum sint modi minus aliquid
-                            accusamus facere amet ipsam, ea tempora, possimus sit esse doloremque alias facilis, aperiam
-                            ad voluptatem laborum eius.
-                        </span>
+                        <p class="text-sm font-semibold">Maria Cruz</p>
+                        <p class="text-xs text-base-content/60">2 hours ago</p>
+                        <p class="text-sm mt-1">
+                            I think I saw a brown wallet near the jeepney stop by Rizal Ave earlier today.
+                            Might be worth checking there.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Comment -->
+                <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
+                    <div class="avatar">
+                        <div class="w-12 h-12 rounded-full">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Joshua Lim">
+                        </div>
                     </div>
 
+                    <div class="flex flex-col">
+                        <p class="text-sm font-semibold">Joshua Lim</p>
+                        <p class="text-xs text-base-content/60">1 hour ago</p>
+                        <p class="text-sm mt-1">
+                            I found a wallet last night around 9 PM but not sure if this is the same one.
+                            Does it have a UMak ID inside?
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Comment -->
+                <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
+                    <div class="avatar">
+                        <div class="w-12 h-12 rounded-full">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Alyssa Mae">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <p class="text-sm font-semibold">Alyssa Mae</p>
+                        <p class="text-xs text-base-content/60">45 minutes ago</p>
+                        <p class="text-sm mt-1">
+                            Try asking the security office near the mall. I lost my wallet before
+                            and someone returned it there.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Comment -->
+                <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
+                    <div class="avatar">
+                        <div class="w-12 h-12 rounded-full">
+                            <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Ken Ramirez">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <p class="text-sm font-semibold">Ken Ramirez</p>
+                        <p class="text-xs text-base-content/60">20 minutes ago</p>
+                        <p class="text-sm mt-1">
+                            Sharing this to our barangay group chat now. Hope you find it soon 🙏
+                        </p>
+                    </div>
                 </div>
 
             </div>
