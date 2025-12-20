@@ -1,40 +1,29 @@
 <template>
 
-    <span>Here are people who claimed your posted items.</span>
-
+    <span class="text-sm text-gray-500">Here are people who claimed your posted items.</span>
+    <div class="divider"></div>
     <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table class="table">
             <!-- head -->
             <thead>
                 <tr>
-                    <th></th>
                     <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
+                    <th>Item</th>
+                    <th>Image</th>
+                    <th>Claimed date</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- row 1 -->
+
                 <tr>
-                    <th>1</th>
-                    <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
+                    <td>Mystery Box</td>
+                    <td>Wallet</td>
+                    <td><img src="https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0"
+                            class="max-w-[50px] rounded-md object-cover" />
+                    </td>
+                    <td>6/26/2026</td>
                 </tr>
-                <!-- row 2 -->
-                <tr>
-                    <th>2</th>
-                    <td>Hart Hagerty</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                    <th>3</th>
-                    <td>Brice Swyre</td>
-                    <td>Tax Accountant</td>
-                    <td>Red</td>
-                </tr>
+
             </tbody>
         </table>
     </div>
