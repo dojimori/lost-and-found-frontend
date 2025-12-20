@@ -20,7 +20,7 @@
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li><router-link to="/feed">Feed</router-link></li>
-                <li><router-link to="/feed">Responses</router-link></li>
+                <li><router-link to="/claims">Responds</router-link></li>
                 <li><router-link to="/feed">My Posts</router-link></li>
             </ul>
         </div>

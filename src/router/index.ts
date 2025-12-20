@@ -1,6 +1,7 @@
 import AuthLayout from '@/layouts/auth-layout.vue'
 import GuestLayout from '@/layouts/guest-layout.vue'
 import AboutView from '@/views/about-view.vue'
+import ClaimsView from '@/views/authed/claims-view.vue'
 import FeedView from '@/views/authed/feed-view.vue'
 import RespondView from '@/views/authed/respond-view.vue'
 import DeveloperView from '@/views/developer-view.vue'
@@ -55,6 +56,11 @@ const routes = [
         path: '/respond/:id',
         name: 'respond',
         component: RespondView
+      },
+      {
+        path: '/claims',
+        name: 'claims',
+        component: ClaimsView
       }
     ]
   }
