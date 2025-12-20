@@ -20,7 +20,7 @@
                     </label>
                     <label>
                         <span class="text-sm">Item Image</span>
-                        <input type="file" class="file-input file-input-secondary w-full" />
+                        <input type="file" class="file-input file-input-primary w-full" />
                     </label>
                 </div>
 
