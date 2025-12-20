@@ -19,14 +19,18 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><router-link to="/about">About</router-link></li>
-                <li><router-link to="/developer">Developer</router-link></li>
+                <li><router-link to="/feed">Feed</router-link></li>
+                <li><router-link to="/feed">Responses</router-link></li>
+                <li><router-link to="/feed">My Posts</router-link></li>
             </ul>
         </div>
         <div class="navbar-end">
-            <router-link to="/register" class="btn mr-2">Logout</router-link>
+            <router-link to="/feed" class="btn mr-2">Logout</router-link>
         </div>
     </nav>
+    <main class="p-8">
+        <button class="btn">Post Item</button>
 
-    <router-view></router-view>
+        <router-view></router-view>
+    </main>
 </template>
