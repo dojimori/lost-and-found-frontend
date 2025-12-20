@@ -1,6 +1,6 @@
 <template>
 
-    <div class="flex flex-row justify-center gap-8 items-center">
+    <div class="flex flex-col justify-center gap-8 items-center" v-motion-fade>
 
         <!-- LOST ITEM CARD -->
         <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 max-w-lg w-full shadow-md">
@@ -9,7 +9,7 @@
             <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" />
             <div class="px-12 py-2">
                 <!-- Item Name -->
-                <h2 class="text-xl font-semibold">
+                <h2 class="text-xl mb-3 font-semibold">
                     {{ lostItem.itemName }}
                 </h2>
 
@@ -20,14 +20,17 @@
                             <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
                         </div>
                     </div>
+                    <div class="flex justify-between w-100">
+                        <div class="flex flex-col leading-tight">
+                            <p class="text-sm font-medium">
+                                {{ lostItem.user.name }}
+                            </p>
+                            <span class="text-xs text-base-content/60">
+                                Posted a lost item
+                            </span>
+                        </div>
 
-                    <div class="flex flex-col leading-tight">
-                        <p class="text-sm font-medium">
-                            {{ lostItem.user.name }}
-                        </p>
-                        <span class="text-xs text-base-content/60">
-                            Posted a lost item
-                        </span>
+                        <button class="btn btn-success">Claim</button>
                     </div>
                 </div>
             </div>
