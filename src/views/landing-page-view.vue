@@ -6,7 +6,7 @@
                 <p class="py-6">
                     A simple place where seekers and finders meet; bring lost items back home!
                 </p>
-                <button class="btn btn-primary animate-bounce ">Get Started</button>
+                <router-link to="/register" class="btn btn-primary animate-bounce ">Get Started</router-link>
             </div>
         </div>
     </div>

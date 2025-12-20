@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center p-4 justify-center h-[80vH] " v-motion-fade>
 
-        <form action="" class="flex flex-col w-100 bg-base-200  p-4 border border-gray-300">
+        <form action="" class="flex flex-col w-100 bg-gray-100  p-4 border border-gray-300">
             <h4 class="mb-4 font-bold">Login</h4>
             <label for="" class="floating-label">
                 <span>Email</span>
