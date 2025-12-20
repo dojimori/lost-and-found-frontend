@@ -1,6 +1,7 @@
+import AuthLayout from '@/layouts/auth-layout.vue'
 import GuestLayout from '@/layouts/guest-layout.vue'
 import AboutView from '@/views/about-view.vue'
-import FeedView from '@/views/auth/feed-view.vue'
+import FeedView from '@/views/authed/feed-view.vue'
 import DeveloperView from '@/views/developer-view.vue'
 import LandingPageView from '@/views/landing-page-view.vue'
 import LoginView from '@/views/login-view.vue'
@@ -38,10 +39,20 @@ const routes = [
     ]
   },
 
+
   {
     path: '/feed',
-    component: FeedView
+    component: AuthLayout,
+    name: 'authed',
+    redirect: '/feed',
+    children: [
+      {
+        path: '/feed',
+        component: FeedView
+      }
+    ]
   }
+
 ]
 
 const router = createRouter({
