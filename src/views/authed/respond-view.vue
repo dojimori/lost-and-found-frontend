@@ -6,35 +6,36 @@
         <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 max-w-lg w-full shadow-md">
 
             <!-- Item Image -->
-            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[360px] object-contain rounded-sm" />
+            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" />
+            <div class="px-12 py-2">
+                <!-- Item Name -->
+                <h2 class="text-xl font-semibold">
+                    {{ lostItem.itemName }}
+                </h2>
 
-            <!-- Item Name -->
-            <h2 class="text-xl font-semibold">
-                {{ lostItem.itemName }}
-            </h2>
-
-            <!-- Posted By -->
-            <div class="flex items-center gap-3 p-4">
-                <div class="avatar">
-                    <div class="w-10 h-10 rounded-full">
-                        <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
+                <!-- Posted By -->
+                <div class="flex items-center gap-3">
+                    <div class="avatar">
+                        <div class="w-10 h-10 rounded-full">
+                            <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex flex-col leading-tight">
-                    <p class="text-sm font-medium">
-                        {{ lostItem.user.name }}
-                    </p>
-                    <span class="text-xs text-base-content/60">
-                        Posted a lost item
-                    </span>
+                    <div class="flex flex-col leading-tight">
+                        <p class="text-sm font-medium">
+                            {{ lostItem.user.name }}
+                        </p>
+                        <span class="text-xs text-base-content/60">
+                            Posted a lost item
+                        </span>
+                    </div>
                 </div>
             </div>
 
         </div>
 
         <!-- COMMENTS SECTION -->
-        <div class="flex-1 bg-base-200 p-4 rounded-md w-full max-w-lg">
+        <div class="flex-1 bg-base-200 p-4 rounded-md w-full max-w-3xl">
             <div class="flex gap-2">
                 <input type="text" class="input w-full" placeholder="Comment..." />
                 <button class="btn">Post</button>
