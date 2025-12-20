@@ -39,7 +39,8 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn mr-2">Login</a>
+      <!-- <a class="btn mr-2">Login</a> -->
+      <router-link to="/login" class="btn mr-2">Login</router-link>
       <a class="btn">Register</a>
     </div>
   </nav>
