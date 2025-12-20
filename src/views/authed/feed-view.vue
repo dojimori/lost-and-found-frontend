@@ -1,19 +1,19 @@
 <template>
-    <div class="my-4">
-        <h2 class="font-bold text-lg">Lost Items</h2>
-    </div>
+    <div class="divider"> </div>
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">
 
-        <div v-for="item in lostItems"
+        <div v-for="item in lostItems" v-motion-fade
             class="card bg-base-200 w-96 shadow-sm transition-all  hover:-translate-y-1 duration-500 hover:shadow-lg">
-            <figure>
-                <img :src="item.img" class="max-w-[440]" alt="Shoes" />
+            <figure class="max-w-[380px] max-h-[380px]">
+                <img :src="item.img" class=" object-cover " alt="Shoes" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
                     {{ item.itemName }}
-                    <span class="badge badge-warning badge-sm">{{ item.status }}</span>
+                    <span
+                        :class="['badge badge-sm ', { 'badge-success': item.status == 'found', 'badge-warning': item.status != 'found' }]">{{
+                            item.status }}</span>
                 </h2>
                 <p>Last seen: {{ item.lastSeen }}</p>
 
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="card-actions justify-end">
-                    <button class="btn">Respond</button>
+                    <button class="btn">Respond <ph-paper-plane-tilt></ph-paper-plane-tilt> </button>
 
                     <!-- <div class="badge badge-outline">Fashion</div> -->
                     <!-- <div class="badge badge-outline">Products</div> -->
@@ -39,7 +39,13 @@
 </template>
 
 <script>
+import { PhPaperPlaneTilt } from '@phosphor-icons/vue';
+
 export default {
+    components: {
+        PhPaperPlaneTilt
+    },
+
     data() {
         return {
             lostItems: [
@@ -51,6 +57,26 @@ export default {
                     user: {
                         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
                         name: 'Alexander Gabriel'
+                    }
+                },
+                {
+                    img: 'https://scontent.fcgy1-3.fna.fbcdn.net/v/t39.30808-6/600215270_1872124793404801_1242119322575631170_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFBcWREs8mj8wQILfpgrQcGv-DCcCfJmHy_4MJwJ8mYfOe5VE8YoJb1XlO2xYKBi1iesFoK8UEc6CS6eOTd3wJO&_nc_ohc=iQLBdsUI5u4Q7kNvwF68zNj&_nc_oc=AdnHDho1ipGX6ROVUW95FeZN_2DS_UlsOgVg5UbZQ8R_WiitlKHr-0Ehv4Vrv7oC2OU&_nc_zt=23&_nc_ht=scontent.fcgy1-3.fna&_nc_gid=mXg8C0_m0Kpw73VNBvgjhw&oh=00_AfmuEMnsKyGVfkWuVDAHLVgVJM0r9QdvDvICTZWgrNkmRg&oe=694BDF68',
+                    itemName: 'Phone',
+                    lastSeen: 'BLDG. 48',
+                    status: 'found',
+                    user: {
+                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                        name: 'Rhudd Lawrence'
+                    }
+                },
+                {
+                    img: 'https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0',
+                    itemName: 'Wallet',
+                    lastSeen: 'BLDG. 48',
+                    status: 'not found',
+                    user: {
+                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                        name: 'Jc James'
                     }
                 }
             ]
