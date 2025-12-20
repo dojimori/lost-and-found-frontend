@@ -1,20 +1,22 @@
 <template>
 
-    <div class="flex flex-col justify-center gap-8 items-center">
-        <div class="bg-base-200 p-4 rounded-xl flex flex-col gap-3 max-w-sm">
+    <div class="flex flex-row justify-center gap-8 items-center">
+
+        <!-- LOST ITEM CARD -->
+        <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 max-w-lg w-full shadow-md">
 
             <!-- Item Image -->
-            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full h-48 object-cover rounded-lg" />
+            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[360px] object-contain rounded-sm" />
 
             <!-- Item Name -->
-            <h2 class="text-lg font-semibold">
+            <h2 class="text-xl font-semibold">
                 {{ lostItem.itemName }}
             </h2>
 
             <!-- Posted By -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 p-4">
                 <div class="avatar">
-                    <div class="w-9 h-9 rounded-full">
+                    <div class="w-10 h-10 rounded-full">
                         <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
                     </div>
                 </div>
@@ -31,84 +33,75 @@
 
         </div>
 
-        <div class="flex-1 bg-base-200 p-2 rounded-md">
+        <!-- COMMENTS SECTION -->
+        <div class="flex-1 bg-base-200 p-4 rounded-md w-full max-w-lg">
             <div class="flex gap-2">
-                <input type="text" class="input w-full " placeholder="Comment...">
+                <input type="text" class="input w-full" placeholder="Comment..." />
                 <button class="btn">Post</button>
             </div>
 
-
             <div class="divider"></div>
-
 
             <!-- comments -->
             <div class="flex flex-col gap-6 overflow-y-scroll h-[400px]">
+
+                <!-- Comment -->
                 <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
                     <div class="avatar">
                         <div class="w-12 h-12 rounded-full">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Cruz">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" />
                         </div>
                     </div>
-
-                    <div class="flex flex-col">
+                    <div>
                         <p class="text-sm font-semibold">Maria Cruz</p>
                         <p class="text-xs text-base-content/60">2 hours ago</p>
                         <p class="text-sm mt-1">
                             I think I saw a brown wallet near the jeepney stop by Rizal Ave earlier today.
-                            Might be worth checking there.
                         </p>
                     </div>
                 </div>
 
-                <!-- Comment -->
                 <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
                     <div class="avatar">
                         <div class="w-12 h-12 rounded-full">
-                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Joshua Lim">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" />
                         </div>
                     </div>
-
-                    <div class="flex flex-col">
+                    <div>
                         <p class="text-sm font-semibold">Joshua Lim</p>
                         <p class="text-xs text-base-content/60">1 hour ago</p>
                         <p class="text-sm mt-1">
-                            I found a wallet last night around 9 PM but not sure if this is the same one.
-                            Does it have a UMak ID inside?
+                            I found a wallet last night around 9 PM. Does it have a UMak ID inside?
                         </p>
                     </div>
                 </div>
 
-                <!-- Comment -->
                 <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
                     <div class="avatar">
                         <div class="w-12 h-12 rounded-full">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Alyssa Mae">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" />
                         </div>
                     </div>
-
-                    <div class="flex flex-col">
+                    <div>
                         <p class="text-sm font-semibold">Alyssa Mae</p>
                         <p class="text-xs text-base-content/60">45 minutes ago</p>
                         <p class="text-sm mt-1">
-                            Try asking the security office near the mall. I lost my wallet before
-                            and someone returned it there.
+                            Try asking the security office near the mall.
                         </p>
                     </div>
                 </div>
 
-                <!-- Comment -->
                 <div class="flex gap-4 bg-base-300 p-3 rounded-lg">
                     <div class="avatar">
                         <div class="w-12 h-12 rounded-full">
-                            <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Ken Ramirez">
+                            <img src="https://randomuser.me/api/portraits/men/12.jpg" />
                         </div>
                     </div>
-
-                    <div class="flex flex-col">
+                    <div>
                         <p class="text-sm font-semibold">Ken Ramirez</p>
                         <p class="text-xs text-base-content/60">20 minutes ago</p>
                         <p class="text-sm mt-1">
-                            Sharing this to our barangay group chat now. Hope you find it soon 🙏
+                            Sharing this to our barangay group chat now 🙏
                         </p>
                     </div>
                 </div>
@@ -118,6 +111,7 @@
 
     </div>
 </template>
+
 
 <script>
 export default {
