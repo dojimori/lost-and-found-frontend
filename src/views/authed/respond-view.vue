@@ -1,7 +1,7 @@
 <template>
 
+    <router-link to="/feed" class="btn">Back</router-link>
     <div class="flex flex-col justify-center gap-8 items-center" v-motion-fade>
-
         <!-- LOST ITEM CARD -->
         <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 max-w-lg w-full shadow-md">
 
