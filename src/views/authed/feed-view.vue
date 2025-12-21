@@ -7,20 +7,20 @@
             <div class="divider"></div>
             <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
 
-            <form action="">
+            <form @submit.prevent="postItem">
                 <div class="flex flex-col gap-3">
 
                     <label class="floating-label">
                         <span>Item Name</span>
-                        <input type="text" class="input w-full" placeholder="Item Name">
+                        <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name">
                     </label>
                     <label class="floating-label">
                         <span>Description</span>
-                        <input type="text" class="input w-full" placeholder="Description">
+                        <input v-model="description" type="text" class="input w-full" placeholder="Description">
                     </label>
                     <label>
                         <span class="text-sm">Item Image</span>
-                        <input type="file" class="file-input file-input-primary w-full" />
+                        <input @change="onFileChange" type="file" class="file-input file-input-primary w-full">
                     </label>
                 </div>
 
@@ -118,7 +118,25 @@ export default {
                         name: 'Jc James'
                     }
                 }
-            ]
+            ],
+            itemName: '',
+            description: '',
+            itemImage: null
+        }
+    },
+
+    methods: {
+        onFileChange(event) {
+            this.itemImage = event.target.files[0];
+        },
+        async postItem() {
+            try {
+                console.log(this.itemName);
+                console.log(this.description)
+                console.log(this.itemImage)
+            } catch (error) {
+                alert(JSON.stringify(error))
+            }
         }
     }
 }
