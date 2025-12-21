@@ -41,7 +41,8 @@
         <div v-for="item in lostItems" v-motion-fade
             class="card bg-base-200 w-96 shadow-sm transition-all  hover:-translate-y-1 duration-500 hover:shadow-lg">
             <figure class="max-w-[380px] max-h-[380px]">
-                <img :src="item.img" class=" object-cover " alt="Shoes" />
+                <img :src="`http://localhost:3000/uploads/${item.itemImage}`" class=" object-cover "
+                    :alt="item.itemName" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
@@ -86,39 +87,39 @@ export default {
     data() {
         return {
             lostItems: [
-                {
-                    id: 1,
-                    img: 'https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0',
-                    itemName: 'Wallet',
-                    lastSeen: 'BLDG. 48',
-                    status: 'not found',
-                    user: {
-                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
-                        name: 'Alexander Gabriel'
-                    }
-                },
-                {
-                    id: 2,
-                    img: 'https://scontent.fcgy1-3.fna.fbcdn.net/v/t39.30808-6/600215270_1872124793404801_1242119322575631170_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFBcWREs8mj8wQILfpgrQcGv-DCcCfJmHy_4MJwJ8mYfOe5VE8YoJb1XlO2xYKBi1iesFoK8UEc6CS6eOTd3wJO&_nc_ohc=iQLBdsUI5u4Q7kNvwF68zNj&_nc_oc=AdnHDho1ipGX6ROVUW95FeZN_2DS_UlsOgVg5UbZQ8R_WiitlKHr-0Ehv4Vrv7oC2OU&_nc_zt=23&_nc_ht=scontent.fcgy1-3.fna&_nc_gid=mXg8C0_m0Kpw73VNBvgjhw&oh=00_AfmuEMnsKyGVfkWuVDAHLVgVJM0r9QdvDvICTZWgrNkmRg&oe=694BDF68',
-                    itemName: 'Phone',
-                    lastSeen: 'BLDG. 48',
-                    status: 'found',
-                    user: {
-                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
-                        name: 'Rhudd Lawrence'
-                    }
-                },
-                {
-                    id: 3,
-                    img: 'https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0',
-                    itemName: 'Wallet',
-                    lastSeen: 'BLDG. 48',
-                    status: 'not found',
-                    user: {
-                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
-                        name: 'Jc James'
-                    }
-                }
+                // {
+                //     id: 1,
+                //     itemImage: 'https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0',
+                //     itemName: 'Wallet',
+                //     lastSeen: 'BLDG. 48',
+                //     status: 'not found',
+                //     user: {
+                //         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                //         name: 'Alexander Gabriel'
+                //     }
+                // },
+                // {
+                //     id: 2,
+                //     itemImage: 'https://scontent.fcgy1-3.fna.fbcdn.net/v/t39.30808-6/600215270_1872124793404801_1242119322575631170_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFBcWREs8mj8wQILfpgrQcGv-DCcCfJmHy_4MJwJ8mYfOe5VE8YoJb1XlO2xYKBi1iesFoK8UEc6CS6eOTd3wJO&_nc_ohc=iQLBdsUI5u4Q7kNvwF68zNj&_nc_oc=AdnHDho1ipGX6ROVUW95FeZN_2DS_UlsOgVg5UbZQ8R_WiitlKHr-0Ehv4Vrv7oC2OU&_nc_zt=23&_nc_ht=scontent.fcgy1-3.fna&_nc_gid=mXg8C0_m0Kpw73VNBvgjhw&oh=00_AfmuEMnsKyGVfkWuVDAHLVgVJM0r9QdvDvICTZWgrNkmRg&oe=694BDF68',
+                //     itemName: 'Phone',
+                //     lastSeen: 'BLDG. 48',
+                //     status: 'found',
+                //     user: {
+                //         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                //         name: 'Rhudd Lawrence'
+                //     }
+                // },
+                // {
+                //     id: 3,
+                //     itemImage: 'https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0',
+                //     itemName: 'Wallet',
+                //     lastSeen: 'BLDG. 48',
+                //     status: 'not found',
+                //     user: {
+                //         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                //         name: 'Jc James'
+                //     }
+                // }
             ],
             itemName: '',
             description: '',
@@ -147,6 +148,8 @@ export default {
                 // console.log(this.itemName);
                 // console.log(this.description)
                 // console.log(this.itemImage)
+                this.fetchPostedItems();
+
             } catch (error) {
                 alert(JSON.stringify(error))
             }
@@ -155,11 +158,19 @@ export default {
         async fetchPostedItems() {
             try {
                 // TODO: replace this with real db later
-                const response = await axios.get('http://localhost:3000/api/items');
-                console.log(response)
-
-
+                const { data } = await axios.get('http://localhost:3000/api/items');
+                const postedItems = data.tempDB;
+                this.lostItems.push(...postedItems.map((item) => ({
+                    id: crypto.randomUUID(),
+                    ...item,
+                    user: {
+                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                        name: 'Rhudd Lawrence'
+                    }
+                })))
+                console.log(postedItems)
             } catch (error) {
+                console.log(error)
                 alert(JSON.stringify(error))
             }
         }
