@@ -51,7 +51,7 @@
                         :class="['badge badge-sm ', { 'badge-success': item.status == 'found', 'badge-warning': item.status != 'found' }]">{{
                             item.status }}</span>
                 </h2>
-                <p>Last seen: {{ item.lastSeen }}</p>
+                <p>{{ item.description }}</p>
 
                 <div class="flex items-center gap-4">
                     <div class="avatar">
@@ -163,14 +163,25 @@ export default {
                 // TODO: replace this with real db later
                 const { data } = await axios.get('http://localhost:3000/api/items');
                 const postedItems = data.tempDB;
-                this.lostItems.push(...postedItems.map((item) => ({
-                    id: crypto.randomUUID(),
+                // this.lostItems.push(...postedItems.map((item) => ({
+                //     id: crypto.randomUUID(),
+                //     ...item,
+                //     user: {
+                //         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
+                //         name: 'Rhudd Lawrence'
+                //     }
+                // })))
+
+                this.lostItems = postedItems.map((item) => ({
                     ...item,
+                    id: crypto.randomUUID(),
+                    status: 'not found',
                     user: {
                         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
                         name: 'Rhudd Lawrence'
                     }
-                })))
+                }))
+
                 console.log(postedItems)
             } catch (error) {
                 console.log(error)
