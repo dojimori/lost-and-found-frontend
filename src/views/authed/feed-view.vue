@@ -41,7 +41,7 @@
         <div v-for="item in lostItems" v-motion-fade
             class="card bg-base-200 w-96 shadow-sm transition-all  hover:-translate-y-1 duration-500 hover:shadow-lg">
             <figure class="max-w-[380px] max-h-[380px]">
-                <img :src="`http://localhost:3000/uploads/${item.itemImage}`" class=" object-cover "
+                <img :src="`http://localhost:3000/public/${item.itemImage}`" class=" object-cover "
                     :alt="item.itemName" />
             </figure>
             <div class="card-body">
