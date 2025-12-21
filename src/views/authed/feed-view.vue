@@ -7,26 +7,26 @@
             <div class="divider"></div>
             <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
 
-            <form @submit.prevent="postItem">
-                <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-3">
 
-                    <label class="floating-label">
-                        <span>Item Name</span>
-                        <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name">
-                    </label>
-                    <label class="floating-label">
-                        <span>Description</span>
-                        <input v-model="description" type="text" class="input w-full" placeholder="Description">
-                    </label>
-                    <label>
-                        <span class="text-sm">Item Image</span>
-                        <input @change="onFileChange" type="file" class="file-input file-input-primary w-full">
-                    </label>
-                </div>
+                <label class="floating-label">
+                    <span>Item Name</span>
+                    <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name">
+                </label>
+                <label class="floating-label">
+                    <span>Description</span>
+                    <input v-model="description" type="text" class="input w-full" placeholder="Description">
+                </label>
+                <label>
+                    <span class="text-sm">Item Image</span>
+                    <input @change="onFileChange" type="file" class="file-input file-input-primary w-full">
+                </label>
 
-            </form>
+            </div>
+
 
             <div class="modal-action">
+                <button @click="postItem" class='btn btn-primary'>Submit</button>
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn">Close</button>
