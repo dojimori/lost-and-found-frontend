@@ -76,6 +76,7 @@
 
 <script>
 import { PhPaperPlaneTilt } from '@phosphor-icons/vue';
+import axios from 'axios'
 
 export default {
     components: {
@@ -131,9 +132,21 @@ export default {
         },
         async postItem() {
             try {
-                console.log(this.itemName);
-                console.log(this.description)
-                console.log(this.itemImage)
+                const formData = new FormData();
+                formData.append('itemName', this.itemName)
+                formData.append('description', this.description)
+                formData.append('image', this.itemImage)
+
+                const response = await axios.post('http://localhost:3000/api/items/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                console.log(response)
+                // console.log(this.itemName);
+                // console.log(this.description)
+                // console.log(this.itemImage)
             } catch (error) {
                 alert(JSON.stringify(error))
             }
