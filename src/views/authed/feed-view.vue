@@ -149,9 +149,12 @@ export default {
                 // console.log(this.description)
                 // console.log(this.itemImage)
                 this.fetchPostedItems();
-
             } catch (error) {
                 alert(JSON.stringify(error))
+            } finally {
+                this.itemName = '';
+                this.description = '';
+                this.itemImage = null;
             }
         },
 
