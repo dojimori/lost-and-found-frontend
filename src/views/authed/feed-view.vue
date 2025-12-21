@@ -150,7 +150,23 @@ export default {
             } catch (error) {
                 alert(JSON.stringify(error))
             }
+        },
+
+        async fetchPostedItems() {
+            try {
+                // TODO: replace this with real db later
+                const response = await axios.get('http://localhost:3000/api/items');
+                console.log(response)
+
+
+            } catch (error) {
+                alert(JSON.stringify(error))
+            }
         }
+    },
+
+    mounted() {
+        this.fetchPostedItems();
     }
 }
 
