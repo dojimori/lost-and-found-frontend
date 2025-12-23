@@ -56,7 +56,12 @@
         <span v-if="isLoading" class="loading loading-dots loading-lg"></span>
         <span v-else>Register</span>
       </button>
-      <div v-motion-fade role="alert" class="mt-2 alert alert-error alert-soft">
+      <!-- mt-2 alert alert-error alert-soft -->
+      <div
+        v-motion-fade
+        role="alert"
+        :class="['mt-2 alert alert-soft', { isError: 'alert-error' }]"
+      >
         <span>Your purchase has been confirmed!</span>
       </div>
     </form>
@@ -84,6 +89,7 @@ export default {
     async submitHandler() {
       try {
         this.isLoading = true;
+        this.isError = false;
         if (this.credentials.password != this.credentials.confirmPassword) {
           alert("Password does not match");
           return;
@@ -93,6 +99,7 @@ export default {
 
         console.log(response);
       } catch (error) {
+        this.isError = true;
         console.log(error);
       } finally {
         this.isLoading = false;
