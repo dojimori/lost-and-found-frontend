@@ -7,8 +7,8 @@
       <h4 class="mb-4 font-bold">Register</h4>
       <div class="flex flex-col gap-2">
         <label for="" class="floating-label">
-          <span>Username</span>
-          <input type="text" class="input w-full" placeholder="Username" />
+          <span>Name</span>
+          <input type="text" class="input w-full" placeholder="Name" />
         </label>
 
         <label for="" class="floating-label">
