@@ -16,8 +16,8 @@
                 </ul>
             </div>
             <router-link to="/" class="btn btn-ghost text-xl">
-                <img :src="logo" alt="ustp-logo" class="w-12">
-                Seekr
+                <img :src="logo" alt="ustp-logo" class="w-18 h-14">
+                <!-- Campus -->
             </router-link>
         </div>
         <div class="navbar-center hidden lg:flex">
