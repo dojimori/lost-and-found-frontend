@@ -15,7 +15,7 @@
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
-            <router-link to="/" class="btn btn-ghost text-xl">
+            <router-link to="/" class="text-xl">
                 <img :src="logo" alt="ustp-logo" class="w-18 h-14">
                 <!-- Campus -->
             </router-link>
