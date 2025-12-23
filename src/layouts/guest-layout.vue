@@ -27,8 +27,8 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <router-link to="/login" class="btn mr-2">Login</router-link>
-            <router-link to="/register" class="btn mr-2">Register</router-link>
+            <router-link to="/login" class="btn btn-primary mr-2">Login</router-link>
+            <router-link to="/register" class="btn btn-ghost mr-2">Register</router-link>
         </div>
     </nav>
 

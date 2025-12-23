@@ -16,4 +16,9 @@
     --color-primary: #201B51;
     /* USTP navy */
     --color-primary-content: #ffffff;
+
+
+    /* Secondary (USTP gold) */
+    --color-secondary: #F5B301;
+    --color-secondary-content: #ffffff;
 }
