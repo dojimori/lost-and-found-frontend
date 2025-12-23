@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import api from "../helpers/api";
+
 export default {
   data() {
     return {
@@ -67,7 +69,12 @@ export default {
 
   methods: {
     async submitHandler() {
-      console.log(this.credentials);
+      try {
+        const response = await api.post("/register", this.credentials);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
