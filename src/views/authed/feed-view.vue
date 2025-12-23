@@ -31,7 +31,7 @@
             </div>
         </div>
     </dialog>
-    <div class="divider"></div>
+    <!-- <div class="divider"></div> -->
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">
         <div v-for="item in lostItems" v-motion-fade
