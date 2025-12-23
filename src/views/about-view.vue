@@ -1,5 +1,5 @@
 <template>
-    <div class="hero bg-base-200 min-h-[86vh]">
+    <div class="hero min-h-[86vh]">
         <div class="hero-content text-center">
             <div class="max-w-md" v-motion :initial="{
                 y: 100,
