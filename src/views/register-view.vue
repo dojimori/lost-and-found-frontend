@@ -65,7 +65,7 @@
           { 'alert-error': isError, 'alert-success': !isError },
         ]"
       >
-        <span>Your purchase has been confirmed!</span>
+        <span>{{ responseMessage }}</span>
       </div>
     </form>
   </div>
