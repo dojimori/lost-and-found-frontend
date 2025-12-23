@@ -8,25 +8,22 @@
             <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
 
             <div class="flex flex-col gap-3">
-
                 <label class="floating-label">
                     <span>Item Name</span>
-                    <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name">
+                    <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name" />
                 </label>
                 <label class="floating-label">
                     <span>Description</span>
-                    <input v-model="description" type="text" class="input w-full" placeholder="Description">
+                    <input v-model="description" type="text" class="input w-full" placeholder="Description" />
                 </label>
                 <label>
                     <span class="text-sm">Item Image</span>
-                    <input @change="onFileChange" type="file" class="file-input file-input-primary w-full">
+                    <input @change="onFileChange" type="file" class="file-input file-input-primary w-full" />
                 </label>
-
             </div>
 
-
             <div class="modal-action">
-                <button @click="postItem" class='btn btn-primary'>Submit</button>
+                <button @click="postItem" class="btn btn-primary">Submit</button>
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn">Close</button>
@@ -34,22 +31,24 @@
             </div>
         </div>
     </dialog>
-    <div class="divider"> </div>
+    <div class="divider"></div>
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">
-
         <div v-for="item in lostItems" v-motion-fade
-            class="card bg-base-200 w-96 shadow-sm transition-all  hover:-translate-y-1 duration-500 hover:shadow-lg">
+            class="card bg-base-200 w-96 shadow-sm transition-all hover:-translate-y-1 duration-500 hover:shadow-lg">
             <figure class="max-w-[380px] max-h-[380px]">
-                <img :src="`http://localhost:3000/public/${item.itemImage}`" class=" object-cover "
-                    :alt="item.itemName" />
+                <img :src="`http://localhost:3000/public/${item.image}`" class="object-cover" :alt="item.itemName" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
                     {{ item.itemName }}
-                    <span
-                        :class="['badge badge-sm ', { 'badge-success': item.status == 'found', 'badge-warning': item.status != 'found' }]">{{
-                            item.status }}</span>
+                    <span :class="[
+                        'badge badge-sm ',
+                        {
+                            'badge-success': item.status == 'found',
+                            'badge-warning': item.status != 'found',
+                        },
+                    ]">{{ item.status }}</span>
                 </h2>
                 <p>{{ item.description }}</p>
 
@@ -65,7 +64,8 @@
 
                 <div class="card-actions justify-end">
                     <router-link :to="{ name: 'respond', params: { id: item.id } }" class="btn">Respond
-                        <ph-paper-plane-tilt></ph-paper-plane-tilt> </router-link>
+                        <ph-paper-plane-tilt></ph-paper-plane-tilt>
+                    </router-link>
 
                     <!-- <div class="badge badge-outline">Fashion</div> -->
                     <!-- <div class="badge badge-outline">Products</div> -->
@@ -76,12 +76,12 @@
 </template>
 
 <script>
-import { PhPaperPlaneTilt } from '@phosphor-icons/vue';
-import axios from 'axios'
+import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
+import axios from "axios";
 
 export default {
     components: {
-        PhPaperPlaneTilt
+        PhPaperPlaneTilt,
     },
 
     data() {
@@ -121,10 +121,10 @@ export default {
                 //     }
                 // }
             ],
-            itemName: '',
-            description: '',
-            itemImage: null
-        }
+            itemName: "",
+            description: "",
+            itemImage: null,
+        };
     },
 
     methods: {
@@ -134,26 +134,26 @@ export default {
         async postItem() {
             try {
                 const formData = new FormData();
-                formData.append('itemName', this.itemName)
-                formData.append('description', this.description)
-                formData.append('image', this.itemImage)
+                formData.append("itemName", this.itemName);
+                formData.append("description", this.description);
+                formData.append("image", this.itemImage);
 
-                const response = await axios.post('http://localhost:3000/api/items/', formData, {
+                const response = await axios.post("http://localhost:3000/api/items/", formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                        "Content-Type": "multipart/form-data",
+                    },
                 });
 
-                console.log(response)
+                console.log(response);
                 // console.log(this.itemName);
                 // console.log(this.description)
                 // console.log(this.itemImage)
                 this.fetchPostedItems();
             } catch (error) {
-                alert(JSON.stringify(error))
+                alert(JSON.stringify(error));
             } finally {
-                this.itemName = '';
-                this.description = '';
+                this.itemName = "";
+                this.description = "";
                 this.itemImage = null;
             }
         },
@@ -161,8 +161,8 @@ export default {
         async fetchPostedItems() {
             try {
                 // TODO: replace this with real db later
-                const { data } = await axios.get('http://localhost:3000/api/items');
-                const postedItems = data.tempDB;
+                const { data } = await axios.get("http://localhost:3000/api/items");
+                const postedItems = data.lostItems;
                 // this.lostItems.push(...postedItems.map((item) => ({
                 //     id: crypto.randomUUID(),
                 //     ...item,
@@ -174,25 +174,23 @@ export default {
 
                 this.lostItems = postedItems.map((item) => ({
                     ...item,
-                    id: crypto.randomUUID(),
-                    status: 'not found',
+                    status: "not found",
                     user: {
-                        profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
-                        name: 'Rhudd Lawrence'
-                    }
-                }))
+                        profile: "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp",
+                        name: "Rhudd Lawrence",
+                    },
+                }));
 
-                console.log(postedItems)
+                console.log(postedItems);
             } catch (error) {
-                console.log(error)
-                alert(JSON.stringify(error))
+                console.log(error);
+                alert(JSON.stringify(error));
             }
-        }
+        },
     },
 
     mounted() {
         this.fetchPostedItems();
-    }
-}
-
+    },
+};
 </script>
