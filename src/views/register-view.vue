@@ -98,7 +98,8 @@ export default {
         this.isError = false;
         this.showAlert = false;
         if (this.credentials.password != this.credentials.confirmPassword) {
-          alert("Password does not match");
+          this.isError = true;
+          this.responseMessage = "Password does not match.";
           return;
         }
 
