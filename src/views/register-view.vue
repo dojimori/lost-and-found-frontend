@@ -13,6 +13,7 @@
             type="text"
             class="input w-full"
             placeholder="Name"
+            :disabled="isLoading"
           />
         </label>
 
@@ -23,6 +24,7 @@
             type="text"
             class="input w-full"
             placeholder="Email"
+            :disabled="isLoading"
           />
         </label>
 
@@ -33,6 +35,7 @@
             type="text"
             class="input w-full"
             placeholder="Password"
+            :disabled="isLoading"
           />
         </label>
 
@@ -43,6 +46,7 @@
             type="text"
             class="input w-full"
             placeholder="Confirm Password"
+            :disabled="isLoading"
           />
         </label>
       </div>
