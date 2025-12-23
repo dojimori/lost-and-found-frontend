@@ -4,7 +4,8 @@
       @submit.prevent="submitHandler"
       class="flex flex-col gap-1 w-100 p-4 border border-gray-300 shadow-lg"
     >
-      <h4 class="mb-4 font-bold">Register</h4>
+      <h4 class="font-bold">Register</h4>
+
       <div class="flex flex-col gap-2">
         <label for="" class="floating-label">
           <span>Name</span>
@@ -55,6 +56,9 @@
         <span v-if="isLoading" class="loading loading-dots loading-lg"></span>
         <span v-else>Register</span>
       </button>
+      <div v-motion-fade role="alert" class="mt-2 alert alert-error alert-soft">
+        <span>Your purchase has been confirmed!</span>
+      </div>
     </form>
   </div>
 </template>
@@ -66,6 +70,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      isError: false,
       credentials: {
         name: "",
         email: "",
