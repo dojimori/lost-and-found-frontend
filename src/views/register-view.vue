@@ -20,6 +20,11 @@
           <span>Password</span>
           <input type="text" class="input w-full" placeholder="Password" />
         </label>
+
+        <label for="" class="floating-label">
+          <span>Confirm Password</span>
+          <input type="text" class="input w-full" placeholder="Confirm Password" />
+        </label>
       </div>
 
       <button type="submit" class="btn btn-primary mt-4">Register</button>
