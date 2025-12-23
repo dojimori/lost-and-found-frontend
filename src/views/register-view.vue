@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import api from "../helpers/api";
+import { api } from "../helpers/api";
 
 export default {
   data() {
@@ -70,8 +70,12 @@ export default {
   methods: {
     async submitHandler() {
       try {
+        if (this.credentials.password != this.credentials.confirmPassword) {
+          alert("Password does not match");
+          return;
+        }
+
         const response = await api.post("/register", this.credentials);
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
