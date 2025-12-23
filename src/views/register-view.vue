@@ -79,6 +79,7 @@ export default {
     return {
       isLoading: false,
       isError: false,
+      responseMessage: "",
       credentials: {
         name: "",
         email: "",
@@ -100,10 +101,14 @@ export default {
 
         const response = await api.post("/auth/register", this.credentials);
 
-        console.log(response);
+        // console.log(response);
+        this.responseMessage = response.data.message;
       } catch (error) {
         this.isError = true;
         console.log(error);
+        const message =
+          error.response.data.message || "Something wen't terribly wrong here.";
+        this.responseMessage = message;
       } finally {
         this.isLoading = false;
       }
