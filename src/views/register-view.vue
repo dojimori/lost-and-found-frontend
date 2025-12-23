@@ -47,7 +47,10 @@
         </label>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-4">Register</button>
+      <button type="submit" class="btn btn-primary mt-4" :disabled="isLoading">
+        <span v-if="isLoading" class="loading loading-dots loading-lg"></span>
+        <span v-else>Register</span>
+      </button>
     </form>
   </div>
 </template>
@@ -58,6 +61,7 @@ import { api } from "../helpers/api";
 export default {
   data() {
     return {
+      isLoading: false,
       credentials: {
         name: "",
         email: "",
@@ -70,6 +74,7 @@ export default {
   methods: {
     async submitHandler() {
       try {
+        this.isLoading = true;
         if (this.credentials.password != this.credentials.confirmPassword) {
           alert("Password does not match");
           return;
@@ -80,6 +85,8 @@ export default {
         console.log(response);
       } catch (error) {
         console.log(error);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
