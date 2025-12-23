@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center min-h-[80vh] p-4 bg-base-200" v-motion-fade>
-        <form @submit.prevent="submitHandler" class="card bg-base-100 shadow-xl w-full max-w-md">
+        <form @submit.prevent="submitHandler" class="card bg-base-100 shadow-md w-full max-w-md">
             <div class="card-body">
                 <h2 class="card-title text-2xl font-bold justify-center">Create Account</h2>
                 <p class="text-base-content/60 text-center text-sm">Join us today and get started!</p>
