@@ -15,7 +15,10 @@
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
-            <router-link to="/" class="btn btn-ghost text-xl">Seekr</router-link>
+            <router-link to="/" class="btn btn-ghost text-xl">
+                <img :src="logo" alt="ustp-logo" class="w-12">
+                Seekr
+            </router-link>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
@@ -31,3 +34,8 @@
 
     <router-view></router-view>
 </template>
+
+
+<script setup>
+import logo from '../assets/logo.png'
+</script>

@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-    /* themes: luxury; */
     themes: light --default, dark --prefersdark;
 }
 
 ;
+
+@plugin "daisyui/theme" {
+    name: "ustp";
+    default: true;
+    prefersdark: false;
+    color-scheme: light;
+
+    /* Brand colors */
+    --color-primary: #201B51;
+    /* USTP navy */
+    --color-primary-content: #ffffff;
+}
