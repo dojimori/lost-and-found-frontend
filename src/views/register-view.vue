@@ -60,7 +60,10 @@
       <div
         v-motion-fade
         role="alert"
-        :class="['mt-2 alert alert-soft', { isError: 'alert-error' }]"
+        :class="[
+          'mt-2 alert alert-soft',
+          { 'alert-error': isError, 'alert-success': !isError },
+        ]"
       >
         <span>Your purchase has been confirmed!</span>
       </div>
