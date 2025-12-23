@@ -60,6 +60,7 @@
       <div
         v-motion-fade
         role="alert"
+        v-if="showAlert"
         :class="[
           'mt-2 alert alert-soft',
           { 'alert-error': isError, 'alert-success': !isError },
@@ -79,6 +80,7 @@ export default {
     return {
       isLoading: false,
       isError: false,
+      showAlert: false,
       responseMessage: "",
       credentials: {
         name: "",
@@ -94,6 +96,7 @@ export default {
       try {
         this.isLoading = true;
         this.isError = false;
+        this.showAlert = false;
         if (this.credentials.password != this.credentials.confirmPassword) {
           alert("Password does not match");
           return;
@@ -111,6 +114,7 @@ export default {
         this.responseMessage = message;
       } finally {
         this.isLoading = false;
+        this.showAlert = true;
       }
     },
   },
