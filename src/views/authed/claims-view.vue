@@ -1,7 +1,8 @@
 <template>
-
-    <span class="text-sm text-gray-500">Here are people who claimed your posted items.</span>
-    <div class="divider"></div>
+    <div class="mb-2">
+        <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span>
+    </div>
+    <!-- <div class="divider"></div> -->
     <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100" v-motion-fade>
         <table class="table">
             <!-- head -->
