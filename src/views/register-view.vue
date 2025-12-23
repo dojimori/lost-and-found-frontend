@@ -75,7 +75,9 @@ export default {
           return;
         }
 
-        const response = await api.post("/register", this.credentials);
+        const response = await api.post("/auth/register", this.credentials);
+
+        console.log(response);
       } catch (error) {
         console.log(error);
       }
