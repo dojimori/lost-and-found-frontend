@@ -64,10 +64,8 @@ export default {
             showAlert: false,
             responseMessage: "",
             credentials: {
-                name: "",
                 email: "",
                 password: "",
-                confirmPassword: "",
             },
         };
     },
@@ -78,22 +76,16 @@ export default {
                 this.isLoading = true;
                 this.isError = false;
                 this.showAlert = false;
-                if (this.credentials.password != this.credentials.confirmPassword) {
-                    this.isError = true;
-                    this.responseMessage = "Password does not match.";
-                    return;
-                }
 
-                const response = await api.post("/auth/register", this.credentials);
+                const response = await api.post("/auth/login", this.credentials);
 
                 // console.log(response);
                 this.responseMessage = response.data.message;
             } catch (error) {
                 this.isError = true;
                 console.log(error);
-                const message =
-                    error.response.data.message || "Something wen't terribly wrong here.";
-                this.responseMessage = message;
+                this.responseMessage =
+                    error.response?.data?.message || "Something went terribly wrong here.";
             } finally {
                 this.isLoading = false;
                 this.showAlert = true;
