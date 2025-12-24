@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <router-link to="/feed" class="btn mr-2">Logout</router-link>
+            <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
         </div>
     </nav>
     <main class="p-8">
@@ -34,3 +34,16 @@
         <router-view></router-view>
     </main>
 </template>
+
+<script>
+export default {
+
+    methods: {
+        logoutHandler() {
+            localStorage.removeItem('token');
+            this.$router.push('/')
+        }
+    }
+}
+
+</script>
