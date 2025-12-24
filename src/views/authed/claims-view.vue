@@ -25,7 +25,7 @@
                     </td>
                     <td>6/26/2026</td>
                     <td>
-                        <button class="btn btn-success">Confirm</button>
+                        <button class="btn btn-primary">Confirm</button>
                     </td>
                 </tr>
 
@@ -37,7 +37,7 @@
                     </td>
                     <td>6/26/2026</td>
                     <td>
-                        <button class="btn btn-success">Confirm</button>
+                        <button class="btn btn-primary">Confirm</button>
                     </td>
                 </tr>
 
@@ -49,7 +49,7 @@
                     </td>
                     <td>6/26/2026</td>
                     <td>
-                        <button class="btn btn-success">Confirm</button>
+                        <button class="btn btn-primary">Confirm</button>
                     </td>
                 </tr>
 

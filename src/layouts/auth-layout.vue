@@ -25,6 +25,7 @@
             </ul>
         </div>
         <div class="navbar-end">
+            <router-link class="mr-1 btn btn-primary">Profile</router-link>
             <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
         </div>
     </nav>
@@ -36,6 +37,8 @@
 </template>
 
 <script>
+
+
 export default {
 
     methods: {
