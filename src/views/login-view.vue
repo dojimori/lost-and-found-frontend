@@ -77,10 +77,16 @@ export default {
                 this.isError = false;
                 this.showAlert = false;
 
-                const response = await api.post("/auth/login", this.credentials);
+                const { data } = await api.post("/auth/login", this.credentials);
 
                 // console.log(response);
-                this.responseMessage = response.data.message;
+                this.responseMessage = data.message;
+
+                const { token } = data;
+
+                localStorage.setItem('token', token);
+                this.$router.push('/feed')
+
             } catch (error) {
                 this.isError = true;
                 console.log(error);
