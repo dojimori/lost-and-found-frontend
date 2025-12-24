@@ -64,8 +64,8 @@ export default {
             showAlert: false,
             responseMessage: "",
             credentials: {
-                email: "",
-                password: "",
+                email: "doujin22@gmail.com",
+                password: "1001021",
             },
         };
     },
