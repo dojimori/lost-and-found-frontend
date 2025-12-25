@@ -142,23 +142,15 @@ export default {
         async postItem() {
             try {
                 this.showAlert = false;
-                const token = localStorage.getItem('token')
                 const formData = new FormData();
                 formData.append("itemName", this.itemName);
                 formData.append("description", this.description);
                 formData.append("image", this.itemImage);
 
-                const response = await axios.post("http://localhost:3000/api/items/", formData, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                        'Authorization': `Bearer ${token}`
-                    },
-                });
+                const response = await axios.post("http://localhost:3000/api/items/", formData);
 
                 console.log(response);
-                // console.log(this.itemName);
-                // console.log(this.description)
-                // console.log(this.itemImage)
+
                 this.responseMessage = response?.data.message || 'Success.'
                 await this.fetchPostedItems();
             } catch (error) {
@@ -177,23 +169,8 @@ export default {
             try {
                 this.isError = false;
                 this.showAlert = false;
-                const token = localStorage.getItem('token')
-                // TODO: replace this with real db later
-                const { data } = await axios.get("http://localhost:3000/api/items", {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const { data } = await axios.get("http://localhost:3000/api/items");
                 const postedItems = data.lostItems;
-                // this.lostItems.push(...postedItems.map((item) => ({
-                //     id: crypto.randomUUID(),
-                //     ...item,
-                //     user: {
-                //         profile: 'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp',
-                //         name: 'Rhudd Lawrence'
-                //     }
-                // })))
-
                 this.lostItems = postedItems.map((item) => ({
                     ...item,
                     status: "not found",
