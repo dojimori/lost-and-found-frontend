@@ -1,6 +1,6 @@
 <template>
     <!-- Open the modal using ID.showModal() method -->
-    <dialog id="post_item_modal" class="modal">
+    <dialog id="post_item_modal" class="modal" ref="postItemModal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Post Item</h3>
             <div class="divider"></div>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="modal-action">
-                <button @click="postItem" class="btn btn-primary">Submit</button>
+                <button @click="postItem" type="button" class="btn btn-primary">Submit</button>
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn">Close</button>
@@ -33,7 +33,7 @@
     </dialog>
     <!-- <div class="divider"></div> -->
     <div class='flex gap-2 mb-12'>
-        <button class="btn btn-primary" onclick="post_item_modal.showModal()">Post Item</button>
+        <button class="btn btn-primary" @click="openModal">Post Item</button>
 
         <label class="input input-primary outline-none shadow-inner">
             <svg class=" h-[1.2em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -110,6 +110,9 @@ export default {
     },
 
     methods: {
+        openModal() {
+            this.$refs.postItemModal.showModal()
+        },
         truncate(str, maxLength) {
             if (str.length <= maxLength) return str;
             return str.slice(0, maxLength) + '...'
