@@ -72,7 +72,7 @@
     </div>
 </template>
 
-<script>
+<script lang='ts'>
 import { api } from "../helpers/api";
 
 export default {

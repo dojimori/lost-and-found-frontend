@@ -122,7 +122,9 @@
 </template>
 
 
-<script>
+<script lang="ts">
+import { api } from '@/helpers/api'
+
 export default {
     data() {
         return {
@@ -142,15 +144,44 @@ export default {
         };
     },
 
+    methods: {
+        async getItem(id: string) {
+            try {
+                const token = localStorage.getItem("token")
+                const response = await api.get(`/items/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(response)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+
+    },
+
     computed: {
         id() {
-            return this.$route.params.id;
+            return this.$route.params.id || null;
         }
     },
 
     mounted() {
-        console.log(this.id)
+        // console.log(this.id)
+        if (this.id) {
+            this.getItem(this.id);
+        }
     },
+    watch: {
+        id(newId) {
+            if (newId) {
+                this.getItem(newId);
+            }
+        }
+    }
 
 
 };

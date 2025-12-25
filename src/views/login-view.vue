@@ -53,8 +53,8 @@
     </div>
 </template>
 
-<script>
-import { api } from "../helpers/api";
+<script lang="ts">
+import { api } from "@/helpers/api";
 
 export default {
     data() {
