@@ -17,14 +17,16 @@
             </div>
             <router-link to="/feed" class="btn btn-ghost text-xl">Lost and Found</router-link>
         </div>
-        <div class="navbar-center hidden lg:flex">
+        <!-- <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
                 <li><router-link to="/feed">Feed</router-link></li>
                 <li><router-link to="/claims">Responds</router-link></li>
-                <li><router-link to="/feed">My Posts</router-link></li>
             </ul>
-        </div>
+        </div> -->
         <div class="navbar-end">
+            <router-link class="mr-1 btn btn-primary" to="/feed"><ph-app-window></ph-app-window>Feed</router-link>
+            <router-link class="mr-1 btn btn-primary"
+                to="/claims"><ph-bell-ringing></ph-bell-ringing>Claims</router-link>
             <router-link class="mr-1 btn btn-primary" to="/profile"><ph-user></ph-user></router-link>
             <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
         </div>
@@ -37,11 +39,13 @@
 </template>
 
 <script>
-import { PhUser } from '@phosphor-icons/vue';
+import { PhUser, PhAppWindow, PhBellRinging } from '@phosphor-icons/vue';
 
 export default {
     components: {
-        PhUser
+        PhUser,
+        PhAppWindow,
+        PhBellRinging
     },
     methods: {
         logoutHandler() {
