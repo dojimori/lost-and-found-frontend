@@ -12,10 +12,10 @@
                     <span>Item Name</span>
                     <input v-model="itemName" type="text" class="input w-full" placeholder="Item Name" />
                 </label>
-                <label class="floating-label">
-                    <span>Description</span>
-                    <input v-model="description" type="text" class="input w-full" placeholder="Description" />
-                </label>
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Description</legend>
+                    <textarea v-model="description" class="textarea h-24 w-full" placeholder=""></textarea>
+                </fieldset>
                 <label>
                     <span class="text-sm">Item Image</span>
                     <input @change="onFileChange" type="file" class="file-input file-input-primary w-full" />
