@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center" v-motion-fade>
         <div class="card card-border shadow-sm w-[700px]">
             <div class="card-body">
                 <div class="card-title mb-4">
@@ -35,6 +35,13 @@
                             <span class="font-bold">Year</span>
                             <input type="text" class="" disabled :value="'1st Year'">
                         </label>
+
+
+                        <fieldset class="fieldset" disabled>
+                            <legend class="fieldset-legend">More info...</legend>
+                            <textarea class="textarea h-24 w-full" placeholder=""></textarea>
+                            <div class="label">Optional</div>
+                        </fieldset>
                     </div>
 
                 </div>
