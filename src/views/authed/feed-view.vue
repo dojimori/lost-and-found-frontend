@@ -62,8 +62,8 @@
                     <p class="text-[12px] font-bold">{{ item.user.name }}</p>
                 </div>
 
-                <div class="card-actions justify-end">
-                    <router-link :to="{ name: 'respond', params: { id: item.id } }" class="btn">Respond
+                <div class="card-actions justify-center">
+                    <router-link :to="{ name: 'respond', params: { id: item.id } }" class="btn btn-primary">Respond
                         <ph-paper-plane-tilt></ph-paper-plane-tilt>
                     </router-link>
 
