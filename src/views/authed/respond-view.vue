@@ -5,9 +5,12 @@
         <!-- LOST ITEM CARD -->
         <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 w-[600px] items-center shadow-md">
             <!-- Item Image -->
-            <div class="w-full h-[400px] bg-gray-200 border border-gray-800 rounded-sm"></div>
-            <!-- <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" /> -->
             <div class="px-12 py-2" v-if="item">
+                <div
+                    class="mb-2 w-full h-[400px] bg-gray-200 border border-gray-800 hover:border-blue-800 duration-200 rounded-sm">
+                    <img :src="`http://localhost:3000/public/${item.image}`" :alt="item.name"
+                        class="rounded-sm h-[100%] w-[100%] object-contain " />
+                </div>
                 <!-- Item Name -->
                 <h2 class="text-xl mb-3 font-semibold">
                     {{ item.name }}
@@ -144,20 +147,6 @@ export default {
     data() {
         return {
             defPfp,
-            lostItem: {
-                id: 1,
-                img:
-                    "",
-                itemName: "Wallet",
-                lastSeen: "BLDG. 48",
-                status: "not found",
-                description: "Lorem refers to Lorem Ipsum, the standard placeholder or dummy text used in design (print, web, graphic) to fill space and demonstrate layouts, fonts, or design elements without distracting with meaningful content. Its a scrambled, nonsensical Latin text derived from a Cicero work, giving the appearance of real text but keeping focus on the visual design, with versions available in most design software and online generators",
-                user: {
-                    profile: "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp",
-                    name: "Alexander Gabriel",
-                },
-            },
-
             item: null as Item | null
         };
     },
