@@ -105,7 +105,7 @@
 <script>
 import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
 import defPfp from '@/assets/def_pfp.jpg'
-import axios from "axios";
+import { api } from "@/helpers/api";
 
 export default {
     components: {
@@ -147,7 +147,7 @@ export default {
                 formData.append("description", this.description);
                 formData.append("image", this.itemImage);
 
-                const response = await axios.post("http://localhost:3000/api/items/", formData);
+                const response = await api.post("/items/", formData);
 
                 console.log(response);
 
@@ -169,7 +169,7 @@ export default {
             try {
                 this.isError = false;
                 this.showAlert = false;
-                const { data } = await axios.get("http://localhost:3000/api/items");
+                const { data } = await api.get("/items");
                 const postedItems = data.lostItems;
                 this.lostItems = postedItems.map((item) => ({
                     ...item,
