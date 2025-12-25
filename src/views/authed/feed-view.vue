@@ -1,11 +1,11 @@
 <template>
     <!-- Open the modal using ID.showModal() method -->
-    <button class="btn" onclick="post_item_modal.showModal()">Post Item</button>
     <dialog id="post_item_modal" class="modal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Post Item</h3>
             <div class="divider"></div>
             <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
+
 
             <div class="flex flex-col gap-3">
                 <label class="floating-label">
@@ -32,6 +32,20 @@
         </div>
     </dialog>
     <!-- <div class="divider"></div> -->
+    <div class='flex gap-2 mb-4'>
+
+        <button class="btn" onclick="post_item_modal.showModal()">Post Item</button>
+
+        <label class="input input-primary outline-none shadow-inner">
+            <svg class=" h-[1.2em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+            <input type="search" class="grow" placeholder="Search" />
+        </label>
+    </div>
 
     <div class="flex flex-row flex-wrap gap-4 items-center justify-center">
         <div v-for="item in lostItems" v-motion-fade
