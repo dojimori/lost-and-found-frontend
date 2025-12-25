@@ -7,14 +7,14 @@
             <!-- Item Image -->
             <div class="w-full h-[400px] bg-gray-200 border border-gray-800 rounded-sm"></div>
             <!-- <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" /> -->
-            <div class="px-12 py-2">
+            <div class="px-12 py-2" v-if="item">
                 <!-- Item Name -->
                 <h2 class="text-xl mb-3 font-semibold">
-                    {{ lostItem.itemName }}
+                    {{ item.name }}
                 </h2>
                 <div class="mb-4">
                     <p class="text-gray-800">
-                        {{ lostItem.description }}
+                        {{ item.description }}
                     </p>
                 </div>
 
@@ -22,13 +22,13 @@
                 <div class="flex items-center gap-3">
                     <div class="avatar">
                         <div class="w-10 h-10 rounded-full">
-                            <img :src="lostItem.user.profile" :alt="lostItem.user.name" />
+                            <img :src="defPfp" :alt="item.founder.name" />
                         </div>
                     </div>
                     <div class="flex justify-between w-100">
                         <div class="flex flex-col leading-tight">
                             <p class="text-sm font-medium">
-                                {{ lostItem.user.name }}
+                                {{ item.founder.name }}
                             </p>
                             <span class="text-xs text-base-content/60">
                                 Posted a lost item
@@ -124,10 +124,12 @@
 
 <script lang="ts">
 import { api } from '@/helpers/api'
+import defPfp from '@/assets/def_pfp.jpg'
 
 export default {
     data() {
         return {
+            defPfp,
             lostItem: {
                 id: 1,
                 img:
@@ -141,14 +143,16 @@ export default {
                     name: "Alexander Gabriel",
                 },
             },
+
+            item: null
         };
     },
 
     methods: {
         async getItem(id: string) {
             try {
-                const response = await api.get(`/items/${id}`);
-                console.log(response)
+                const { data } = await api.get(`/items/${id}`);
+                this.item = data.item;
             } catch (error) {
                 console.log(error)
             }
