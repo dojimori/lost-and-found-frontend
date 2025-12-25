@@ -1,5 +1,5 @@
 <template>
-    <div v-motion-fade v-if="showAlert" :class="['alert alert-soft', isError ? 'alert-error' : 'alert-success']">
+    <div v-motion-fade v-if="showAlert" :class="['alert mb-4', isError ? 'alert-error' : 'alert-success']">
         <svg v-if="isError" xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none"
             viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -159,22 +159,23 @@ export default {
                 // console.log(this.itemName);
                 // console.log(this.description)
                 // console.log(this.itemImage)
-                this.fetchPostedItems();
-                this.isError = false;
-                this.responseMessage = error.response?.data.message || 'Success.'
+                this.responseMessage = response?.data.message || 'Success.'
+                await this.fetchPostedItems();
             } catch (error) {
                 this.isError = true;
+                console.log(error)
                 this.responseMessage = error.response?.data.message || 'Something went wrong.'
             } finally {
                 this.itemName = "";
                 this.description = "";
-                this.itemImage = null;
                 this.showAlert = true;
+                this.itemImage = null;
             }
         },
 
         async fetchPostedItems() {
             try {
+                this.isError = false;
                 const token = localStorage.getItem('token')
                 // TODO: replace this with real db later
                 const { data } = await axios.get("http://localhost:3000/api/items", {
@@ -199,8 +200,8 @@ export default {
 
                 console.log(postedItems);
             } catch (error) {
-                console.log(error);
-                alert(JSON.stringify(error));
+                this.isError = true;
+                this.responseMessage = error.response?.data.message || 'Something went wrong.'
             }
         },
     },
