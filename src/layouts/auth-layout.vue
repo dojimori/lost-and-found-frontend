@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <router-link class="mr-1 btn btn-primary">Profile</router-link>
+            <router-link class="mr-1 btn btn-primary"><ph-user></ph-user></router-link>
             <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
         </div>
     </nav>
@@ -37,10 +37,12 @@
 </template>
 
 <script>
-
+import { PhUser } from '@phosphor-icons/vue';
 
 export default {
-
+    components: {
+        PhUser
+    },
     methods: {
         logoutHandler() {
             localStorage.removeItem('token');
