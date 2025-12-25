@@ -32,9 +32,8 @@
         </div>
     </dialog>
     <!-- <div class="divider"></div> -->
-    <div class='flex gap-2 mb-4'>
-
-        <button class="btn" onclick="post_item_modal.showModal()">Post Item</button>
+    <div class='flex gap-2 mb-12'>
+        <button class="btn btn-primary" onclick="post_item_modal.showModal()">Post Item</button>
 
         <label class="input input-primary outline-none shadow-inner">
             <svg class=" h-[1.2em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -47,7 +46,7 @@
         </label>
     </div>
 
-    <div class="flex flex-row flex-wrap gap-4 items-center justify-center">
+    <div class="flex flex-row flex-wrap gap-4 items-center justify-start">
         <div v-for="item in lostItems" v-motion-fade
             class="border border-gray-400 card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-500 hover:shadow-md">
             <figure class="max-w-[280px] max-h-[200px]">
@@ -73,7 +72,7 @@
                         </div>
                     </div>
 
-                    <p class="text-[12px] font-bold">{{ item.user.name }}</p>
+                    <p class="text-[12px] font-bold">{{ item.founder.name }}</p>
                 </div>
 
                 <div class="card-actions justify-center">
