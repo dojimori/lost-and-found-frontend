@@ -3,7 +3,7 @@
 
         <div class="card card-border w-[300px] shadow-xs">
             <div class="card-body">
-                <span class="badge  badge-soft badge-sm badge-warning">Total Claims</span>
+                <span class="badge  badge-soft badge-sm badge-warning font-bold">Total Claims</span>
                 <h1 class="card-title">
                     12
                 </h1>
@@ -12,7 +12,7 @@
 
         <div class="card card-border w-[300px] shadow-xs">
             <div class="card-body">
-                <span class="badge badge-soft badge-sm badge-success">Accepted claims</span>
+                <span class="badge badge-soft badge-sm badge-success font-bold">Accepted Claims</span>
                 <h1 class="card-title">
                     8
                 </h1>
