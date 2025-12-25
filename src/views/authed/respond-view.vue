@@ -126,6 +126,20 @@
 import { api } from '@/helpers/api'
 import defPfp from '@/assets/def_pfp.jpg'
 
+interface Founder {
+    name: string;
+    profile?: string;
+}
+
+interface Item {
+    id: string;
+    name: string;
+    description: string;
+    status?: string;
+    img?: string;
+    founder: Founder;
+}
+
 export default {
     data() {
         return {
@@ -144,7 +158,7 @@ export default {
                 },
             },
 
-            item: null
+            item: null as Item | null
         };
     },
 
@@ -152,7 +166,7 @@ export default {
         async getItem(id: string) {
             try {
                 const { data } = await api.get(`/items/${id}`);
-                this.item = data.item;
+                this.item = data.item as Item;
             } catch (error) {
                 console.log(error)
             }
