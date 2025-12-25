@@ -1,8 +1,22 @@
 <template>
+    <div v-motion-fade v-if="showAlert" :class="['alert alert-soft', isError ? 'alert-error' : 'alert-success']">
+        <svg v-if="isError" xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ responseMessage }}</span>
+    </div>
     <!-- Open the modal using ID.showModal() method -->
     <dialog id="post_item_modal" class="modal" ref="postItemModal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Post Item</h3>
+
             <div class="divider"></div>
             <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
 
@@ -46,8 +60,9 @@
     </div>
 
     <div class="flex flex-row flex-wrap gap-4  justify-start">
+        <!-- item card -->
         <div v-for="item in lostItems" v-motion-fade
-            class="border border-gray-400 card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-500 hover:shadow-md">
+            class="border border-gray-400 card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-200 hover:shadow-md hover:border-blue-700">
             <figure class="max-w-[280px] max-h-[200px]">
                 <img :src="`http://localhost:3000/public/${item.image}`" class="    object-cover" :alt="item.name" />
             </figure>
@@ -105,6 +120,9 @@ export default {
             itemName: "",
             description: "",
             itemImage: null,
+            isError: false,
+            responseMessage: null,
+            showAlert: false
         };
     },
 
@@ -123,6 +141,7 @@ export default {
         },
         async postItem() {
             try {
+                this.showAlert = false;
                 const token = localStorage.getItem('token')
                 const formData = new FormData();
                 formData.append("itemName", this.itemName);
@@ -141,12 +160,16 @@ export default {
                 // console.log(this.description)
                 // console.log(this.itemImage)
                 this.fetchPostedItems();
+                this.isError = false;
+                this.responseMessage = error.response?.data.message || 'Success.'
             } catch (error) {
-                alert(JSON.stringify(error));
+                this.isError = true;
+                this.responseMessage = error.response?.data.message || 'Something went wrong.'
             } finally {
                 this.itemName = "";
                 this.description = "";
                 this.itemImage = null;
+                this.showAlert = true;
             }
         },
 
