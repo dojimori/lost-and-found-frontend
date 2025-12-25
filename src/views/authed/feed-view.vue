@@ -35,7 +35,7 @@
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">
         <div v-for="item in lostItems" v-motion-fade
-            class="card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-500 hover:shadow-md">
+            class="border border-gray-400 card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-500 hover:shadow-md">
             <figure class="max-w-[280px] max-h-[200px]">
                 <img :src="`http://localhost:3000/public/${item.image}`" class="    object-cover" :alt="item.name" />
             </figure>
