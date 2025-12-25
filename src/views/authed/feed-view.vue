@@ -35,13 +35,13 @@
 
     <div class="flex flex-row flex-wrap gap-8 items-center justify-center">
         <div v-for="item in lostItems" v-motion-fade
-            class="card bg-base-200 w-96 shadow-sm transition-all hover:-translate-y-1 duration-500 hover:shadow-lg">
-            <figure class="max-w-[380px] max-h-[380px]">
-                <img :src="`http://localhost:3000/public/${item.image}`" class="object-cover" :alt="item.itemName" />
+            class="card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-500 hover:shadow-md">
+            <figure class="max-w-[280px] max-h-[200px]">
+                <img :src="`http://localhost:3000/public/${item.image}`" class="    object-cover" :alt="item.name" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
-                    {{ item.itemName }}
+                    {{ truncate(item.name) }}
                     <span :class="[
                         'badge badge-sm ',
                         {
@@ -128,11 +128,18 @@ export default {
     },
 
     methods: {
+        truncate(str) {
+            const maxLength = 12;
+            if (str.length <= maxLength) return str;
+            return str.slice(0, 10) + '...'
+        },
+
         onFileChange(event) {
             this.itemImage = event.target.files[0];
         },
         async postItem() {
             try {
+                const token = localStorage.getItem('token')
                 const formData = new FormData();
                 formData.append("itemName", this.itemName);
                 formData.append("description", this.description);
@@ -141,6 +148,7 @@ export default {
                 const response = await axios.post("http://localhost:3000/api/items/", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
+                        'Authorization': `Bearer ${token}`
                     },
                 });
 
@@ -160,8 +168,13 @@ export default {
 
         async fetchPostedItems() {
             try {
+                const token = localStorage.getItem('token')
                 // TODO: replace this with real db later
-                const { data } = await axios.get("http://localhost:3000/api/items");
+                const { data } = await axios.get("http://localhost:3000/api/items", {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 const postedItems = data.lostItems;
                 // this.lostItems.push(...postedItems.map((item) => ({
                 //     id: crypto.randomUUID(),
