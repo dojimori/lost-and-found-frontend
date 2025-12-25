@@ -67,8 +67,8 @@
 
                 <div class="flex items-center gap-4">
                     <div class="avatar">
-                        <div class="w-8 rounded-full">
-                            <img :src="item.user.profile" />
+                        <div class="w-6 rounded-full">
+                            <img :src="item.founder.profile ?? defPfp" />
                         </div>
                     </div>
 
@@ -90,6 +90,7 @@
 
 <script>
 import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
+import defPfp from '@/assets/def_pfp.jpg'
 import axios from "axios";
 
 export default {
@@ -99,6 +100,7 @@ export default {
 
     data() {
         return {
+            defPfp,
             lostItems: [
             ],
             itemName: "",
@@ -168,10 +170,6 @@ export default {
                 this.lostItems = postedItems.map((item) => ({
                     ...item,
                     status: "not found",
-                    user: {
-                        profile: "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp",
-                        name: "Rhudd Lawrence",
-                    },
                 }));
 
                 console.log(postedItems);
