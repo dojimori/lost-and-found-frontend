@@ -59,7 +59,7 @@
         </label>
     </div>
 
-    <div class="flex flex-row flex-wrap gap-4  justify-start">
+    <div class="flex flex-row flex-wrap gap-4  justify-center">
         <!-- item card -->
         <div v-for="item in lostItems" v-motion-fade
             class="border border-gray-400 card bg-base-200 rounded-none w-[250px] shadow-sm transition-all  duration-200 hover:shadow-md hover:border-blue-700">

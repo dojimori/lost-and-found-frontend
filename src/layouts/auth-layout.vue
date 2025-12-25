@@ -15,7 +15,7 @@
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
-            <router-link to="/" class="btn btn-ghost text-xl">Lost and Found</router-link>
+            <router-link to="/feed" class="btn btn-ghost text-xl">Lost and Found</router-link>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
