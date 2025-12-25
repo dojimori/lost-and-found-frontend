@@ -158,8 +158,8 @@ export default {
     },
 
     computed: {
-        id() {
-            return this.$route.params.id || null;
+        id(): string | null {
+            return this.$route.params.id as string | null;
         }
     },
 
