@@ -176,6 +176,7 @@ export default {
         async fetchPostedItems() {
             try {
                 this.isError = false;
+                this.showAlert = false;
                 const token = localStorage.getItem('token')
                 // TODO: replace this with real db later
                 const { data } = await axios.get("http://localhost:3000/api/items", {
@@ -201,7 +202,8 @@ export default {
                 console.log(postedItems);
             } catch (error) {
                 this.isError = true;
-                this.responseMessage = error.response?.data.message || 'Something went wrong.'
+                this.showAlert = true;
+                this.responseMessage = error.response?.data.message || 'Something went wrong. Your session might be expired, please login again.'
             }
         },
     },

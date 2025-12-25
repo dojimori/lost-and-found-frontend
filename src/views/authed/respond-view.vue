@@ -3,15 +3,20 @@
     <router-link to="/feed" class="btn">Back</router-link>
     <div class="flex flex-col justify-center gap-8 items-center" v-motion-fade>
         <!-- LOST ITEM CARD -->
-        <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 max-w-lg w-full shadow-md">
-
+        <div class="bg-base-200 p-2 rounded-md flex flex-col gap-4 w-[600px] items-center shadow-md">
             <!-- Item Image -->
-            <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" />
+            <div class="w-full h-[400px] bg-gray-200 border border-gray-800 rounded-sm"></div>
+            <!-- <img :src="lostItem.img" :alt="lostItem.itemName" class="w-full max-h-[440px] object-contain rounded-sm" /> -->
             <div class="px-12 py-2">
                 <!-- Item Name -->
                 <h2 class="text-xl mb-3 font-semibold">
                     {{ lostItem.itemName }}
                 </h2>
+                <div class="mb-4">
+                    <p class="text-gray-800">
+                        {{ lostItem.description }}
+                    </p>
+                </div>
 
                 <!-- Posted By -->
                 <div class="flex items-center gap-3">
@@ -30,7 +35,7 @@
                             </span>
                         </div>
 
-                        <button class="btn btn-success">Claim</button>
+                        <button class="btn btn-secondary">Claim</button>
                     </div>
                 </div>
             </div>
@@ -41,7 +46,7 @@
         <div class="flex-1 bg-base-200 p-4 rounded-md w-full max-w-3xl">
             <div class="flex gap-2">
                 <input type="text" class="input w-full" placeholder="Comment..." />
-                <button class="btn">Post</button>
+                <button class="btn btn-primary">Post</button>
             </div>
 
             <div class="divider"></div>
@@ -124,10 +129,11 @@ export default {
             lostItem: {
                 id: 1,
                 img:
-                    "https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/598274256_867114656251812_6662297040089705085_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeEyYvcKYon9WtZ0BIpckYWRWpVuJk4OEElalW4mTg4QSR-UQEzlkmKnTtVf-o3OeuEjmg4G-Tunx0-P_CCrLLi8&_nc_ohc=AZcgVEQu9wIQ7kNvwFTfsgm&_nc_oc=AdmmlJo7RQxwckjwxXeKS95nR7Ttfuv7uUk6IydEIxMtmMu1EEGLxZEp2MQ232l9hhA&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=n0E2T-ez710J8-tiYNDw_g&oh=00_Afnbt2VNgygaVjggaA9ihMmlpqkmzKpBD8JpfREDPCxbIg&oe=694BCDC0",
+                    "",
                 itemName: "Wallet",
                 lastSeen: "BLDG. 48",
                 status: "not found",
+                description: "Lorem refers to Lorem Ipsum, the standard placeholder or dummy text used in design (print, web, graphic) to fill space and demonstrate layouts, fonts, or design elements without distracting with meaningful content. Its a scrambled, nonsensical Latin text derived from a Cicero work, giving the appearance of real text but keeping focus on the visual design, with versions available in most design software and online generators",
                 user: {
                     profile: "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp",
                     name: "Alexander Gabriel",
@@ -135,5 +141,17 @@ export default {
             },
         };
     },
+
+    computed: {
+        id() {
+            return this.$route.params.id;
+        }
+    },
+
+    mounted() {
+        console.log(this.id)
+    },
+
+
 };
 </script>
