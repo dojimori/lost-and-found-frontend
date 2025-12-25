@@ -99,6 +99,15 @@
                 </div>
             </div>
         </div>
+
+
+    </div>
+    <div class="mt-4">
+        <div class="join">
+            <button class="join-item btn">«</button>
+            <button class="join-item btn">Page 1</button>
+            <button class="join-item btn">»</button>
+        </div>
     </div>
 </template>
 
