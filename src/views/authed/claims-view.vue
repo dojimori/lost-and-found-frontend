@@ -1,6 +1,29 @@
 <template>
+    <div class="flex flex-row gap-2 p-4 border-b border-gray-200">
+
+        <div class="card card-border w-[300px] shadow-xs">
+            <div class="card-body">
+                <span class="badge  badge-soft badge-sm badge-warning">Total Claims</span>
+                <h1 class="card-title">
+                    12
+                </h1>
+            </div>
+        </div>
+
+        <div class="card card-border w-[300px] shadow-xs">
+            <div class="card-body">
+                <span class="badge badge-soft badge-sm badge-success">Accepted claims</span>
+                <h1 class="card-title">
+                    8
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
     <div class="mb-2">
-        <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span>
+        <!-- <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span> -->
+        <h1 class="font-bold mt-4">Claims</h1>
     </div>
     <!-- <div class="divider"></div> -->
     <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100" v-motion-fade>
