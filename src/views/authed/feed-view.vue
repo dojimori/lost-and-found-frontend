@@ -54,7 +54,7 @@
             </figure>
             <div class="card-body">
                 <h2 class="card-title">
-                    {{ truncate(item.name) }}
+                    {{ truncate(item.name, 12) }}
                     <span :class="[
                         'badge badge-sm ',
                         {
@@ -63,7 +63,7 @@
                         },
                     ]">{{ item.status }}</span>
                 </h2>
-                <p>{{ item.description }}</p>
+                <p>{{ truncate(item.description, 33) }}</p>
 
                 <div class="flex items-center gap-4">
                     <div class="avatar">
@@ -110,10 +110,9 @@ export default {
     },
 
     methods: {
-        truncate(str) {
-            const maxLength = 12;
+        truncate(str, maxLength) {
             if (str.length <= maxLength) return str;
-            return str.slice(0, 10) + '...'
+            return str.slice(0, maxLength) + '...'
         },
 
         onFileChange(event) {
