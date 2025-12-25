@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <router-link class="mr-1 btn btn-primary"><ph-user></ph-user></router-link>
+            <router-link class="mr-1 btn btn-primary" to="/profile"><ph-user></ph-user></router-link>
             <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
         </div>
     </nav>
