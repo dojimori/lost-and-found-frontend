@@ -23,9 +23,8 @@
             </div>
 
             <div class="modal-action">
-                <button @click="postItem" type="button" class="btn btn-primary">Submit</button>
                 <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
+                    <button @click="postItem" class="btn btn-primary">Submit</button>
                     <button class="btn">Close</button>
                 </form>
             </div>
@@ -113,6 +112,7 @@ export default {
         openModal() {
             this.$refs.postItemModal.showModal()
         },
+
         truncate(str, maxLength) {
             if (str.length <= maxLength) return str;
             return str.slice(0, maxLength) + '...'
