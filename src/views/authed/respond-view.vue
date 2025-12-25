@@ -147,13 +147,7 @@ export default {
     methods: {
         async getItem(id: string) {
             try {
-                const token = localStorage.getItem("token")
-                const response = await api.get(`/items/${id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
+                const response = await api.get(`/items/${id}`);
                 console.log(response)
             } catch (error) {
                 console.log(error)
