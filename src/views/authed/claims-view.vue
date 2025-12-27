@@ -1,5 +1,5 @@
 <template>
-  <dialog  ref="unclaimModal" class="modal modal-bottom sm:modal-middle">
+  <dialog ref="unclaimModal" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
       <h3 class="text-lg font-bold">Are you sure you want to unclaim the item?</h3>
       <div class="modal-action">
@@ -176,14 +176,14 @@ export default {
     return {
       defPfp,
       myClaimedItems: null,
-      selectedUnclaimItem: null
+      selectedUnclaimItem: null,
     };
   },
 
   methods: {
     openModal(claimedId) {
-        this.$refs.unclaimModal.show();
-        this.selectedUnclaimItem = claimedId
+      this.$refs.unclaimModal.show();
+      this.selectedUnclaimItem = claimedId;
     },
     async getMyClaimedItems() {
       try {
@@ -194,15 +194,25 @@ export default {
     },
 
     async unclaimItem() {
+      let loader = this.$loading.show({
+        // Optional parameters
+        container: null,
+        loader: "spinner",
+        // canCancel: true,
+        // onCancel: this.onCancel,
+      });
       try {
         const response = await api.post("/claims/unclaim", {
-            claimId: this.selectedUnclaimItem 
+          claimId: this.selectedUnclaimItem,
         });
         // this.myClaimedItems = response.data;
         this.getMyClaimedItems();
         console.log(response);
-      } catch (error) {}
-      finally {
+      } catch (error) {
+      } finally {
+        setTimeout(() => {
+          loader.hide();
+        }, 1500);
         this.$refs.unclaimModal.close();
       }
     },
