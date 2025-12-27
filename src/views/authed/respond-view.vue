@@ -6,7 +6,7 @@
 
       <div class="flex flex-col gap-3">
         <fieldset class="fieldset">
-          <legend class="fieldset-legend">Say a message to the founder</legend>
+          <legend class="fieldset-legend">Say a message to the founder (required)</legend>
           <textarea v-model="claimData.message" class="textarea h-24 w-full"></textarea>
         </fieldset>
 
@@ -45,9 +45,46 @@
         </label>
       </div>
 
+      <div
+        v-motion-fade
+        v-if="showAlert"
+        :class="['alert alert-soft mt-2', isError ? 'alert-error' : 'alert-success']"
+      >
+        <svg
+          v-if="isError"
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>{{ responseMessage }}</span>
+      </div>
+
       <div class="modal-action">
+        <button class="btn btn-primary mr-2" @click="claimItem">Submit</button>
+
         <form method="dialog">
-          <button class="btn btn-primary mr-2">Submit</button>
           <button class="btn btn-error btn-soft">Cancel</button>
         </form>
       </div>
@@ -172,6 +209,10 @@ interface Comments {
 export default {
   data() {
     return {
+      isLoading: false,
+      isError: false,
+      showAlert: false,
+      responseMessage: "",
       defPfp,
       item: null as Item | null,
       comment: "",
@@ -187,38 +228,47 @@ export default {
   },
 
   methods: {
- async claimItem() {
-  try {
-    if (!this.item) return;
+    async claimItem() {
+      try {
+        if (!this.item) return;
+        this.isLoading = true;
+        this.isError = false;
+        this.showAlert = false;
+        const formData = new FormData();
 
-    const formData = new FormData();
+        formData.append("postId", this.item.id);
+        formData.append("message", this.claimData.message);
+        formData.append("clue1", this.claimData.clue1);
+        formData.append("clue2", this.claimData.clue2);
+        formData.append("clue3", this.claimData.clue3);
 
-    formData.append("itemId", this.item.id);
-    formData.append("message", this.claimData.message);
-    formData.append("clue1", this.claimData.clue1);
-    formData.append("clue2", this.claimData.clue2);
-    formData.append("clue3", this.claimData.clue3);
+        if (this.claimData.proofImage) {
+          formData.append("proofImage", this.claimData.proofImage);
+        }
 
-    if (this.claimData.proofImage) {
-      formData.append("proofImage", this.claimData.proofImage);
-    }
+        const response = await api.post("/claims", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-    const response = await api.post("/claims", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+        console.log(response);
 
-    console.log(response);
-
-    // close modal after submit
-    (this.$refs.postItemModal as any).close();
-
-  } catch (error) {
-    console.log(error);
-  }
-},
-
+        // close modal after submit
+        // (this.$refs.postItemModal as any).close();
+        this.responseMessage = response.data.message;
+        // this.responseMessage = "";
+      } catch (error) {
+        this.isError = true;
+        console.log(error);
+        const message =
+          error.response?.data?.message || "Something went terribly wrong here.";
+        this.responseMessage = message;
+      } finally {
+        this.isLoading = false;
+        this.showAlert = true;
+      }
+    },
 
     handleFileUpload(event: Event) {
       const target = event.target as HTMLInputElement;
