@@ -1,8 +1,8 @@
 <template>
   <router-link to="/feed" class="btn">Back</router-link>
-  <div class="flex flex-col justify-center items-center " v-motion-fade>
+  <div class="flex flex-col lg:flex-row gap-2 justify-center " v-motion-fade>
     <!-- LOST ITEM CARD -->
-    <div class=" px-12 py-4 rounded-sm mt-2 w-3xl border-t border-l border-r  border-gray-200">
+    <div class=" px-12 py-4 rounded-sm mt-2 md:w-3xl border-t border-l border-r  border-gray-200">
         <!-- Item Image -->
         <div class="sm:px-8 py-2" v-if="item">
           <div
@@ -46,7 +46,7 @@
     </div>
 
     <!-- COMMENTS SECTION -->
-    <div class="flex-1 border border-gray-200  shadow-xs p-4 rounded-md w-3xl">
+    <div class="flex-1 border border-gray-200  shadow-xs p-4 rounded-md md:w-3xl">
       <div class="flex gap-2 mb-2">
         <input
           v-model="comment"
