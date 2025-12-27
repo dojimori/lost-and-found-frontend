@@ -7,22 +7,41 @@
       <div class="flex flex-col gap-3">
         <fieldset class="fieldset">
           <legend class="fieldset-legend">Say a message to the founder</legend>
-          <textarea class="textarea h-24 w-full" placeholder=""></textarea>
+          <textarea v-model="claimData.message" class="textarea h-24 w-full"></textarea>
         </fieldset>
-        <small class="text-xs text-gray-500">List atleast 1 characteristic of the item (optional).</small>
-        <label for="">
-          <input type="text" class="input w-full" placeholder="Clue 1">
-        </label>
-          <label for="">
-          <input type="text" class="input w-full" placeholder="Clue 2">
-        </label>
-          <label for="">
-          <input type="text" class="input w-full" placeholder="Clue 3">
-        </label>
+
+        <small class="text-xs text-gray-500">
+          List at least 1 characteristic of the item (optional).
+        </small>
+
+        <input
+          v-model="claimData.clue1"
+          type="text"
+          class="input w-full"
+          placeholder="Clue 1"
+        />
+
+        <input
+          v-model="claimData.clue2"
+          type="text"
+          class="input w-full"
+          placeholder="Clue 2"
+        />
+
+        <input
+          v-model="claimData.clue3"
+          type="text"
+          class="input w-full"
+          placeholder="Clue 3"
+        />
 
         <label>
-           <small class="text-xs text-gray-500">Provide a photo proof when you last had the item (optional).</small>
-          <input type="file" class="file-input file-input-primary w-full" />
+          <small class="text-xs text-gray-500"> Provide a photo proof (optional). </small>
+          <input
+            type="file"
+            class="file-input file-input-primary w-full"
+            @change="handleFileUpload"
+          />
         </label>
       </div>
 
@@ -157,10 +176,57 @@ export default {
       item: null as Item | null,
       comment: "",
       comments: [] as Comments[],
+      claimData: {
+        message: "",
+        clue1: "",
+        clue2: "",
+        clue3: "",
+        proofImage: null as File | null,
+      },
     };
   },
 
   methods: {
+ async claimItem() {
+  try {
+    if (!this.item) return;
+
+    const formData = new FormData();
+
+    formData.append("itemId", this.item.id);
+    formData.append("message", this.claimData.message);
+    formData.append("clue1", this.claimData.clue1);
+    formData.append("clue2", this.claimData.clue2);
+    formData.append("clue3", this.claimData.clue3);
+
+    if (this.claimData.proofImage) {
+      formData.append("proofImage", this.claimData.proofImage);
+    }
+
+    const response = await api.post("/claims", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log(response);
+
+    // close modal after submit
+    (this.$refs.postItemModal as any).close();
+
+  } catch (error) {
+    console.log(error);
+  }
+},
+
+
+    handleFileUpload(event: Event) {
+      const target = event.target as HTMLInputElement;
+      if (target.files && target.files.length > 0) {
+        (this.claimData.proofImage as any) = target.files[0];
+      }
+    },
+
     async submitComment() {
       try {
         if (!this.item) return;
@@ -184,7 +250,7 @@ export default {
     },
 
     openModal() {
-      this.$refs.postItemModal.showModal();
+      (this.$refs.postItemModal as any).showModal();
     },
 
     async getItem(id: string) {
