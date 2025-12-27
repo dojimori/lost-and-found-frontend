@@ -1,17 +1,16 @@
 <template>
-  <button class="btn" onclick="">open modal</button>
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Are you sure you want to unclaim the item?</h3>
-    <div class="modal-action">
-        <button class="btn btn-soft btn-warning">Unclaim</button>
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn btn-soft btn-error">Cancel</button>
-      </form>
+  <dialog  ref="unclaimModal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Are you sure you want to unclaim the item?</h3>
+      <div class="modal-action">
+        <button class="btn btn-soft btn-warning" @click="unclaimItem">Unclaim</button>
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn btn-soft btn-error">Cancel</button>
+        </form>
+      </div>
     </div>
-  </div>
-</dialog>
+  </dialog>
 
   <div class="flex flex-row gap-2 p-4 border-b border-gray-200">
     <div class="card card-border w-[300px] shadow-xs">
@@ -149,7 +148,7 @@
           <td>June 26, 2025</td>
           <td class="flex gap-2">
             <button class="btn btn-primary">Message Founder</button>
-            <button class="btn btn-error btn-soft" onclick="my_modal_5.showModal()">
+            <button class="btn btn-warning btn-soft" @click="openModal(claimed.id)">
               Unclaim
             </button>
           </td>
@@ -177,16 +176,35 @@ export default {
     return {
       defPfp,
       myClaimedItems: null,
+      selectedUnclaimItem: null
     };
   },
 
   methods: {
+    openModal(claimedId) {
+        this.$refs.unclaimModal.show();
+        this.selectedUnclaimItem = claimedId
+    },
     async getMyClaimedItems() {
       try {
         const response = await api.get("/claims/my-claimed-items");
         this.myClaimedItems = response.data;
         console.log(response);
       } catch (error) {}
+    },
+
+    async unclaimItem() {
+      try {
+        const response = await api.post("/claims/unclaim", {
+            claimId: this.selectedUnclaimItem 
+        });
+        // this.myClaimedItems = response.data;
+        this.getMyClaimedItems();
+        console.log(response);
+      } catch (error) {}
+      finally {
+        this.$refs.unclaimModal.close();
+      }
     },
   },
 
