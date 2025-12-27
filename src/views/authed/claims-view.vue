@@ -145,7 +145,18 @@
               :alt="claimed.item.name"
             />
           </td>
-          <td>June 26, 2025</td>
+          <td>
+            {{
+              new Date(claimed.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })
+            }}
+          </td>
           <td class="flex gap-2">
             <button class="btn btn-primary">Message Founder</button>
             <button class="btn btn-warning btn-soft" @click="openModal(claimed.id)">
