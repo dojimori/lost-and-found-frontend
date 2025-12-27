@@ -1,52 +1,70 @@
 <template>
+  <!-- Open the modal using ID.showModal() method -->
+  <dialog id="post_item_modal" class="modal" ref="postItemModal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Claim Confirmation</h3>
+
+      <div class="divider"></div>
+
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-primary mr-2">Submit</button>
+          <button class="btn">Close</button>
+        </form>
+      </div>
+      <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
+    </div>
+  </dialog>
   <router-link to="/feed" class="btn">Back</router-link>
-  <div class="flex flex-col lg:flex-row gap-2 justify-center " v-motion-fade>
+  <div class="flex flex-col lg:flex-row gap-2 justify-center" v-motion-fade>
     <!-- LOST ITEM CARD -->
-    <div class=" px-12 py-4 rounded-sm mt-2 md:w-3xl border-t border-l border-r  border-gray-200">
-        <!-- Item Image -->
-        <div class="sm:px-8 py-2" v-if="item">
-          <div
-            class="mb-2 md:w-full max-h-[400px]  duration-200 rounded-sm overflow-hidden flex flex-col items-center"
-          >
-            <img
-              :src="`http://localhost:3000/public/${item.image}`"
-              :alt="item.name"
-              class="rounded-sm w-[400px] h-[500px] object-contain"
-            />
-          </div>
-          <!-- Item Name -->
-          <h2 class="text-xl mb-1 font-bold">
-            {{ item.name }}
-          </h2>
-          <div class="mb-4">
-            <p class="text-gray-800">
-              {{ item.description }}
-            </p>
-          </div>
+    <div
+      class="px-12 py-4 rounded-sm mt-2 md:w-3xl border-t border-l border-r border-gray-200"
+    >
+      <!-- Item Image -->
+      <div class="sm:px-8 py-2" v-if="item">
+        <div
+          class="mb-2 md:w-full max-h-[400px] duration-200 rounded-sm overflow-hidden flex flex-col items-center"
+        >
+          <img
+            :src="`http://localhost:3000/public/${item.image}`"
+            :alt="item.name"
+            class="rounded-sm w-[400px] h-[500px] object-contain"
+          />
         </div>
-        <!-- Posted By -->
-        <div class="" v-if="item">
-          <div class="flex flex-col sm:flex-row sm:justify-between">
-            <div>
-              <div class="avatar">
-                <div class="rounded-full">
-                  <img :src="defPfp" class="max-w-[33px]" :alt="item.founder.name" />
-                </div>
-              </div>
-              <div class="flex flex-col leading-tight">
-                <p class="text-sm font-medium">
-                  {{ item.founder.name }}
-                </p>
-                <span class="text-xs text-base-content/60"> Posted a lost item </span>
+        <!-- Item Name -->
+        <h2 class="text-xl mb-1 font-bold">
+          {{ item.name }}
+        </h2>
+        <div class="mb-4">
+          <p class="text-gray-800">
+            {{ item.description }}
+          </p>
+        </div>
+      </div>
+      <!-- Posted By -->
+      <div class="" v-if="item">
+        <div class="flex flex-col sm:flex-row sm:justify-between">
+          <div>
+            <div class="avatar">
+              <div class="rounded-full">
+                <img :src="defPfp" class="max-w-[33px]" :alt="item.founder.name" />
               </div>
             </div>
-            <button class="btn btn-secondary mt-2">Claim</button>
+            <div class="f lex flex-col leading-tight">
+              <p class="text-sm font-medium">
+                {{ item.founder.name }}
+              </p>
+              <span class="text-xs text-base-content/60"> Posted a lost item </span>
+            </div>
           </div>
+          <button class="btn btn-secondary mt-2" @click="openModal">Claim</button>
         </div>
+      </div>
     </div>
 
     <!-- COMMENTS SECTION -->
-    <div class="flex-1 border border-gray-200  shadow-xs p-4 rounded-md md:w-3xl">
+    <div class="flex-1 border border-gray-200 shadow-xs p-4 rounded-md md:w-3xl">
       <div class="flex gap-2 mb-2">
         <input
           v-model="comment"
@@ -128,7 +146,7 @@ export default {
         if (!this.item) return;
 
         if (!this.comment.trim()) {
-          alert('comment something')
+          alert("comment something");
         }
 
         const response = await api.post("/comments", {
@@ -143,6 +161,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+
+    openModal() {
+      this.$refs.postItemModal.showModal();
     },
 
     async getItem(id: string) {
