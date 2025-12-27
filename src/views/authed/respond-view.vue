@@ -153,9 +153,9 @@
       <!-- <div class="divider"></div> -->
 
       <!-- comments -->
-      <div class="flex flex-col gap-1.5 overflow-y-scroll">
+      <div class="flex flex-col gap-1.5 h-[500px] overflow-y-scroll">
         <!-- Comment -->
-        <div v-for="comment in comments" class="flex gap-4 bg-gray-50 p-3 rounded-sm">
+        <div v-for="comment in comments" v-motion-slide-left class="flex gap-4 bg-gray-50 p-3 rounded-sm">
           <div class="avatar">
             <div class="w-8 h-8 rounded-full">
               <img :src="defPfp" />
