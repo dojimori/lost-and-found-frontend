@@ -163,8 +163,18 @@
           </div>
           <div>
             <p class="text-sm font-semibold">{{ comment.user.name }}</p>
-            <!-- TODO!: format this date -->
-            <p class="text-xs text-base-content/60">{{ comment.createdAt }}</p>
+            <p class="text-xs text-base-content/60">
+              {{
+                new Date(comment.createdAt).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+              }}
+            </p>
             <p class="text-sm mt-1">
               {{ comment.content }}
             </p>
@@ -223,21 +233,20 @@ export default {
         clue3: "",
         proofImage: null as File | null,
       },
-      fullPage: false
+      fullPage: false,
     };
   },
 
   methods: {
     async claimItem() {
       let loader = this.$loading.show({
-          // Optional parameters
-          container: this.fullPage ? null : this.$refs.modalBox,
-          loader: "spinner",
-          // canCancel: true,
-          // onCancel: this.onCancel,
-        });
+        // Optional parameters
+        container: this.fullPage ? null : this.$refs.modalBox,
+        loader: "spinner",
+        // canCancel: true,
+        // onCancel: this.onCancel,
+      });
       try {
-        
         if (!this.item) return;
         this.isLoading = true;
         this.isError = false;
@@ -274,8 +283,8 @@ export default {
         this.responseMessage = message;
       } finally {
         setTimeout(() => {
-          loader.hide()
-        }, 2000)
+          loader.hide();
+        }, 2000);
         this.isLoading = false;
         this.showAlert = true;
       }
