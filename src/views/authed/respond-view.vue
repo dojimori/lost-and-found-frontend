@@ -1,9 +1,8 @@
 <template>
   <!-- Open the modal using ID.showModal() method -->
   <dialog id="post_item_modal" class="modal" ref="postItemModal">
-    <div class="modal-box">
+    <div class="modal-box" ref="modalBox">
       <h3 class="text-lg font-bold">Claim Confirmation</h3>
-
       <div class="flex flex-col gap-3">
         <fieldset class="fieldset">
           <legend class="fieldset-legend">Say a message to the founder (required)</legend>
@@ -224,12 +223,21 @@ export default {
         clue3: "",
         proofImage: null as File | null,
       },
+      fullPage: false
     };
   },
 
   methods: {
     async claimItem() {
+      let loader = this.$loading.show({
+          // Optional parameters
+          container: this.fullPage ? null : this.$refs.modalBox,
+          loader: "spinner",
+          // canCancel: true,
+          // onCancel: this.onCancel,
+        });
       try {
+        
         if (!this.item) return;
         this.isLoading = true;
         this.isError = false;
@@ -265,6 +273,9 @@ export default {
           error.response?.data?.message || "Something went terribly wrong here.";
         this.responseMessage = message;
       } finally {
+        setTimeout(() => {
+          loader.hide()
+        }, 2000)
         this.isLoading = false;
         this.showAlert = true;
       }
