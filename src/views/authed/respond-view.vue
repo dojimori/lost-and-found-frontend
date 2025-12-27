@@ -4,12 +4,32 @@
     <div class="modal-box">
       <h3 class="text-lg font-bold">Claim Confirmation</h3>
 
-      <div class="divider"></div>
+      <div class="flex flex-col gap-3">
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend">Say a message to the founder</legend>
+          <textarea class="textarea h-24 w-full" placeholder=""></textarea>
+        </fieldset>
+        <small class="text-xs text-gray-500">List atleast 1 characteristic of the item (optional).</small>
+        <label for="">
+          <input type="text" class="input w-full" placeholder="Clue 1">
+        </label>
+          <label for="">
+          <input type="text" class="input w-full" placeholder="Clue 2">
+        </label>
+          <label for="">
+          <input type="text" class="input w-full" placeholder="Clue 3">
+        </label>
+
+        <label>
+           <small class="text-xs text-gray-500">Provide a photo proof when you last had the item (optional).</small>
+          <input type="file" class="file-input file-input-primary w-full" />
+        </label>
+      </div>
 
       <div class="modal-action">
         <form method="dialog">
           <button class="btn btn-primary mr-2">Submit</button>
-          <button class="btn">Close</button>
+          <button class="btn btn-error btn-soft">Cancel</button>
         </form>
       </div>
       <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
@@ -22,14 +42,14 @@
       class="px-12 py-4 rounded-sm mt-2 md:w-3xl border-t border-l border-r border-gray-200"
     >
       <!-- Item Image -->
-      <div class="sm:px-8 py-2" v-if="item">
+      <div class="md:px-8 py-2" v-if="item">
         <div
-          class="mb-2 md:w-full max-h-[400px] duration-200 rounded-sm overflow-hidden flex flex-col items-center"
+          class="mb-2 md:w-full md:max-h-[400px] duration-200 rounded-sm overflow-hidden flex flex-col items-center"
         >
           <img
             :src="`http://localhost:3000/public/${item.image}`"
             :alt="item.name"
-            class="rounded-sm w-[400px] h-[500px] object-contain"
+            class="rounded-sm md:w-[400px] md:h-[500px] object-contain"
           />
         </div>
         <!-- Item Name -->
@@ -37,7 +57,7 @@
           {{ item.name }}
         </h2>
         <div class="mb-4">
-          <p class="text-gray-800">
+          <p class="text-gray-800 text-sm sm:text-md">
             {{ item.description }}
           </p>
         </div>
