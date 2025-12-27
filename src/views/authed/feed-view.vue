@@ -193,7 +193,6 @@ export default {
             }
         },
     },
-
     mounted() {
         this.fetchPostedItems();
     },
