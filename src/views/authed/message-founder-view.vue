@@ -1,4 +1,6 @@
 <template>
+  <router-link to="/claims" class="btn mb-2">Back</router-link>
+  
   <div class="flex flex-col" v-motion-fade>
     <div class="border px-8 py-2 border-gray-200 bg-primary text-white w-full">
       <div class="flex items-center flex-row gap-4">
@@ -17,7 +19,7 @@
     <div
       class="flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[600px]"
     >
-      <div class="overflow-y-scroll flex-1 flex flex-col items-center gap-2">
+      <div class="py-2 overflow-y-scroll flex-1 flex flex-col items-center gap-2" ref="chatBox">
         <small class="text-gray-500">Messages will appear here.</small>
         <!-- message box -->
         <div
@@ -125,7 +127,15 @@ export default {
         const { data } = await api.get(`/messages/${this.receiverId}`);
         this.messages = data.messages;
         console.log(data);
+        this.scrollToBottom();
       } catch (error) {}
+    },
+    scrollToBottom() {
+      this.$nextTick(() => {
+        const el: any = this.$refs.chatBox;
+        console.log(el.scrollHeight);
+        if (el) el.scrollTop = el.scrollHeight;
+      });
     },
   },
 
