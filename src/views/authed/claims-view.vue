@@ -110,7 +110,13 @@
           </td>
           <td class="flex gap-2">
             <button class="btn btn-primary">Confirm</button>
-            <button class="btn btn-secondary">Message</button>
+            <router-link
+                :to="{
+                    name: 'claimMessage',
+                    params: {id: claim.claimeeId }
+                }"
+                class="btn btn-secondary"
+              >Message</router-link>
           </td>
         </tr>
       </tbody>
