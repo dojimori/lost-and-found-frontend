@@ -22,11 +22,12 @@
         <!-- message box -->
         <div
           v-for="message in messages"
+          v-motion-slide-left
           class="flex gap-2 items-center w-full rounded-sm"
         >
           <div class="flex w-[88px] flex-col items-center justify-center">
             <img :src="defPfp" alt="" class="w-[33px]" />
-            <small class="break-all text-gray-800">Username</small>
+            <small class="break-all text-gray-800">{{ message.sender.name }}</small>
           </div>
 
           <div class="bg-gray-100 p-2 rounded-sm">
@@ -78,9 +79,16 @@
 import defPfp from "@/assets/def_pfp.jpg";
 import { api } from "@/helpers/api";
 
+interface User {
+  id: string;
+  name: string;
+}
+
 interface Message {
   message: string;
   createdAt: string;
+  sender: User;
+  receiver: User;
 }
 
 export default {
@@ -98,6 +106,8 @@ export default {
           message: this.message,
           receiverId: this.receiverId,
         });
+
+        this.getMessages();
       } catch (error) {}
     },
 
