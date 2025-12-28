@@ -17,17 +17,18 @@
       </div>
     </div>
     <div
-      class=" flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[600px]"
+      class=" flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[540px]"
     >
       <div class="py-2 overflow-y-scroll flex-1 flex flex-col items-center gap-2" ref="chatBox">
         <small class="text-gray-500">Messages will appear here.</small>
         <!-- message box -->
         <div
           v-for="message in messages"
-          v-motion-slide-left
+           v-motion-slide-left
           class="flex gap-2 items-center w-full rounded-sm"
         >
-          <div class="flex w-[88px] flex-col items-center justify-center">
+          
+          <div  class="flex w-[88px] flex-col items-center justify-center">
             <img :src="defPfp" alt="" class="w-[33px]" />
             <small
               :class="[

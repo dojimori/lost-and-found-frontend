@@ -17,7 +17,7 @@
       </div>
     </div>
     <div
-      class="flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[600px]"
+      class="flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[540px]"
     >
       <div class="py-2 overflow-y-scroll flex-1 flex flex-col items-center gap-2" ref="chatBox">
         <small class="text-gray-500">Messages will appear here.</small>
