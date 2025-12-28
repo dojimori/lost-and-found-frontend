@@ -49,37 +49,69 @@
           <th>Claimee</th>
           <th>Item</th>
           <th>Image</th>
+          <th>Claimee's Message</th>
+          <th>Clues</th>
           <th>Claimed date</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="claim in claimedItems">
           <td>1</td>
           <td>
             <div class="flex items-center gap-3">
               <div class="avatar">
                 <div class="mask mask-squircle h-12 w-12">
                   <img
-                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                    :src="defPfp"
                     alt="Avatar Tailwind CSS Component"
                   />
                 </div>
               </div>
               <div>
-                <div class="font-bold">Hart Hagerty</div>
+                <div class="font-bold">{{ claim.item.founder.name }}</div>
                 <div class="text-sm opacity-50">BSCS</div>
               </div>
             </div>
           </td>
-          <td>Wallet</td>
+          <td>{{ claim.item.name}}</td>
           <td>
-            <img
-              src="https://placehold.co/80x80"
-              class="max-w-[50px] rounded-md object-cover"
+             <img
+              :src="`http://localhost:3000/public/${claim.item?.image}`"
+              class="w-[50px] h-[50px] rounded-md object-cover"
+              :alt="claim.item.name"
             />
           </td>
-          <td>June 26, 2025</td>
+          <td>
+            {{ claim.message }}
+          </td>
+          <td>
+            <ul class="list-disc">
+            <li>
+            {{ claim.clue1 }}
+            
+            </li>
+             <li>
+            {{ claim.clue2 }}
+            
+            </li>
+             <li>
+            {{ claim.clue3 }}
+            
+            </li>
+            </ul>
+          </td>
+        
+          <td>{{
+              new Date(claim.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })
+            }}</td>
           <td class="flex gap-2">
             <button class="btn btn-primary">Confirm</button>
             <button class="btn btn-secondary">Message</button>
@@ -188,6 +220,7 @@ export default {
       defPfp,
       myClaimedItems: null,
       selectedUnclaimItem: null,
+      claimedItems: null
     };
   },
 
@@ -198,10 +231,20 @@ export default {
     },
     async getMyClaimedItems() {
       try {
-        const response = await api.get("/claims/my-claimed-items");
-        this.myClaimedItems = response.data;
+        const { data } = await api.get("/claims/my-claimed-items");
+        this.myClaimedItems = data;
         console.log(response);
       } catch (error) {}
+    },
+
+    async getClaimedItems() {
+        try {
+            const { data } = await api.get("/claims/my-claimed-items");
+            console.log(data)
+            this.claimedItems = data
+        } catch (error) {
+            
+        }
     },
 
     async unclaimItem() {
@@ -230,6 +273,7 @@ export default {
   },
 
   mounted() {
+    this.getClaimedItems()
     this.getMyClaimedItems();
   },
 };
