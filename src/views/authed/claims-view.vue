@@ -192,7 +192,11 @@
             }}
           </td>
           <td class="flex gap-2">
-            <button class="btn btn-primary">Message Founder</button>
+            <router-link
+                :to="{
+                    name: 'claimMessageFounder',
+                    params: {id: claimed?.founderId }
+                }" class="btn btn-primary">Message Founder</router-link>
             <button class="btn btn-warning btn-soft" @click="openModal(claimed.id)">
               Unclaim
             </button>
@@ -235,7 +239,7 @@ export default {
       try {
         const { data } = await api.get("/claims/my-claimed-items");
         this.myClaimedItems = data;
-        console.log(response);
+        console.log('here', data);
       } catch (error) {}
     },
 

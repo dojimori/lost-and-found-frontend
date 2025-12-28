@@ -3,6 +3,7 @@ import GuestLayout from '@/layouts/guest-layout.vue'
 import AboutView from '@/views/about-view.vue'
 import ClaimsView from '@/views/authed/claims-view.vue'
 import FeedView from '@/views/authed/feed-view.vue'
+import MessageFounderView from '@/views/authed/message-founder-view.vue'
 import MessageView from '@/views/authed/message-view.vue'
 import ProfileView from '@/views/authed/profile-view.vue'
 import RespondView from '@/views/authed/respond-view.vue'
@@ -73,6 +74,11 @@ const routes = [
         path: '/claims/message/:id',
         name: 'claimMessage',
         component: MessageView
+      },
+      {
+        path: '/claims/message-founder/:id',
+        name: 'claimMessageFounder',
+        component: MessageFounderView
       }
     ]
   }
