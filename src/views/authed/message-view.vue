@@ -20,19 +20,33 @@
       <div class="flex-1 flex flex-col items-center gap-2">
         <small class="text-gray-500">Messages will appear here.</small>
         <!-- message box -->
-        <div class="flex gap-2 items-center w-full rounded-sm">
+        <div
+          v-for="message in messages"
+          class="flex gap-2 items-center w-full rounded-sm"
+        >
           <div class="flex w-[88px] flex-col items-center justify-center">
             <img :src="defPfp" alt="" class="w-[33px]" />
             <small class="break-all text-gray-800">Username</small>
           </div>
 
           <div class="bg-gray-100 p-2 rounded-sm">
-            <p class="text-sm">Hey, this is actually mine</p>
-            <small class="text-gray-500">June, 26, 2026 5:33AM</small>
+            <p class="text-sm">{{ message.message }}</p>
+            <small class="text-gray-500">
+              {{
+                new Date(message.createdAt).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "2-digit",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+              }}</small
+            >
           </div>
         </div>
 
-        <div class="flex gap-2 items-center w-full rounded-sm">
+        <!-- <div class="flex gap-2 items-center w-full rounded-sm">
           <div class="flex flex-col w-[88px] items-center justify-center">
             <img :src="defPfp" alt="" class="w-[33px]" />
             <small class="break-all text-amber-600 font-medium">Me</small>
@@ -43,7 +57,7 @@
             <p class="text-sm">u can meet me at school later</p>
             <small class="text-gray-500">June, 26, 2026 5:33AM</small>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <form @submit.prevent="sendMessage" class="flex gap-2">
@@ -60,20 +74,48 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import defPfp from "@/assets/def_pfp.jpg";
+import { api } from "@/helpers/api";
+
+interface Message {
+  message: string;
+  createdAt: string;
+}
 
 export default {
   data() {
     return {
       defPfp,
       message: "",
-      messages: [],
+      messages: [] as Message[],
     };
   },
   methods: {
     async sendMessage() {
-      this.messages.push(message);
+      try {
+        await api.post("/messages", {
+          message: this.message,
+          receiverId: this.receiverId,
+        });
+      } catch (error) {}
+    },
+
+    async getMessages() {
+      try {
+        const { data } = await api.get(`/messages/${this.receiverId}`);
+        this.messages = data.messages;
+      } catch (error) {}
+    },
+  },
+
+  mounted() {
+    this.getMessages();
+  },
+
+  computed: {
+    receiverId(): string | null {
+      return this.$route.params.id as string | null;
     },
   },
 };

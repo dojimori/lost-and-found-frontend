@@ -351,7 +351,6 @@ export default {
   },
 
   mounted() {
-    // console.log(this.id)
     if (this.id) {
       this.getItem(this.id);
       this.getComments(this.id);
