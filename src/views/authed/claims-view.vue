@@ -66,7 +66,7 @@
                 </div>
               </div>
               <div>
-                <div class="font-bold">{{ claim.item.founder.name }}</div>
+                <div class="font-bold">{{ claim.claimee.name }}</div>
                 <div class="text-sm opacity-50">BSCS</div>
               </div>
             </div>
@@ -235,7 +235,7 @@ export default {
 
     async getClaimedItems() {
       try {
-        const { data } = await api.get("/claims/my-claimed-items");
+        const { data } = await api.get("/claims/claimed-items");
         console.log(data);
         this.claimedItems = data;
       } catch (error) {}

@@ -140,15 +140,15 @@
 
     <!-- COMMENTS SECTION -->
     <div class="flex-1 border border-gray-200 shadow-xs p-4 rounded-md md:w-3xl">
-      <div class="flex gap-2 mb-2">
+      <form @submit.prevent="submitComment" class="flex gap-2 mb-2">
         <input
           v-model="comment"
           type="text"
           class="input w-full"
           placeholder="Comment..."
         />
-        <button @click="submitComment" class="btn btn-primary">Post</button>
-      </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
 
       <!-- <div class="divider"></div> -->
 
