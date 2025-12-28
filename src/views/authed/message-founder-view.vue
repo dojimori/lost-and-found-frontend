@@ -15,9 +15,9 @@
       </div>
     </div>
     <div
-      class="flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[500px]"
+      class=" flex p-2 shadow-lg flex-col justify-between border border-gray-200 w-full h-[600px] "
     >
-      <div class="flex-1 flex flex-col items-center gap-2">
+      <div class="overflow-y-scroll flex-1 flex flex-col items-center gap-2 ">
         <small class="text-gray-500">Messages will appear here.</small>
         <!-- message box -->
         <div
@@ -27,7 +27,13 @@
         >
           <div class="flex w-[88px] flex-col items-center justify-center">
             <img :src="defPfp" alt="" class="w-[33px]" />
-            <small class="break-all text-gray-800">{{ message.sender.name }}</small>
+           <small
+              :class="[
+                'break-all',
+                { 'text-secondary font-bold': message.sender.id != receiverId },
+              ]"
+              >{{ message.sender.id === receiverId ? message.sender.name : "Me" }}</small
+            >
           </div>
 
           <div class="bg-gray-100 p-2 rounded-sm">
