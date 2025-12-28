@@ -62,10 +62,7 @@
             <div class="flex items-center gap-3">
               <div class="avatar">
                 <div class="mask mask-squircle h-12 w-12">
-                  <img
-                    :src="defPfp"
-                    alt="Avatar Tailwind CSS Component"
-                  />
+                  <img :src="defPfp" alt="Avatar Tailwind CSS Component" />
                 </div>
               </div>
               <div>
@@ -74,9 +71,9 @@
               </div>
             </div>
           </td>
-          <td>{{ claim.item.name}}</td>
+          <td>{{ claim.item.name }}</td>
           <td>
-             <img
+            <img
               :src="`http://localhost:3000/public/${claim.item?.image}`"
               class="w-[50px] h-[50px] rounded-md object-cover"
               :alt="claim.item.name"
@@ -87,22 +84,20 @@
           </td>
           <td>
             <ul class="list-disc">
-            <li>
-            {{ claim.clue1 }}
-            
-            </li>
-             <li>
-            {{ claim.clue2 }}
-            
-            </li>
-             <li>
-            {{ claim.clue3 }}
-            
-            </li>
+              <li v-if="claim.clue1">
+                {{ claim.clue1 }}
+              </li>
+              <li v-if="claim.clue2">
+                {{ claim.clue2 }}
+              </li>
+              <li v-if="claim.clue3">
+                {{ claim.clue3 }}
+              </li>
             </ul>
           </td>
-        
-          <td>{{
+
+          <td>
+            {{
               new Date(claim.createdAt).toLocaleDateString("en-US", {
                 month: "long",
                 day: "2-digit",
@@ -111,7 +106,8 @@
                 minute: "2-digit",
                 hour12: true,
               })
-            }}</td>
+            }}
+          </td>
           <td class="flex gap-2">
             <button class="btn btn-primary">Confirm</button>
             <button class="btn btn-secondary">Message</button>
@@ -220,7 +216,7 @@ export default {
       defPfp,
       myClaimedItems: null,
       selectedUnclaimItem: null,
-      claimedItems: null
+      claimedItems: null,
     };
   },
 
@@ -238,13 +234,11 @@ export default {
     },
 
     async getClaimedItems() {
-        try {
-            const { data } = await api.get("/claims/my-claimed-items");
-            console.log(data)
-            this.claimedItems = data
-        } catch (error) {
-            
-        }
+      try {
+        const { data } = await api.get("/claims/my-claimed-items");
+        console.log(data);
+        this.claimedItems = data;
+      } catch (error) {}
     },
 
     async unclaimItem() {
@@ -273,7 +267,7 @@ export default {
   },
 
   mounted() {
-    this.getClaimedItems()
+    this.getClaimedItems();
     this.getMyClaimedItems();
   },
 };
