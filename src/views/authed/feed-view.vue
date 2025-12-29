@@ -129,7 +129,7 @@
 
         <figure class="">
           <img
-            :src="`http://localhost:3000/public/${item.image}`"
+            :src="`${apiUrl}/public/${item.image}`"
             class="object-cover w-[500px] max-h-[230px] rounded-xs"
             :alt="item.name"
           />
@@ -220,7 +220,7 @@
 <script>
 import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
 import defPfp from "@/assets/def_pfp.jpg";
-import { api } from "@/helpers/api";
+import { apiUrl, api } from "@/helpers/api";
 import { format } from "timeago.js";
 export default {
   components: {
@@ -230,6 +230,7 @@ export default {
   data() {
     return {
       format,
+      apiUrl,
       defPfp,
       lostItems: [],
       itemName: "",

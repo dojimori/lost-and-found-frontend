@@ -1,7 +1,10 @@
 import axios from 'axios'
 
+const apiUrl = 'http://10.94.50.70:3000';
+// const apiUrl = 'http://localhost:3000/api';
+
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: `${apiUrl}/api`,
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'
@@ -17,4 +20,4 @@ api.interceptors.request.use(config => {
     return config;
 })
 
-export { api }
+export { api, apiUrl }
