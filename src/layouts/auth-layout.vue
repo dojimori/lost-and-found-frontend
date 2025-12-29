@@ -49,7 +49,7 @@
       <button @click="logoutHandler" to="/feed" class="btn mr-2">Logout</button>
     </div>
   </nav>
-  <main class="p-8">
+  <main class="p-2 md:p-8">
     <router-view></router-view>
   </main>
 </template>

@@ -108,32 +108,25 @@
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="p-4  flex flex-row justify-center gap-8"
+      class="p-2 border md:border-none border-gray-200 flex flex-col md:flex-row justify-center gap-2 md:gap-8"
     >
-      <div class="flex flex-col gap-2 items-center ">
-        <figure >
+      <div class="flex flex-row md:flex-col gap-2 md:items-center">
+        <figure>
           <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
         </figure>
-
-        <p class="text-[14px]">{{ item.founder.name }}</p>
+        <div class="flex flex-col">
+          <p class="text-[14px]">{{ item.founder.name }}</p>
+          <span class="text-xs text-base-content/60">
+            {{ format(new Date(item.createdAt)) }}
+          </span>
+        </div>
       </div>
 
       <div>
-        <h2 class=" text-gray-700 font-bold">
+        <h2 class="text-gray-700 font-bold mb-2">
           {{ truncate(item.name, 100) }}
         </h2>
-        <small class="text-gray-500">
-          {{
-            new Date(item.createdAt).toLocaleDateString("en-US", {
-              month: "long",
-              day: "2-digit",
-              year: "numeric",
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            })
-          }}</small
-        >
+
         <figure class="">
           <img
             :src="`http://localhost:3000/public/${item.image}`"
@@ -228,7 +221,7 @@
 import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
 import defPfp from "@/assets/def_pfp.jpg";
 import { api } from "@/helpers/api";
-
+import { format } from "timeago.js";
 export default {
   components: {
     PhPaperPlaneTilt,
@@ -236,6 +229,7 @@ export default {
 
   data() {
     return {
+      format,
       defPfp,
       lostItems: [],
       itemName: "",
@@ -300,7 +294,7 @@ export default {
         const postedItems = data.lostItems;
         this.lostItems = postedItems.map((item) => ({
           ...item,
-          status: "not found",
+          status: "lost",
         }));
 
         console.log(postedItems);
