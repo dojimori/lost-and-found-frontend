@@ -80,7 +80,7 @@
     </div>
   </dialog>
   <!-- <div class="divider"></div> -->
-  <div class="flex gap-2 mb-12">
+  <div class="flex gap-2 mb-6">
     <button class="btn btn-primary" @click="openModal">Post Item</button>
 
     <label class="input input-primary outline-none shadow-inner">
@@ -104,13 +104,13 @@
     </label>
   </div>
 
-  <div class="flex flex-row flex-wrap gap-4 justify-center p-8">
+  <div class="flex flex-col flex-wrap gap-8 justify-center items-center">
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="p-4 border-b border-gray-400 shadow-xs flex flex-row justify-center gap-8"
+      class="p-4  flex flex-row justify-center gap-8"
     >
-      <div class="flex flex-col gap-2 items-center">
+      <div class="flex flex-col gap-2 items-center ">
         <figure class="max-w-[100%] max-h-[300px]">
           <img :src="defPfp" class="object-cover w-[88px]" :alt="item.name" />
         </figure>
@@ -119,19 +119,21 @@
       </div>
 
       <div>
-        <h2 class="mb-2 text-gray-700 font-bold">
-          {{ truncate(item.name, 12) }}
+        <h2 class=" text-gray-700 font-bold">
+          {{ truncate(item.name, 100) }}
         </h2>
-        <small> {{
-              new Date(item.createdAt).toLocaleDateString("en-US", {
-                month: "long",
-                day: "2-digit",
-                year: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-              })
-            }}</small>
+        <small class="text-gray-500">
+          {{
+            new Date(item.createdAt).toLocaleDateString("en-US", {
+              month: "long",
+              day: "2-digit",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+            })
+          }}</small
+        >
         <figure class="">
           <img
             :src="`http://localhost:3000/public/${item.image}`"
@@ -280,6 +282,7 @@ export default {
         this.itemImage = null;
 
         this.description = "";
+        this.$refs.postItemModal.close();
       } catch (error) {
         this.isError = true;
         console.log(error);
