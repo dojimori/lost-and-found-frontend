@@ -112,7 +112,7 @@
     >
       <div class="flex flex-row md:flex-col gap-2 md:items-center">
         <figure>
-          <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
+          <img :src="defPfp" class="object-cover w-[45px] " :alt="item.name" />
         </figure>
         <div class="flex flex-col">
           <p class="text-[14px]">{{ item.founder.name }}</p>
@@ -145,7 +145,7 @@
           ]"
           >{{ item.status }}</span
         >
-        <p class="text-gray-700">{{ truncate(item.description, 100) }}</p>
+        <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
         <div class="mt-2">
           <router-link

@@ -16,7 +16,7 @@
     <div class="modal-box">
       <h3 class="text-lg font-bold">Are you sure you want to claim the item?</h3>
       <div class="modal-action">
-        <button class="btn btn-success btn-soft" >Claim</button>
+        <button class="btn btn-success btn-soft">Claim</button>
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
           <button class="btn btn-soft btn-error">Cancel</button>
@@ -24,8 +24,11 @@
       </div>
     </div>
   </dialog>
+  <small class="text-gray-500"
+    >Total counts of items you claimed and items that are claimed from you.</small
+  >
 
-  <div class="flex flex-row gap-2 p-4 border-b border-gray-200">
+  <div class="flex flex-row gap-2 mt-1 border-b border-gray-200">
     <div class="card card-border w-[300px] shadow-xs">
       <div class="card-body">
         <span class="badge badge-soft badge-sm badge-warning font-bold"
@@ -48,6 +51,9 @@
   <div class="mb-2">
     <!-- <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span> -->
     <h1 class="font-bold mt-4">Claims</h1>
+    <small class="text-gray-500"
+      >Here lost items you found that are claimed by others.</small
+    >
   </div>
   <!-- <div class="divider"></div> -->
   <div
@@ -122,16 +128,17 @@
             }}
           </td>
           <td class="flex gap-2">
-            <button class="btn btn-primary " @click="openClaimModal(claim.id)">
+            <button class="btn btn-primary" @click="openClaimModal(claim.id)">
               Confirm
             </button>
             <router-link
-                :to="{
-                    name: 'claimMessage',
-                    params: {id: claim.claimeeId }
-                }"
-                class="btn btn-secondary "
-              >Message</router-link>
+              :to="{
+                name: 'claimMessage',
+                params: { id: claim.claimeeId },
+              }"
+              class="btn btn-secondary"
+              >Message</router-link
+            >
           </td>
         </tr>
       </tbody>
@@ -152,13 +159,11 @@
   <div class="mb-2 mt-12">
     <!-- <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span> -->
     <h1 class="font-bold mt-4">My Claimed Items</h1>
+    <small class="text-gray-500">Here are lost item/s that you claimed is yours.</small>
   </div>
   <!-- <div class="divider"></div> -->
-  <div
-    class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
-    v-motion-fade
-  >
-    <table class="table table-md">
+  <div class="overflow-x-auto border border-base-content/5 bg-base-100" v-motion-fade>
+    <table class="table">
       <!-- head -->
       <thead>
         <tr>
@@ -208,10 +213,13 @@
           </td>
           <td class="flex gap-2">
             <router-link
-                :to="{
-                    name: 'claimMessageFounder',
-                    params: {id: claimed?.founderId }
-                }" class="btn btn-primary">Message Founder</router-link>
+              :to="{
+                name: 'claimMessageFounder',
+                params: { id: claimed?.founderId },
+              }"
+              class="btn btn-primary"
+              >Message Founder</router-link
+            >
             <button class="btn btn-warning btn-soft" @click="openModal(claimed.id)">
               Unclaim
             </button>
@@ -251,13 +259,13 @@ export default {
       this.selectedUnclaimItem = claimedId;
     },
     openClaimModal(itemId) {
-       this.$refs.claimModal.show();
+      this.$refs.claimModal.show();
     },
     async getMyClaimedItems() {
       try {
         const { data } = await api.get("/claims/my-claimed-items");
         this.myClaimedItems = data;
-        console.log('here', data);
+        console.log("here", data);
       } catch (error) {}
     },
 

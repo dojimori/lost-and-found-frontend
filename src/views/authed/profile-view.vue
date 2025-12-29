@@ -53,7 +53,7 @@
                 :disabled="isEditing"
                 name=""
                 id=""
-                class=" select w-full outline-none shadow-inner input-primary transition-all duration-200"
+                class="select w-full outline-none shadow-inner input-primary transition-all duration-200"
               >
                 <option value="" selected disabled>Please select your deparment</option>
                 <option value="CITC">CITC</option>
@@ -99,6 +99,9 @@
 
               <input type="text" class="grow" placeholder="Link" :disabled="isEditing" />
             </label>
+            <small class="text-gray-500"
+              >Attach your Facebook link for people to know you better.</small
+            >
           </div>
         </div>
       </div>

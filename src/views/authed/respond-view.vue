@@ -93,16 +93,14 @@
   <router-link to="/feed" class="btn btn-ghost">Back</router-link>
   <div class="flex flex-col gap-2 items-center justify-center" v-motion-fade>
     <!-- LOST ITEM CARD -->
-    <div class="md:px-12 py-4 rounded-sm  md:w-3xl">
+    <div class="md:px-12 py-4 rounded-sm md:w-3xl">
       <!-- Item Image -->
       <div class="" v-if="item">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
-            <p class="text-md font-medium text-gray-600">{{ item.founder.name }}</p>
-          </div>
+        <div class="flex flex-row gap-2">
+          <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
 
-          <div>
+          <div class="flex flex-col ">
+            <p class="text-md font-medium text-gray-600">{{ item.founder.name }}</p>
             <span class="text-xs text-base-content/60">
               {{ format(new Date(item.createdAt)) }}
             </span>
