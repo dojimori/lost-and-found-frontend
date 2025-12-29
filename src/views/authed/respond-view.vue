@@ -95,7 +95,7 @@
     <!-- LOST ITEM CARD -->
     <div class="md:px-12 py-4 rounded-sm  md:w-3xl">
       <!-- Item Image -->
-      <div class="md:px-8" v-if="item">
+      <div class="" v-if="item">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
             <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
@@ -127,8 +127,8 @@
           </p>
         </div>
       </div>
-      <!-- Posted By -->
-      <div class="" v-if="item">
+      <!-- claim btn -->
+      <div class="mt-4" v-if="item">
         <button class="btn btn-secondary" @click="openModal">Claim</button>
       </div>
     </div>
