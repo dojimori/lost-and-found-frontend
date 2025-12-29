@@ -1,16 +1,16 @@
 <template>
-  <div class="flex items-center justify-center" v-motion-fade>
-    <div class="card card-border shadow-sm w-[700px]">
+  <div class="flex border border-gray-200" v-motion-fade>
+    <div class="flex-1 card card-border">
       <div class="card-body">
         <div class="card-title mb-4">
           <button class="btn btn-primary" @click="toggleEdit">
-            <ph-pencil-simple size="16"></ph-pencil-simple>
+            Edit <ph-pencil-simple size="16"></ph-pencil-simple>
           </button>
           <button :disabled="isEditing" class="btn btn-secondary">
-            <ph-floppy-disk size="16"></ph-floppy-disk>
+            Save <ph-floppy-disk size="16"></ph-floppy-disk>
           </button>
         </div>
-        <div class="flex flex-row gap-4" v-if="user">
+        <div class="flex flex-col md:flex-row gap-4" v-if="user">
           <div class="avatar">
             <div class="w-24">
               <img :src="defPfp" alt="" class="max-h-24" />
