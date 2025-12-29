@@ -139,7 +139,7 @@
     </div>
 
     <!-- COMMENTS SECTION -->
-    <div class="flex-1 border border-gray-200 shadow-xs p-4 rounded-md md:w-3xl">
+    <div class="flex-1 p-4 rounded-md md:w-3xl">
       <form @submit.prevent="submitComment" class="flex gap-2 mb-2">
         <input
           v-model="comment"
@@ -155,16 +155,12 @@
       <!-- comments -->
       <div class="flex flex-col gap-1.5 h-[500px] overflow-y-scroll">
         <!-- Comment -->
-        <div v-for="comment in comments" v-motion-slide-left class="flex gap-4 bg-gray-50 p-3 rounded-sm">
-          <div class="avatar">
-            <div class="w-8 h-8 rounded-full">
-              <img :src="defPfp" />
-            </div>
-          </div>
+        <div v-for="comment in comments" v-motion-slide-fade class="flex gap-4 bg-gray-50 p-3 rounded-sm">
+              <img :src="defPfp" class="w-[50px] object-cover"/>
           <div>
-            <p class="text-sm font-semibold">{{ comment.user.name }}</p>
+            <p class="text-sm font-semibold text-gray-600">{{ comment.user.name }}</p>
             <p class="text-xs text-base-content/60">
-              {{
+              <!-- {{
                 new Date(comment.createdAt).toLocaleDateString("en-US", {
                   month: "long",
                   day: "2-digit",
@@ -173,7 +169,9 @@
                   minute: "2-digit",
                   hour12: true,
                 })
-              }}
+              }} -->
+
+              {{format(new Date(comment.createdAt))}}
             </p>
             <p class="text-sm mt-1">
               {{ comment.content }}
@@ -188,6 +186,8 @@
 <script lang="ts">
 import { api } from "@/helpers/api";
 import defPfp from "@/assets/def_pfp.jpg";
+import { format } from 'timeago.js'
+
 
 interface User {
   name: string;
@@ -218,6 +218,7 @@ interface Comments {
 export default {
   data() {
     return {
+      format,
       isLoading: false,
       isError: false,
       showAlert: false,
