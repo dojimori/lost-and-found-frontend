@@ -108,11 +108,11 @@
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="w-full p-4 border border-gray-400 rounded-sm shadow-xs flex flex-row justify-center gap-8"
+      class="p-4 border-b border-gray-400 shadow-xs flex flex-row justify-center gap-8"
     >
       <div class="flex flex-col gap-2 items-center">
         <figure class="max-w-[100%] max-h-[300px]">
-          <img :src="defPfp" class="object-cover w-[100px]" :alt="item.name" />
+          <img :src="defPfp" class="object-cover w-[88px]" :alt="item.name" />
         </figure>
 
         <p class="text-[14px]">{{ item.founder.name }}</p>
@@ -122,6 +122,16 @@
         <h2 class="mb-2 text-gray-700 font-bold">
           {{ truncate(item.name, 12) }}
         </h2>
+        <small> {{
+              new Date(item.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })
+            }}</small>
         <figure class="">
           <img
             :src="`http://localhost:3000/public/${item.image}`"
@@ -132,7 +142,7 @@
 
         <span
           :class="[
-            'badge badge-sm ',
+            'badge badge-sm my-2',
             {
               'badge-success': item.status == 'found',
               'badge-warning': item.status != 'found',
@@ -140,6 +150,16 @@
           ]"
           >{{ item.status }}</span
         >
+        <p class="text-gray-700">{{ truncate(item.description, 100) }}</p>
+
+        <div class="mt-2">
+          <router-link
+            :to="{ name: 'respond', params: { id: item.id } }"
+            class="btn btn-primary"
+            >Respond
+            <ph-paper-plane-tilt></ph-paper-plane-tilt>
+          </router-link>
+        </div>
       </div>
     </div>
 
