@@ -31,7 +31,7 @@
         <span class="badge badge-soft badge-sm badge-warning font-bold"
           >Total Claims</span
         >
-        <h1 class="card-title">12</h1>
+        <h1 class="card-title">0</h1>
       </div>
     </div>
 
@@ -40,7 +40,7 @@
         <span class="badge badge-soft badge-sm badge-success font-bold"
           >Accepted Claims</span
         >
-        <h1 class="card-title">8</h1>
+        <h1 class="card-title">0</h1>
       </div>
     </div>
   </div>

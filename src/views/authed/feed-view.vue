@@ -80,7 +80,7 @@
     </div>
   </dialog>
   <!-- <div class="divider"></div> -->
-  <div class="flex gap-2 mb-6">
+  <div class="flex gap-2 mb-4 mt-2">
     <button class="btn btn-primary" @click="openModal">Post Item</button>
 
     <label class="input input-primary outline-none shadow-inner">
