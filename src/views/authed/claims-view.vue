@@ -12,6 +12,19 @@
     </div>
   </dialog>
 
+  <dialog ref="claimModal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Are you sure you want to claim the item?</h3>
+      <div class="modal-action">
+        <button class="btn btn-success btn-soft" >Claim</button>
+        <form method="dialog">
+          <!-- if there is a button in form, it will close the modal -->
+          <button class="btn btn-soft btn-error">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
   <div class="flex flex-row gap-2 p-4 border-b border-gray-200">
     <div class="card card-border w-[300px] shadow-xs">
       <div class="card-body">
@@ -109,13 +122,15 @@
             }}
           </td>
           <td class="flex gap-2">
-            <button class="btn btn-primary">Confirm</button>
+            <button class="btn btn-primary " @click="openClaimModal(claim.id)">
+              Confirm
+            </button>
             <router-link
                 :to="{
                     name: 'claimMessage',
                     params: {id: claim.claimeeId }
                 }"
-                class="btn btn-secondary"
+                class="btn btn-secondary "
               >Message</router-link>
           </td>
         </tr>
@@ -234,6 +249,9 @@ export default {
     openModal(claimedId) {
       this.$refs.unclaimModal.show();
       this.selectedUnclaimItem = claimedId;
+    },
+    openClaimModal(itemId) {
+       this.$refs.claimModal.show();
     },
     async getMyClaimedItems() {
       try {

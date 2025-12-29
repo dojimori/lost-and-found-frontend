@@ -32,7 +32,9 @@
       </router-link>
     </div>
     <div class="navbar-center hidden lg:flex">
+    <router-link to="/feed" class="btn btn-ghost" >
       <h1 class="font-medium text-xl text-primary">Lost and Found</h1>
+    </router-link>
     </div>
     <div class="navbar-end">
       <router-link class="mr-1 btn btn-primary" to="/feed"

@@ -118,7 +118,7 @@ export default {
   data() {
     return {
       defPfp,
-      isEditing: false,
+      isEditing: true,
       user: null as any,
     };
   },

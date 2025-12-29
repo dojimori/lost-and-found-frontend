@@ -104,9 +104,46 @@
     </label>
   </div>
 
-  <div class="flex flex-row flex-wrap gap-4 justify-center">
+  <div class="flex flex-row flex-wrap gap-4 justify-center p-8">
     <!-- item card -->
     <div
+      v-for="item in lostItems"
+      class="w-full p-4 border border-gray-400 rounded-sm shadow-xs flex flex-row justify-center gap-8"
+    >
+      <div class="flex flex-col gap-2 items-center">
+        <figure class="max-w-[100%] max-h-[300px]">
+          <img :src="defPfp" class="object-cover w-[100px]" :alt="item.name" />
+        </figure>
+
+        <p class="text-[14px]">{{ item.founder.name }}</p>
+      </div>
+
+      <div>
+        <h2 class="mb-2 text-gray-700 font-bold">
+          {{ truncate(item.name, 12) }}
+        </h2>
+        <figure class="">
+          <img
+            :src="`http://localhost:3000/public/${item.image}`"
+            class="object-cover w-[500px] max-h-[230px] rounded-xs"
+            :alt="item.name"
+          />
+        </figure>
+
+        <span
+          :class="[
+            'badge badge-sm ',
+            {
+              'badge-success': item.status == 'found',
+              'badge-warning': item.status != 'found',
+            },
+          ]"
+          >{{ item.status }}</span
+        >
+      </div>
+    </div>
+
+    <!-- <div
       v-for="item in lostItems"
       v-motion-fade
       class="border border-gray-400 card bg-base-200 rounded-none w-[328px] shadow-sm transition-all duration-200 hover:shadow-md hover:border-blue-700"
@@ -152,11 +189,9 @@
             <ph-paper-plane-tilt></ph-paper-plane-tilt>
           </router-link>
 
-          <!-- <div class="badge badge-outline">Fashion</div> -->
-          <!-- <div class="badge badge-outline">Products</div> -->
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="mt-4">
     <div class="join">
