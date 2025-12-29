@@ -28,7 +28,7 @@
     >Total counts of items you claimed and items that are claimed from you.</small
   >
 
-  <div class="flex flex-row gap-2 mt-1 border-b border-gray-200">
+  <div class="flex flex-row gap-2 mt-1 ">
     <div class="card card-border w-[300px] shadow-xs">
       <div class="card-body">
         <span class="badge badge-soft badge-sm badge-warning font-bold"
@@ -47,6 +47,8 @@
       </div>
     </div>
   </div>
+
+  <div class="divider"></div>
 
   <div class="mb-2">
     <!-- <span class="text-xs text-gray-500">Here are people who claimed your posted items.</span> -->
