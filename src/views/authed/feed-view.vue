@@ -111,8 +111,8 @@
       class="p-4  flex flex-row justify-center gap-8"
     >
       <div class="flex flex-col gap-2 items-center ">
-        <figure class="max-w-[100%] max-h-[300px]">
-          <img :src="defPfp" class="object-cover w-[88px]" :alt="item.name" />
+        <figure >
+          <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
         </figure>
 
         <p class="text-[14px]">{{ item.founder.name }}</p>

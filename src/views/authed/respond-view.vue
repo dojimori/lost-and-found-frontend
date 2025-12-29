@@ -90,28 +90,38 @@
       <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
     </div>
   </dialog>
-  <router-link to="/feed" class="btn">Back</router-link>
-  <div class="flex flex-col lg:flex-row gap-2 justify-center" v-motion-fade>
+  <router-link to="/feed" class="btn btn-ghost">Back</router-link>
+  <div class="flex flex-col gap-2 items-center justify-center" v-motion-fade>
     <!-- LOST ITEM CARD -->
-    <div
-      class="px-12 py-4 rounded-sm mt-2 md:w-3xl border-t border-l border-r border-gray-200"
-    >
+    <div class="md:px-12 py-4 rounded-sm  md:w-3xl">
       <!-- Item Image -->
-      <div class="md:px-8 py-2" v-if="item">
-        <div
-          class="mb-2 md:w-full md:max-h-[400px] duration-200 rounded-sm overflow-hidden flex flex-col items-center"
-        >
+      <div class="md:px-8" v-if="item">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
+            <p class="text-md font-medium text-gray-600">{{ item.founder.name }}</p>
+          </div>
+
+          <div>
+            <span class="text-xs text-base-content/60">
+              {{ format(new Date(item.createdAt)) }}
+            </span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="mb-2 md:w-full flex flex-col items-center">
           <img
             :src="`http://localhost:3000/public/${item.image}`"
             :alt="item.name"
-            class="rounded-sm md:w-[400px] md:h-[500px] object-contain"
+            class="sm:w-[400px] sm:h-[500px] object-contain"
           />
         </div>
         <!-- Item Name -->
-        <h2 class="text-xl mb-1 font-bold">
+        <h2 class="text-xl mt-6 mb-1 font-bold">
           {{ item.name }}
         </h2>
-        <div class="mb-4">
+        <div class="mb-1">
           <p class="text-gray-800 text-sm sm:text-md">
             {{ item.description }}
           </p>
@@ -119,60 +129,45 @@
       </div>
       <!-- Posted By -->
       <div class="" v-if="item">
-        <div class="flex flex-col sm:flex-row sm:justify-between">
-          <div>
-            <div class="avatar">
-              <div class="rounded-full">
-                <img :src="defPfp" class="max-w-[33px]" :alt="item.founder.name" />
-              </div>
-            </div>
-            <div class="f lex flex-col leading-tight">
-              <p class="text-sm font-medium">
-                {{ item.founder.name }}
-              </p>
-              <span class="text-xs text-base-content/60"> Posted a lost item </span>
-            </div>
-          </div>
-          <button class="btn btn-secondary mt-2" @click="openModal">Claim</button>
-        </div>
+        <button class="btn btn-secondary" @click="openModal">Claim</button>
       </div>
     </div>
 
     <!-- COMMENTS SECTION -->
-    <div class="flex-1 p-4 rounded-md md:w-3xl">
-      <form @submit.prevent="submitComment" class="flex gap-2 mb-2">
-        <input
+    <div class="flex-1 md:p-4 rounded-md w-full md:w-3xl">
+      <form @submit.prevent="submitComment" class="flex flex-col md:flex-row gap-2 mb-2">
+        <textarea
           v-model="comment"
           type="text"
-          class="input w-full"
+          class="textarea w-full outline-none"
           placeholder="Comment..."
-        />
-        <button type="submit" class="btn btn-primary">Post</button>
+        ></textarea>
+        <button type="submit" class="btn btn-primary bt-">Post</button>
       </form>
 
       <!-- <div class="divider"></div> -->
 
       <!-- comments -->
-      <div class="flex flex-col gap-1.5 h-[500px] overflow-y-scroll">
+      <div class="flex flex-col gap-4 mt-6">
         <!-- Comment -->
-        <div v-for="comment in comments" v-motion-slide-fade class="flex gap-4 bg-gray-50 p-3 rounded-sm">
-              <img :src="defPfp" class="w-[50px] object-cover"/>
+        <div
+          v-for="comment in comments"
+          v-motion-slide-fade
+          class="flex gap-4 rounded-sm"
+        >
+          <img
+            :src="defPfp"
+            class="w-[45px] h-[45px] md:w-[50px] h-[50px] object-cover"
+          />
           <div>
-            <p class="text-sm font-semibold text-gray-600">{{ comment.user.name }}</p>
-            <p class="text-xs text-base-content/60">
-              <!-- {{
-                new Date(comment.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "2-digit",
-                  year: "numeric",
-                  hour: "numeric",
-                  minute: "2-digit",
-                  hour12: true,
-                })
-              }} -->
-
-              {{format(new Date(comment.createdAt))}}
+            <p class="text-sm font-semibold text-gray-600">
+              {{ comment.user.name }}
+              -
+              <span class="text-xs text-base-content/60">
+                {{ format(new Date(comment.createdAt)) }}
+              </span>
             </p>
+
             <p class="text-sm mt-1">
               {{ comment.content }}
             </p>
@@ -186,8 +181,7 @@
 <script lang="ts">
 import { api } from "@/helpers/api";
 import defPfp from "@/assets/def_pfp.jpg";
-import { format } from 'timeago.js'
-
+import { format } from "timeago.js";
 
 interface User {
   name: string;
@@ -206,6 +200,7 @@ interface Item {
   status?: string;
   image?: string;
   founder: Founder;
+  createdAt: string;
 }
 
 interface Comments {
