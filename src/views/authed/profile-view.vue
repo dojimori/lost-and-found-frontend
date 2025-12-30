@@ -167,13 +167,38 @@ export default {
     },
 
     async saveUpdate() {
-      console.log(this.profilePicture)
-      console.log(this.department)
-      console.log(this.moreInfo)
-      console.log(this.fbLink)
-      console.log(this.name)
-      console.log(this.email)
-      console.log(this.yearLevel)
+      // console.log(this.profilePicture)
+      // console.log(this.department)
+      // console.log(this.moreInfo)
+      // console.log(this.fbLink)
+      // console.log(this.name)
+      // console.log(this.email)
+      // console.log(this.yearLevel)
+
+      try {
+        const formData = new FormData();
+        if (this.profilePicture) {
+          formData.append('profilePicture', this.profilePicture);
+        }
+
+        formData.append('name', this.name);
+        formData.append('email', this.email);
+        formData.append('department', this.department);
+        formData.append('moreInfo', this.moreInfo);
+        formData.append('fbLink', this.fbLink);
+        formData.append('yearLevel', this.yearLevel);
+
+        const { data } = await api.post('/user/update-profile', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+
+        console.log(data)
+      } catch(error ) {
+        console.log(error)
+      }
+
     }
   },
   mounted() {

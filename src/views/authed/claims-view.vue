@@ -34,9 +34,19 @@
         <span class="badge badge-soft badge-sm badge-warning font-bold"
           >Total Claims</span
         >
-        <h1 class="card-title">0</h1>
+        <h1 class="card-title">{{ claimedItemsCount }}</h1>
       </div>
     </div>
+
+     <div class="card card-border w-[300px] shadow-xs">
+      <div class="card-body">
+        <span class="badge badge-soft badge-sm badge-warning font-bold"
+          >Total of items I claimed</span
+        >
+        <h1 class="card-title">{{ myClaimedItemsCount }}</h1>
+      </div>
+    </div>
+
 
     <div class="card card-border w-[300px] shadow-xs">
       <div class="card-body">
@@ -252,6 +262,10 @@ export default {
       myClaimedItems: null,
       selectedUnclaimItem: null,
       claimedItems: null,
+      claimedItemsCount: 0,
+      acceptedClaims: 0,
+      myClaimedItemsCount: 0
+
     };
   },
 
@@ -263,10 +277,23 @@ export default {
     openClaimModal(itemId) {
       this.$refs.claimModal.show();
     },
+
+    // async getTotalClaimsCount () {
+    //   try {
+    //     const { data } = await api.get('/claims/count/total-claims');
+
+    //     // console.log(response)
+    //     this.claimedItemsCount = data;
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // },
+
     async getMyClaimedItems() {
       try {
         const { data } = await api.get("/claims/my-claimed-items");
-        this.myClaimedItems = data;
+        this.myClaimedItems = data.claims;
+        this.myClaimedItemsCount = data.count;
         console.log("here", data);
       } catch (error) {}
     },
@@ -274,8 +301,9 @@ export default {
     async getClaimedItems() {
       try {
         const { data } = await api.get("/claims/claimed-items");
-        console.log(data);
-        this.claimedItems = data;
+        // console.log(data);
+        this.claimedItems = data.claims;
+        this.claimedItemsCount = data.count
       } catch (error) {}
     },
 
@@ -307,6 +335,7 @@ export default {
   mounted() {
     this.getClaimedItems();
     this.getMyClaimedItems();
+    // this.getTotalClaimsCount();
   },
 };
 </script>
