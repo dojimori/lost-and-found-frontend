@@ -263,7 +263,7 @@ export default {
         formData.append("description", this.description);
         formData.append("image", this.itemImage);
 
-        const response = await api.post("/items/", formData, {
+        const response = await api.post("/items", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

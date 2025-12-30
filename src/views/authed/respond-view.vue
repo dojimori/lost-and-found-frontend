@@ -110,7 +110,7 @@
         <div class="divider"></div>
         <div class="mb-2 md:w-full flex flex-col items-center">
           <img
-            :src="`http://localhost:3000/public/${item.image}`"
+            :src="`${apiUrl}/public/${item.image}`"
             :alt="item.name"
             class="sm:w-[400px] sm:h-[500px] object-contain"
           />
@@ -133,13 +133,20 @@
 
     <!-- COMMENTS SECTION -->
     <div class="flex-1 md:p-4 rounded-md w-full md:w-3xl">
-      <form @submit.prevent="submitComment" class="flex flex-col md:flex-row gap-2 mb-2">
+      <form @submit.prevent="submitComment" class="flex bg-gray-50 p-2  flex-col md:flex-row gap-2 mb-2">
+      <div class="flex w-full gap-2">
+        <img
+            :src="defPfp"
+            class="w-[30px] h-[30px] md:w-[40px] h-[40px] object-cover"
+          />
         <textarea
           v-model="comment"
           type="text"
           class="textarea w-full outline-none"
-          placeholder="Comment..."
+          placeholder="Comment something..."
         ></textarea>
+      </div>
+
         <button type="submit" class="btn btn-primary bt-">Post</button>
       </form>
 
@@ -151,7 +158,7 @@
         <div
           v-for="comment in comments"
           v-motion-slide-fade
-          class="flex gap-4 rounded-sm"
+          class="flex gap-4 px-1 py-2"
         >
           <img
             :src="defPfp"
@@ -177,7 +184,7 @@
 </template>
 
 <script lang="ts">
-import { api } from "@/helpers/api";
+import { api, apiUrl } from "@/helpers/api";
 import defPfp from "@/assets/def_pfp.jpg";
 import { format } from "timeago.js";
 
@@ -212,6 +219,7 @@ export default {
   data() {
     return {
       format,
+      apiUrl,
       isLoading: false,
       isError: false,
       showAlert: false,
