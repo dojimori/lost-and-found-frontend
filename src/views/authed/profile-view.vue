@@ -6,7 +6,7 @@
           <button class="btn btn-primary" @click="toggleEdit">
             Edit <ph-pencil-simple size="16"></ph-pencil-simple>
           </button>
-          <button :disabled="isEditing" class="btn btn-secondary">
+          <button @click="saveUpdate" :disabled="isEditing" class="btn btn-secondary">
             Save <ph-floppy-disk size="16"></ph-floppy-disk>
           </button>
         </div>
@@ -24,7 +24,7 @@
                 type="text"
                 class="input w-full outline-none shadow-inner input-primary transition-all duration-200"
                 :disabled="isEditing"
-                :value="user.name"
+                v-model="name"
               />
             </div>
 
@@ -34,7 +34,7 @@
                 type="text"
                 class="input w-full outline-none shadow-inner input-primary transition-all duration-200"
                 :disabled="isEditing"
-                :value="user.email"
+                v-model="email"
               />
             </div>
 
@@ -44,6 +44,7 @@
                 type="file"
                 class="file-input file-input-primary w-full transition-all duration-200"
                 :disabled="isEditing"
+                @change="onFileChange"
               />
             </div>
 
@@ -54,6 +55,7 @@
                 name=""
                 id=""
                 class="select w-full outline-none shadow-inner input-primary transition-all duration-200"
+                v-model="department"
               >
                 <option value="" selected disabled>Please select your deparment</option>
                 <option value="CITC">CITC</option>
@@ -70,6 +72,7 @@
                 name=""
                 id=""
                 class="input w-full outline-none shadow-inner input-primary transition-all duration-200"
+                v-model="yearLevel"
               >
                 <option value="" selected disabled>Please select your year level</option>
                 <option value="Freshman">Freshman (1st year)</option>
@@ -84,6 +87,7 @@
               <textarea
                 class="textarea h-24 w-full transition-all duration-200"
                 placeholder=""
+                v-model="moreInfo"
               ></textarea>
               <div class="label">Optional</div>
             </fieldset>
@@ -97,7 +101,13 @@
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/facebook/facebook-original.svg"
               />
 
-              <input type="text" class="grow" placeholder="Link" :disabled="isEditing" />
+              <input
+                type="text"
+                class="grow"
+                placeholder="Link"
+                v-model="fbLink"
+                :disabled="isEditing"
+              />
             </label>
             <small class="text-gray-500"
               >Attach your Facebook link for people to know you better.</small
@@ -123,9 +133,21 @@ export default {
       defPfp,
       isEditing: true,
       user: null as any,
+      profilePicture: null,
+      department: "",
+      moreInfo: "",
+      fbLink: "",
+      name: "",
+      email: "",
+      yearLevel: "",
     };
   },
   methods: {
+    onFileChange(event: any) {
+      const file = event.target.files[0];
+      this.profilePicture = file;
+    },
+
     toggleEdit() {
       this.isEditing = !this.isEditing;
     },
@@ -133,10 +155,26 @@ export default {
     async getCurrentUser() {
       try {
         const { data } = await api.get("/user/getme");
-        // console.log(data);
-        this.user = data.user;
-      } catch (error) {}
+        // console.log(data)
+        const { user } = data;
+        // console.log(user);
+        this.user = user;
+        this.name = user.name;
+        this.email = user.email;
+      } catch (error) {
+        console.log(error)
+      }
     },
+
+    async saveUpdate() {
+      console.log(this.profilePicture)
+      console.log(this.department)
+      console.log(this.moreInfo)
+      console.log(this.fbLink)
+      console.log(this.name)
+      console.log(this.email)
+      console.log(this.yearLevel)
+    }
   },
   mounted() {
     this.getCurrentUser();
