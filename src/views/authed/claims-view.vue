@@ -330,6 +330,16 @@ export default {
         this.$refs.unclaimModal.close();
       }
     },
+
+    async confirmItem(id) {
+      try {
+        const response = await api.post(`/claims/confirm/${id}`);
+
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
 
   mounted() {
