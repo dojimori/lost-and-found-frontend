@@ -1,6 +1,6 @@
 <template>
-    <nav class="navbar bg-base-100 shadow-xs">
-        <div class="navbar-start">
+    <nav class="border w-full flex border-gray-200 shadow-xs p-4 justify-between items-center">
+        <!-- <div class="navbar-start">
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -17,7 +17,6 @@
             </div>
             <router-link to="/" class="text-xl">
                 <img :src="logo" alt="ustp-logo" class="w-18 h-14">
-                <!-- Campus -->
             </router-link>
         </div>
         <div class="navbar-center hidden lg:flex">
@@ -29,12 +28,30 @@
         <div class="navbar-end">
             <router-link to="/login" class="btn btn-primary mr-2">Login</router-link>
             <router-link to="/register" class="btn btn-ghost mr-2">Register</router-link>
+        </div> -->
+
+        <div>
+            <img :src="logo" alt="ustp-logo" class="w-12">
         </div>
+
+        <div>
+          <ul class="flex  gap-4">
+                <li><router-link to="/about">About</router-link></li>
+                <li><router-link to="/developer">Developer</router-link></li>
+            </ul>
+        </div>
+
     </nav>
 
     <router-view></router-view>
 </template>
 
+
+<style>
+    * {
+        font-size: ;
+    }
+</style>
 
 <script setup>
 import logo from '../assets/logo.png'

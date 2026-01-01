@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@plugin "daisyui" {
+/* @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
 }
 
@@ -12,13 +12,10 @@
     prefersdark: false;
     color-scheme: light;
 
-    /* Brand colors */
     --color-primary: #201B51;
-    /* USTP navy */
     --color-primary-content: #ffffff;
 
 
-    /* Secondary (USTP gold) */
     --color-secondary: #F5B301;
     --color-secondary-content: #ffffff;
-}
+} */
