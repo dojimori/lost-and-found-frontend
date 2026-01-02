@@ -1,5 +1,5 @@
 <template>
-    <nav class="border w-full flex border-gray-200 shadow-xs p-4 justify-between items-center">
+    <nav class="border w-full flex border-gray-400 p-4 gap-4 items-center">
         <!-- <div class="navbar-start">
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -35,10 +35,10 @@
         </div>
 
         <div>
-          <ul class="flex  gap-4">
+          <!-- <ul class="flex  gap-4">
                 <li><router-link to="/about">About</router-link></li>
                 <li><router-link to="/developer">Developer</router-link></li>
-            </ul>
+            </ul> -->
         </div>
 
     </nav>
@@ -47,9 +47,9 @@
 </template>
 
 
-<style>
+<style scoped>
     * {
-        font-size: ;
+        font-size: .9rem;
     }
 </style>
 
