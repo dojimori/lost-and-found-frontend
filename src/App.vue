@@ -38,6 +38,10 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  body {
+    background-color: #F0F2F5;
+  }
 </style>
 
 

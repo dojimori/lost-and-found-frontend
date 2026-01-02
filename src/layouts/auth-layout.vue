@@ -1,7 +1,7 @@
 <template>
-  <div class="flex border justify-between p-4 border-gray-300 ">
+  <div class="text-white flex justify-between p-4  bg-primary">
     <div>
-      <h1>lost&found</h1>
+      <h1 class="font-bold">lost&found</h1>
     </div>
     <div class="">
       <ul class="flex gap-4">

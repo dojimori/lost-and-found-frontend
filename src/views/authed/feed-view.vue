@@ -103,12 +103,12 @@
       <input type="search" class="grow" placeholder="Search" />
     </label>
   </div> -->
-
   <div class="flex flex-col flex-wrap gap-8 items-start">
+    <h1 class="font-bold">Missing Items</h1>
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="p-4 border border-gray-200 flex flex-col md:flex-row justify-center gap-2 md:gap-8"
+      class="p-4 border border-gray-400 flex flex-col md:flex-row justify-center gap-2 md:gap-8 rounded-sm shadow-sm bg-white"
     >
       <!-- <div class="flex flex-row md:flex-col gap-2 md:items-center">
         <figure>
@@ -312,3 +312,11 @@ export default {
   },
 };
 </script>
+
+
+<style>
+button:hover {
+  opacity: .9;
+}
+
+</style>
