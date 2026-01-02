@@ -91,32 +91,33 @@
     </div>
   </dialog>
   <router-link to="/feed" class="btn btn-ghost">Back</router-link>
-  <div class="flex flex-col gap-2 items-center justify-center" v-motion-fade>
+  <div class="flex flex-col items-center justify-center" v-motion-fade>
     <!-- LOST ITEM CARD -->
-    <div class="md:px-12 py-4 rounded-sm md:w-3xl">
+    <div class="md:px-12 py-4 rounded-sm md:w-3xl bg-white border border-gray-300">
       <!-- Item Image -->
       <div class="" v-if="item">
         <div class="flex flex-row gap-2">
-          <img :src="defPfp" class="object-cover w-[55px]" :alt="item.name" />
+          <img :src="defPfp" class="object-cover w-[40px]" :alt="item.name" />
 
-          <div class="flex flex-col ">
-            <p class="text-md font-medium text-gray-600">{{ item.founder.name }}</p>
+          <div class="flex flex-col">
+            <p class="font-bold text-primary">{{ item.founder.name }}</p>
             <span class="text-xs text-base-content/60">
               {{ format(new Date(item.createdAt)) }}
             </span>
           </div>
         </div>
 
-        <div class="divider"></div>
-        <div class="mb-2 md:w-full flex flex-col items-center">
+        <div class="w-full h-[2px] bg-gray-200 my-2"></div>
+
+        <div class="md:w-full flex flex-col items-center">
           <img
             :src="`${apiUrl}/public/${item.image}`"
             :alt="item.name"
-            class="sm:w-[400px] sm:h-[500px] object-contain"
+            class="object-contain"
           />
         </div>
         <!-- Item Name -->
-        <h2 class="text-xl mt-6 mb-1 font-bold">
+        <h2 class="text-xl text-primary mb-1 font-bold">
           {{ item.name }}
         </h2>
         <div class="mb-1">
@@ -126,40 +127,44 @@
         </div>
       </div>
       <!-- claim btn -->
-      <div class="mt-4" v-if="item">
+      <!-- <div class="mt-4" v-if="item">
         <button class="btn btn-secondary" @click="openModal">Claim</button>
-      </div>
+      </div> -->
+
+      <button class="bg-primary  text-white font-semibold p-2 mt-2 shadow-md">
+        Claim
+      </button>
     </div>
 
     <!-- COMMENTS SECTION -->
-    <div class="flex-1 md:p-4 rounded-md w-full md:w-3xl">
-      <form @submit.prevent="submitComment" class="flex bg-gray-50 p-2  flex-col md:flex-row gap-2 mb-2">
-      <div class="flex w-full gap-2">
-        <img
+    <div class="flex-1 md:p-4 rounded-md w-full md:w-3xl bg-white">
+      <form
+        @submit.prevent="submitComment"
+        class="flex  items-center flex-col md:flex-row gap-2 mb-2"
+      >
+        <div class="flex  p-2 w-full gap-2 bg-gray-50 border border-gray-200">
+          <img
             :src="defPfp"
-            class="w-[30px] h-[30px] md:w-[40px] h-[40px] object-cover"
+            class="w-[30px] h-[30px] md:w-[30px] object-cover"
           />
-        <textarea
-          v-model="comment"
-          type="text"
-          class="textarea w-full outline-none"
-          placeholder="Comment something..."
-        ></textarea>
-      </div>
+          <textarea
+            v-model="comment"
+            type="text"
+            class="textarea w-full outline-none"
+            placeholder="Comment..."
+          ></textarea>
+        </div>
+        <button type="submit" class="outline-none bg-primary py-2 px-4 shadow-md text-white">Post</button>
 
-        <button type="submit" class="btn btn-primary bt-">Post</button>
       </form>
+      
 
       <!-- <div class="divider"></div> -->
 
       <!-- comments -->
       <div class="flex flex-col gap-4 mt-6">
         <!-- Comment -->
-        <div
-          v-for="comment in comments"
-          v-motion-slide-fade
-          class="flex gap-4 px-1 py-2"
-        >
+        <div v-for="comment in comments" v-motion-slide-fade class="flex gap-4 px-1 py-2">
           <img
             :src="defPfp"
             class="w-[45px] h-[45px] md:w-[50px] h-[50px] object-cover"

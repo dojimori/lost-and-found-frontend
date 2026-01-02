@@ -119,7 +119,7 @@
           </small>
         </div>
       </div>
-
+      <!-- divider -->
       <div class="w-full h-[2px] bg-gray-200 my-2"></div>
 
       <div>
