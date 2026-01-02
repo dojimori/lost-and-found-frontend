@@ -131,7 +131,7 @@
         <button class="btn btn-secondary" @click="openModal">Claim</button>
       </div> -->
 
-      <button class="bg-primary  text-white font-semibold p-2 mt-2 shadow-md">
+      <button class="bg-primary text-white font-semibold p-2 mt-2 shadow-md">
         Claim
       </button>
     </div>
@@ -140,13 +140,10 @@
     <div class="flex-1 md:p-4 rounded-md w-full md:w-3xl bg-white">
       <form
         @submit.prevent="submitComment"
-        class="flex  items-center flex-col md:flex-row gap-2 mb-2"
+        class="flex items-center flex-col md:flex-row gap-2 mb-2"
       >
-        <div class="flex  p-2 w-full gap-2 bg-gray-50 border border-gray-200">
-          <img
-            :src="defPfp"
-            class="w-[30px] h-[30px] md:w-[30px] object-cover"
-          />
+        <div class="flex p-2 w-full gap-2 bg-gray-50 border border-gray-200">
+          <img :src="defPfp" class="w-[30px] h-[30px] md:w-[30px] object-cover" />
           <textarea
             v-model="comment"
             type="text"
@@ -154,30 +151,31 @@
             placeholder="Comment..."
           ></textarea>
         </div>
-        <button type="submit" class="outline-none bg-primary py-2 px-4 shadow-md text-white">Post</button>
-
+        <button
+          type="submit"
+          class="outline-none bg-primary py-2 px-4 shadow-md text-white"
+        >
+          Post
+        </button>
       </form>
-      
 
       <!-- <div class="divider"></div> -->
 
       <!-- comments -->
       <div class="flex flex-col gap-4 mt-6">
         <!-- Comment -->
-        <div v-for="comment in comments" v-motion-slide-fade class="flex gap-4 px-1 py-2">
+        <div v-for="comment in comments" v-motion-slide-fade class="flex gap-4 px-1 py-2 items-start">
           <img
             :src="defPfp"
-            class="w-[45px] h-[45px] md:w-[50px] h-[50px] object-cover"
+            class="w-[40px] object-cover"
           />
           <div>
-            <p class="text-sm font-semibold text-gray-600">
+            <p class="text-sm font-semibold text-primary">
               {{ comment.user.name }}
-              -
-              <span class="text-xs text-base-content/60">
-                {{ format(new Date(comment.createdAt)) }}
-              </span>
             </p>
-
+            <small class="text-xs text-gray-500">
+              {{ format(new Date(comment.createdAt)) }}
+            </small>
             <p class="text-sm mt-1">
               {{ comment.content }}
             </p>
