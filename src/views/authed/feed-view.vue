@@ -108,19 +108,19 @@
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="p-4 border border-gray-400 flex flex-col md:flex-row justify-center gap-2 md:gap-8 rounded-sm shadow-sm bg-white"
+      class="p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
     >
-      <!-- <div class="flex flex-row md:flex-col gap-2 md:items-center">
-        <figure>
-          <img :src="defPfp" class="object-cover w-[45px] " :alt="item.name" />
-        </figure>
+      <div class="flex flex-row gap-2">
+          <img :src="defPfp" class="object-cover w-[40px] " :alt="item.name" />
         <div class="flex flex-col">
-          <p class="text-[14px]">{{ item.founder.name }}</p>
-          <span class="text-xs text-base-content/60">
+          <p class=" font-bold text-primary">{{ item.founder.name }}</p>
+          <small class="font-semibold text-gray-400">
             {{ format(new Date(item.createdAt)) }}
-          </span>
+          </small>
         </div>
-      </div> -->
+      </div>
+
+      <div class="w-full h-[2px] bg-gray-200 my-2"></div>
 
       <div>
         <figure class="">
@@ -141,12 +141,12 @@
           ]"
           >{{ item.status }}</span
         >
-        <h2 class="text-gray-700 font-bold">
+        <h2 class="text-primary font-bold">
           {{ truncate(item.name, 100) }}
         </h2>
         <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
-        <button class="bg-primary w-[100%] border text-white p-2 mt-2">
+        <button class="bg-primary w-[100%] text-white font-semibold  p-2 mt-2 shadow-md">
           <router-link
             :to="{ name: 'respond', params: { id: item.id } }"
             class="flex gap-2 items-center justify-center"
