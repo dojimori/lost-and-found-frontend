@@ -31,6 +31,15 @@
 </template>
 
 
+<style>
+  *, *::after, *::before {
+    padding: none;
+    margin: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+
 
 <script>
 import { PhCheckCircle, PhChartBarHorizontal, PhChecks } from '@phosphor-icons/vue'

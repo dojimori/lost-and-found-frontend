@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center p-12" v-motion-fade>
     <form @submit.prevent="submitHandler" class="border border-gray-300 min-w-lg">
       <div class="bg-primary py-3 text-center">
-        <h2 class=" font-medium text-gray-50 text-md">Login</h2>
+        <h2 class="font-medium text-secondary text-md">Login</h2>
       </div>
       <div class="p-4">
         <div class="flex flex-col gap-1">
@@ -13,7 +13,7 @@
             <input
               v-model="credentials.email"
               type="email"
-              class="border border-gray-200 p-2 w-full  shadow-inner focus:outline focus:outline-primary"
+              class="border border-gray-200 p-2 w-full shadow-inner focus:outline focus:outline-primary"
               placeholder="johndoe@gmail.com"
               :disabled="isLoading"
             />
@@ -26,14 +26,18 @@
             <input
               v-model="credentials.password"
               type="password"
-              class="border border-gray-200 p-2 w-full  shadow-inner focus:outline focus:outline-primary"
+              class="border border-gray-200 p-2 w-full shadow-inner focus:outline focus:outline-primary"
               placeholder="••••••••"
               :disabled="isLoading"
             />
           </label>
         </div>
 
-        <button type="submit" class="btn btn-primary w-full" :disabled="isLoading">
+        <button
+          type="submit"
+          class="py-2 bg-primary mt-2 w-full text-white font-bold cursor-pointer"
+          :disabled="isLoading"
+        >
           <span v-if="isLoading" class="loading loading-spinner"></span>
           <span v-else>Login</span>
         </button>
@@ -129,3 +133,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+* {
+  font-size: .9rem;
+}
+
+button {
+  background: linear-gradient(rgb(98, 122, 173), rgb(89, 114, 168));
+  /* transition: all 0.3s ease; */
+}
+
+button:hover {
+  /* scale: 1.1; */
+  opacity: .9;
+}
+</style>

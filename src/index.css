@@ -3,6 +3,7 @@
 
 @theme {
     --color-primary: #3c5898;
+    --color-secondary: #F0F2F5;
 }
 
 /* @plugin "daisyui" {
