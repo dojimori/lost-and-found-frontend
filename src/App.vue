@@ -29,6 +29,9 @@
   </nav> -->
   <router-view></router-view>
 </template>
+
+
+
 <script>
 import { PhCheckCircle, PhChartBarHorizontal, PhChecks } from '@phosphor-icons/vue'
 

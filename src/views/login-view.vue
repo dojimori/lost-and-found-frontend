@@ -1,19 +1,19 @@
 <template>
   <div class="flex items-center justify-center p-12" v-motion-fade>
     <form @submit.prevent="submitHandler" class="border border-gray-300 min-w-lg">
-      <div class="bg-[#3c5898] py-3 text-center">
+      <div class="bg-primary py-3 text-center">
         <h2 class=" font-medium text-gray-50 text-md">Login</h2>
       </div>
       <div class="p-4">
         <div class="flex flex-col gap-1">
           <label class="form-control w-full">
             <div class="label">
-              <span class="label-text font-medium">Email</span>
+              <span class="">Email</span>
             </div>
             <input
               v-model="credentials.email"
               type="email"
-              class="input input-bordered w-full focus:input-primary"
+              class="border border-gray-200 p-2 w-full  shadow-inner focus:outline focus:outline-primary"
               placeholder="johndoe@gmail.com"
               :disabled="isLoading"
             />
@@ -21,12 +21,12 @@
 
           <label class="form-control w-full">
             <div class="label">
-              <span class="label-text font-medium">Password</span>
+              <span class="">Password</span>
             </div>
             <input
               v-model="credentials.password"
               type="password"
-              class="input input-bordered w-full focus:input-primary"
+              class="border border-gray-200 p-2 w-full  shadow-inner focus:outline focus:outline-primary"
               placeholder="••••••••"
               :disabled="isLoading"
             />
