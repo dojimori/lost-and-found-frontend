@@ -1,8 +1,9 @@
 <template>
-  <div class="flex items-center justify-center p-12" v-motion-fade>
-    <form @submit.prevent="submitHandler" class="border border-gray-300 min-w-lg">
-      <div class="bg-primary py-3 text-center">
-        <h2 class="font-medium text-secondary text-md">Login</h2>
+  <div class="flex items-center justify-center h-[85vh]" v-motion-fade>
+    <form @submit.prevent="submitHandler" class="border border-gray-300 w-md sm:w-lg">
+      <div class="bg-primary py-3 px-4 text-center flex items-center gap-4">
+        <img src="/logo.webp" alt="ustp-logo" class="w-12" />
+        <h2 class="font-bold text-secondary text-md">Login</h2>
       </div>
       <div class="p-4">
         <div class="flex flex-col gap-1">
@@ -38,7 +39,8 @@
           class="py-2 bg-primary mt-2 w-full text-white font-bold cursor-pointer"
           :disabled="isLoading"
         >
-          <span v-if="isLoading" class="loading loading-spinner"></span>
+          <span v-if="isLoading">Uhhh...</span>
+          <!-- <vue-spinner v-if="isLoading" size="20" color="white"></vue-spinner> -->
           <span v-else>Login</span>
         </button>
 
@@ -136,7 +138,7 @@ export default {
 
 <style scoped>
 * {
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 button {
@@ -146,6 +148,6 @@ button {
 
 button:hover {
   /* scale: 1.1; */
-  opacity: .9;
+  opacity: 0.9;
 }
 </style>
