@@ -47,7 +47,7 @@
 </template>
 
 
-<style scoped>
+<style >
     * {
         font-size: .9rem;
     }

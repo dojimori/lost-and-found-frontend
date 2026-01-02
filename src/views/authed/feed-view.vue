@@ -80,7 +80,7 @@
     </div>
   </dialog>
   <!-- <div class="divider"></div> -->
-  <div class="flex gap-2 mb-4 mt-2">
+  <!-- <div class="flex gap-2 mb-4 mt-2">
     <button class="btn btn-primary" @click="openModal">Post Item</button>
 
     <label class="input input-primary outline-none shadow-inner">
@@ -102,15 +102,15 @@
       </svg>
       <input type="search" class="grow" placeholder="Search" />
     </label>
-  </div>
+  </div> -->
 
-  <div class="flex flex-col flex-wrap gap-8 justify-center items-center">
+  <div class="flex flex-col flex-wrap gap-8 items-start">
     <!-- item card -->
     <div
       v-for="item in lostItems"
-      class="p-2 border md:border-none border-gray-200 flex flex-col md:flex-row justify-center gap-2 md:gap-8"
+      class="p-4 border border-gray-200 flex flex-col md:flex-row justify-center gap-2 md:gap-8"
     >
-      <div class="flex flex-row md:flex-col gap-2 md:items-center">
+      <!-- <div class="flex flex-row md:flex-col gap-2 md:items-center">
         <figure>
           <img :src="defPfp" class="object-cover w-[45px] " :alt="item.name" />
         </figure>
@@ -120,41 +120,40 @@
             {{ format(new Date(item.createdAt)) }}
           </span>
         </div>
-      </div>
+      </div> -->
 
       <div>
-        <h2 class="text-gray-700 font-bold mb-2">
-          {{ truncate(item.name, 100) }}
-        </h2>
-
         <figure class="">
           <img
             :src="`${apiUrl}/public/${item.image}`"
-            class="object-cover w-[500px] max-h-[230px] rounded-xs"
+            class="object-cover w-[500px] max-h-[230px]"
             :alt="item.name"
           />
         </figure>
 
         <span
           :class="[
-            'badge badge-sm my-2',
+            'px-2 my-2',
             {
-              'badge-success': item.status == 'found',
-              'badge-warning': item.status != 'found',
+              'bg-green-100': item.status == 'found',
+              'bg-amber-100': item.status != 'found',
             },
           ]"
           >{{ item.status }}</span
         >
+        <h2 class="text-gray-700 font-bold">
+          {{ truncate(item.name, 100) }}
+        </h2>
         <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
-        <div class="mt-2">
+        <button class="bg-primary w-[100%] border text-white p-2 mt-2">
           <router-link
             :to="{ name: 'respond', params: { id: item.id } }"
-            class="btn btn-primary"
+            class="flex gap-2 items-center justify-center"
             >Respond
             <ph-paper-plane-tilt></ph-paper-plane-tilt>
           </router-link>
-        </div>
+        </button>
       </div>
     </div>
 
@@ -208,13 +207,13 @@
       </div>
     </div> -->
   </div>
-  <div class="mt-4">
+  <!-- <div class="mt-4">
     <div class="join">
       <button class="join-item btn">«</button>
       <button class="join-item btn">Page 1</button>
       <button class="join-item btn">»</button>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
