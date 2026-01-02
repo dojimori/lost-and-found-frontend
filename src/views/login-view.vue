@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-center h-[85vh]" v-motion-fade>
-    <form @submit.prevent="submitHandler" class="border border-gray-300 w-md sm:w-lg">
+  <div class="flex items-center justify-center p-4" v-motion-fade>
+    <form @submit.prevent="submitHandler" class="border shadow-md border-gray-300 w-md sm:w-lg">
       <div class="bg-primary py-3 px-4 text-center flex items-center gap-4">
         <img src="/logo.webp" alt="ustp-logo" class="w-12" />
         <h2 class="font-bold text-secondary text-md">Login</h2>
