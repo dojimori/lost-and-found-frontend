@@ -1,108 +1,4 @@
 <template>
-  <!-- Open the modal using ID.showModal() method -->
-  <dialog id="post_item_modal" class="modal" ref="postItemModal">
-    <div class="modal-box">
-      <h3 class="text-lg font-bold">Post Item</h3>
-
-      <div class="divider"></div>
-      <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
-
-      <div class="flex flex-col gap-3">
-        <label class="floating-label">
-          <span>Item Name</span>
-          <input
-            v-model="itemName"
-            type="text"
-            class="input w-full"
-            placeholder="Item Name"
-          />
-        </label>
-        <fieldset class="fieldset">
-          <legend class="fieldset-legend">Description</legend>
-          <textarea
-            v-model="description"
-            class="textarea h-24 w-full"
-            placeholder=""
-          ></textarea>
-        </fieldset>
-        <label>
-          <span class="text-sm">Item Image</span>
-          <input
-            @change="onFileChange"
-            type="file"
-            class="file-input file-input-primary w-full"
-          />
-        </label>
-      </div>
-
-      <div
-        v-motion-fade
-        v-if="showAlert"
-        :class="['alert alert-soft  mt-2', isError ? 'alert-error' : 'alert-success']"
-      >
-        <svg
-          v-if="isError"
-          xmlns="http://www.w3.org/2000/svg"
-          class="stroke-current shrink-0 h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          class="stroke-current shrink-0 h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <span>{{ responseMessage }}</span>
-      </div>
-
-      <div class="modal-action">
-        <button @click="postItem" class="btn btn-primary">Submit</button>
-        <form method="dialog">
-          <button class="btn">Close</button>
-        </form>
-      </div>
-    </div>
-  </dialog>
-  <!-- <div class="divider"></div> -->
-  <!-- <div class="flex gap-2 mb-4 mt-2">
-    <button class="btn btn-primary" @click="openModal">Post Item</button>
-
-    <label class="input input-primary outline-none shadow-inner">
-      <svg
-        class="h-[1.2em] opacity-50"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <g
-          stroke-linejoin="round"
-          stroke-linecap="round"
-          stroke-width="2.5"
-          fill="none"
-          stroke="currentColor"
-        >
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.3-4.3"></path>
-        </g>
-      </svg>
-      <input type="search" class="grow" placeholder="Search" />
-    </label>
-  </div> -->
   <div class="flex gap-4 items-center">
     <h1 class="font-bold my-2">Missing Items</h1>
     <router-link class="bg-primary px-4 py-1 text-white shadow-md rounded-sm"
@@ -274,7 +170,10 @@
           />
         </svg>
         <span>{{ responseMessage }}</span>
+
       </div>
+        <button @click="postItem" class="bg-primary text-white p-2 mt-4 shadow-md cursor-pointer">Post</button>
+
     </div>
   </div>
   <!-- <div class="mt-4">
