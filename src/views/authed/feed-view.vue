@@ -3,17 +3,17 @@
     <h1 class="font-bold">Missing Items</h1>
   </div>
   <div class="flex flex-row justify-between flex-wrap gap-8 items-start">
-    <div class="flex flex-col">
+    <div class="flex-1 flex flex-col gap-2">
       <!-- item card -->
       <div
         v-for="item in lostItems"
-        class="p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
+        class=" p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
       >
         <div class="flex flex-row gap-2">
-          <img :src="defPfp" class="object-cover w-[40px]" :alt="item.name" />
+          <img :src="defPfp" class="object-cover h-[25px] w-[25px]" :alt="item.name" />
           <div class="flex flex-col">
-            <p class="font-bold text-primary">{{ item.founder.name }}</p>
-            <small class="text-gray-400">
+            <p class="font-bold text-primary text-xs">{{ item.founder.name }}</p>
+            <small class="text-gray-400 text-xs">
               {{ format(new Date(item.createdAt)) }}
             </small>
           </div>
@@ -22,7 +22,7 @@
         <div class="w-full h-[2px] bg-gray-200 my-2"></div>
 
         <div>
-          <figure class="">
+          <figure class="flex justify-center w-full">
             <img
               :src="`${apiUrl}/public/${item.image}`"
               class="object-cover w-[500px] max-h-[230px]"
@@ -34,8 +34,8 @@
             :class="[
               'px-2 my-2',
               {
-                'bg-green-100': item.status == 'found',
-                'bg-amber-100': item.status != 'found',
+                'bg-green-200 rounded-sm': item.status == 'found',
+                'bg-amber-200 rounded-sm': item.status != 'found',
               },
             ]"
             >{{ item.status }}</span
@@ -43,14 +43,14 @@
           <h2 class="text-primary font-bold">
             {{ truncate(item.name, 100) }}
           </h2>
-          <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
+          <p class=" text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
           <button class="bg-primary w-[100%] text-white font-semibold p-2 mt-2 shadow-md">
             <router-link
               :to="{ name: 'respond', params: { id: item.id } }"
-              class="flex gap-2 items-center justify-center"
+              class="text-xs flex gap-2 items-center justify-center"
               >Respond
-              <ph-paper-plane-tilt></ph-paper-plane-tilt>
+              <!-- <ph-paper-plane-tilt></ph-paper-plane-tilt> -->
             </router-link>
           </button>
         </div>
