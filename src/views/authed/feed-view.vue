@@ -1,9 +1,6 @@
 <template>
-  <div class="flex gap-4 items-center">
+  <div>
     <h1 class="font-bold my-2">Missing Items</h1>
-    <router-link class="bg-primary px-4 py-1 text-white shadow-md rounded-sm"
-      >Create Post</router-link
-    >
   </div>
   <div class="flex flex-row justify-between flex-wrap gap-8 items-start">
     <!-- item card -->
@@ -107,9 +104,9 @@
         </div>
       </div>
     </div> -->
-
-    <div class="bg-white p-4 border border-gray-300 rounded-sm w-1/2">
-      <div class="flex flex-col gap-3">
+    <div class="bg-white border border-gray-300 rounded-sm w-1/2">
+      <h1 class="text-center bg-primary px-4 py-1 text-white">Create Post</h1>
+      <div class="flex flex-col gap-3 p-4 ">
         <label class="font-bold text-primary">
           <span>Item Name</span>
           <input
@@ -118,7 +115,7 @@
             class="w-full p-2 outline-1 outline-primary shadow-inner"
           />
         </label>
-        <fieldset >
+        <fieldset>
           <legend class="text-primary font-bold">Description</legend>
           <textarea
             v-model="description"
@@ -170,10 +167,13 @@
           />
         </svg>
         <span>{{ responseMessage }}</span>
-
       </div>
-        <button @click="postItem" class="bg-primary text-white p-2 mt-4 shadow-md cursor-pointer">Post</button>
-
+      <button
+        @click="postItem"
+        class="bg-primary text-white p-2 mt-4 shadow-md cursor-pointer"
+      >
+        Post
+      </button>
     </div>
   </div>
   <!-- <div class="mt-4">
