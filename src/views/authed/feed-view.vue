@@ -1,112 +1,65 @@
 <template>
-  <div>
-    <h1 class="font-bold my-2">Missing Items</h1>
+  <div class="mb-6">
+    <h1 class="font-bold">Missing Items</h1>
   </div>
   <div class="flex flex-row justify-between flex-wrap gap-8 items-start">
-    <!-- item card -->
-    <div
-      v-for="item in lostItems"
-      class="p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
-    >
-      <div class="flex flex-row gap-2">
-        <img :src="defPfp" class="object-cover w-[40px]" :alt="item.name" />
-        <div class="flex flex-col">
-          <p class="font-bold text-primary">{{ item.founder.name }}</p>
-          <small class="text-gray-400">
-            {{ format(new Date(item.createdAt)) }}
-          </small>
+    <div class="flex flex-col">
+      <!-- item card -->
+      <div
+        v-for="item in lostItems"
+        class="p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
+      >
+        <div class="flex flex-row gap-2">
+          <img :src="defPfp" class="object-cover w-[40px]" :alt="item.name" />
+          <div class="flex flex-col">
+            <p class="font-bold text-primary">{{ item.founder.name }}</p>
+            <small class="text-gray-400">
+              {{ format(new Date(item.createdAt)) }}
+            </small>
+          </div>
         </div>
-      </div>
-      <!-- divider -->
-      <div class="w-full h-[2px] bg-gray-200 my-2"></div>
+        <!-- divider -->
+        <div class="w-full h-[2px] bg-gray-200 my-2"></div>
 
-      <div>
-        <figure class="">
-          <img
-            :src="`${apiUrl}/public/${item.image}`"
-            class="object-cover w-[500px] max-h-[230px]"
-            :alt="item.name"
-          />
-        </figure>
+        <div>
+          <figure class="">
+            <img
+              :src="`${apiUrl}/public/${item.image}`"
+              class="object-cover w-[500px] max-h-[230px]"
+              :alt="item.name"
+            />
+          </figure>
 
-        <span
-          :class="[
-            'px-2 my-2',
-            {
-              'bg-green-100': item.status == 'found',
-              'bg-amber-100': item.status != 'found',
-            },
-          ]"
-          >{{ item.status }}</span
-        >
-        <h2 class="text-primary font-bold">
-          {{ truncate(item.name, 100) }}
-        </h2>
-        <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
-
-        <button class="bg-primary w-[100%] text-white font-semibold p-2 mt-2 shadow-md">
-          <router-link
-            :to="{ name: 'respond', params: { id: item.id } }"
-            class="flex gap-2 items-center justify-center"
-            >Respond
-            <ph-paper-plane-tilt></ph-paper-plane-tilt>
-          </router-link>
-        </button>
-      </div>
-    </div>
-
-    <!-- <div
-      v-for="item in lostItems"
-      v-motion-fade
-      class="border border-gray-400 card bg-base-200 rounded-none w-[328px] shadow-sm transition-all duration-200 hover:shadow-md hover:border-blue-700"
-    >
-      <figure class="max-w-[100%] max-h-[300px]">
-        <img
-          :src="`http://localhost:3000/public/${item.image}`"
-          class="object-cover"
-          :alt="item.name"
-        />
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title">
-          {{ truncate(item.name, 12) }}
           <span
             :class="[
-              'badge badge-sm ',
+              'px-2 my-2',
               {
-                'badge-success': item.status == 'found',
-                'badge-warning': item.status != 'found',
+                'bg-green-100': item.status == 'found',
+                'bg-amber-100': item.status != 'found',
               },
             ]"
             >{{ item.status }}</span
           >
-        </h2>
-        <p>{{ truncate(item.description, 33) }}</p>
+          <h2 class="text-primary font-bold">
+            {{ truncate(item.name, 100) }}
+          </h2>
+          <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
-        <div class="flex items-center gap-4">
-          <div class="avatar">
-            <div class="w-6 rounded-full">
-              <img :src="item.founder.profile ?? defPfp" />
-            </div>
-          </div>
-
-          <p class="text-[12px] font-bold">{{ item.founder.name }}</p>
-        </div>
-
-        <div class="card-actions justify-center">
-          <router-link
-            :to="{ name: 'respond', params: { id: item.id } }"
-            class="btn btn-primary"
-            >Respond
-            <ph-paper-plane-tilt></ph-paper-plane-tilt>
-          </router-link>
-
+          <button class="bg-primary w-[100%] text-white font-semibold p-2 mt-2 shadow-md">
+            <router-link
+              :to="{ name: 'respond', params: { id: item.id } }"
+              class="flex gap-2 items-center justify-center"
+              >Respond
+              <ph-paper-plane-tilt></ph-paper-plane-tilt>
+            </router-link>
+          </button>
         </div>
       </div>
-    </div> -->
+    </div>
+
     <div class="bg-white border border-gray-300 rounded-sm w-1/2">
       <h1 class="text-center bg-primary px-4 py-1 text-white">Create Post</h1>
-      <div class="flex flex-col gap-3 p-4 ">
+      <div class="flex flex-col gap-3 p-4">
         <label class="font-bold text-primary">
           <span>Item Name</span>
           <input
@@ -136,7 +89,9 @@
       <div
         v-motion-fade
         v-if="showAlert"
-        :class="['alert alert-soft  mt-2', isError ? 'alert-error' : 'alert-success']"
+        :class="[
+          'mx-2 bg-red-100 border border-red-500 rounded-sm mt-2 shadow-sm flex gap-2 p-2 text-red-800',
+        ]"
       >
         <svg
           v-if="isError"
@@ -168,21 +123,32 @@
         </svg>
         <span>{{ responseMessage }}</span>
       </div>
-      <button
-        @click="postItem"
-        class="bg-primary text-white p-2 mt-4 shadow-md cursor-pointer"
-      >
-        Post
-      </button>
+      <div class="p-2">
+        <button
+          @click="postItem"
+          class="bg-primary text-white px-4 py-1 shadow-md cursor-pointer"
+        >
+          Post
+        </button>
+      </div>
     </div>
   </div>
-  <!-- <div class="mt-4">
-    <div class="join">
-      <button class="join-item btn">«</button>
-      <button class="join-item btn">Page 1</button>
-      <button class="join-item btn">»</button>
+  <!-- spinner -->
+  <transition
+    enter-active-class="transition-opacity duration-300"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="transition-opacity duration-300"
+    leave-from-class="opacity-0"
+    leave-to-class="opacity-100"
+  >
+    <div
+      v-if="isLoading"
+      class="flex items-center justify-center fixed z-10 top-0 left-0 bg-white/25 w-[100vw] h-[100vh]"
+    >
+      <vue-spinner-dots size="48" color="#3c5898"></vue-spinner-dots>
     </div>
-  </div> -->
+  </transition>
 </template>
 
 <script>
@@ -190,9 +156,12 @@ import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
 import defPfp from "@/assets/def_pfp.jpg";
 import { apiUrl, api } from "@/helpers/api";
 import { format } from "timeago.js";
+import { Transition } from "vue";
+
 export default {
   components: {
     PhPaperPlaneTilt,
+    Transition,
   },
 
   data() {
@@ -207,6 +176,7 @@ export default {
       isError: false,
       responseMessage: null,
       showAlert: false,
+      isLoading: false,
     };
   },
 
@@ -225,6 +195,7 @@ export default {
     },
     async postItem() {
       try {
+        this.isLoading = true;
         this.showAlert = false;
         const formData = new FormData();
         formData.append("itemName", this.itemName);
@@ -252,6 +223,7 @@ export default {
         this.responseMessage = error.response?.data.message || "Something went wrong.";
       } finally {
         this.showAlert = true;
+        this.isLoading = false;
       }
     },
 
