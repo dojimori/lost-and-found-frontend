@@ -103,8 +103,8 @@
       <input type="search" class="grow" placeholder="Search" />
     </label>
   </div> -->
+  <h1 class="font-bold my-2">Missing Items</h1>
   <div class="flex flex-col flex-wrap gap-8 items-start">
-    <h1 class="font-bold">Missing Items</h1>
     <!-- item card -->
     <div
       v-for="item in lostItems"
@@ -114,7 +114,7 @@
           <img :src="defPfp" class="object-cover w-[40px] " :alt="item.name" />
         <div class="flex flex-col">
           <p class=" font-bold text-primary">{{ item.founder.name }}</p>
-          <small class="font-semibold text-gray-400">
+          <small class="text-gray-400">
             {{ format(new Date(item.createdAt)) }}
           </small>
         </div>

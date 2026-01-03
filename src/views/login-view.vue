@@ -128,7 +128,7 @@ export default {
         this.isError = true;
         console.log(error);
         this.responseMessage =
-          error.response?.data?.message || "Something went terribly wrong here.";
+          (error as any).response?.data?.message || "Something went terribly wrong here.";
       } finally {
         this.isLoading = false;
         this.showAlert = true;
