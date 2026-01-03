@@ -103,17 +103,22 @@
       <input type="search" class="grow" placeholder="Search" />
     </label>
   </div> -->
-  <h1 class="font-bold my-2">Missing Items</h1>
-  <div class="flex flex-col flex-wrap gap-8 items-start">
+  <div class="flex gap-4 items-center">
+    <h1 class="font-bold my-2">Missing Items</h1>
+    <router-link class="bg-primary px-4 py-1 text-white shadow-md rounded-sm"
+      >Create Post</router-link
+    >
+  </div>
+  <div class="flex flex-row justify-between flex-wrap gap-8 items-start">
     <!-- item card -->
     <div
       v-for="item in lostItems"
       class="p-4 border border-gray-400 flex flex-col justify-center rounded-sm shadow-sm bg-white"
     >
       <div class="flex flex-row gap-2">
-          <img :src="defPfp" class="object-cover w-[40px] " :alt="item.name" />
+        <img :src="defPfp" class="object-cover w-[40px]" :alt="item.name" />
         <div class="flex flex-col">
-          <p class=" font-bold text-primary">{{ item.founder.name }}</p>
+          <p class="font-bold text-primary">{{ item.founder.name }}</p>
           <small class="text-gray-400">
             {{ format(new Date(item.createdAt)) }}
           </small>
@@ -146,7 +151,7 @@
         </h2>
         <p class="text-gray-700 text-sm">{{ truncate(item.description, 100) }}</p>
 
-        <button class="bg-primary w-[100%] text-white font-semibold  p-2 mt-2 shadow-md">
+        <button class="bg-primary w-[100%] text-white font-semibold p-2 mt-2 shadow-md">
           <router-link
             :to="{ name: 'respond', params: { id: item.id } }"
             class="flex gap-2 items-center justify-center"
@@ -206,6 +211,71 @@
         </div>
       </div>
     </div> -->
+
+    <div class="bg-white p-4 border border-gray-300 rounded-sm w-1/2">
+      <div class="flex flex-col gap-3">
+        <label class="font-bold text-primary">
+          <span>Item Name</span>
+          <input
+            v-model="itemName"
+            type="text"
+            class="w-full p-2 outline-1 outline-primary shadow-inner"
+          />
+        </label>
+        <fieldset >
+          <legend class="text-primary font-bold">Description</legend>
+          <textarea
+            v-model="description"
+            class="w-full p-2 outline-1 outline-primary shadow-inner"
+            placeholder=""
+          ></textarea>
+        </fieldset>
+        <label>
+          <span class="text-primary font-bold">Item Image</span>
+          <input
+            @change="onFileChange"
+            type="file"
+            class="w-full p-2 outline-1 outline-primary shadow-inner"
+          />
+        </label>
+      </div>
+
+      <div
+        v-motion-fade
+        v-if="showAlert"
+        :class="['alert alert-soft  mt-2', isError ? 'alert-error' : 'alert-success']"
+      >
+        <svg
+          v-if="isError"
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>{{ responseMessage }}</span>
+      </div>
+    </div>
   </div>
   <!-- <div class="mt-4">
     <div class="join">
@@ -313,10 +383,8 @@ export default {
 };
 </script>
 
-
 <style>
 button:hover {
-  opacity: .9;
+  opacity: 0.9;
 }
-
 </style>
