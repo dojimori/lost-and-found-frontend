@@ -1,5 +1,5 @@
 <template>
-    <nav class="border w-full flex border-gray-400 p-4 gap-4 items-center">
+    <nav class="border w-full flex border-gray-400 p-4 gap-4 items-center bg-white">
         <!-- <div class="navbar-start">
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">

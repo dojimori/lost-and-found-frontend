@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-center p-4" v-motion-fade>
-    <form @submit.prevent="submitHandler" class="border shadow-md border-gray-300 w-md sm:w-lg">
+  <div class="flex items-center justify-center p-4 " v-motion-fade>
+    <form @submit.prevent="submitHandler" class="bg-white border shadow-md border-gray-300 w-md sm:w-lg">
       <div class="bg-primary py-3 px-4 text-center flex items-center gap-4">
         <img src="/logo.webp" alt="ustp-logo" class="w-12" />
         <h2 class="font-bold text-secondary text-md">Login</h2>
@@ -34,51 +34,53 @@
           </label>
         </div>
 
+        
+        <div
+          v-motion-fade
+          v-if="showAlert"
+          :class="['bg-red-100 border border-red-500 rounded-sm mt-2 shadow-sm flex gap-2 p-2 text-red-800']"
+        >
+          <svg
+            v-if="isError"
+            xmlns="http://www.w2.org/2000/svg"
+            class="stroke-current shrink-1 h-5 w-5"
+            fill="none"
+            viewBox="-1 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M9 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <svg
+            v-else
+            xmlns="http://www.w2.org/2000/svg"
+            class="stroke-current shrink-1 h-5 w-5"
+            fill="none"
+            viewBox="-1 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M8 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ responseMessage }}</span>
+        </div>
+
+
         <button
           type="submit"
           class="py-2 bg-primary mt-2 w-full text-white font-bold cursor-pointer"
           :disabled="isLoading"
         >
-          <span v-if="isLoading">Uhhh...</span>
+          <span v-if="isLoading">Logging in...</span>
           <!-- <vue-spinner v-if="isLoading" size="20" color="white"></vue-spinner> -->
           <span v-else>Login</span>
         </button>
-
-        <div
-          v-motion-fade
-          v-if="showAlert"
-          :class="['alert alert-soft', isError ? 'alert-error' : 'alert-success']"
-        >
-          <svg
-            v-if="isError"
-            xmlns="http://www.w3.org/2000/svg"
-            class="stroke-current shrink-0 h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <svg
-            v-else
-            xmlns="http://www.w3.org/2000/svg"
-            class="stroke-current shrink-0 h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <span>{{ responseMessage }}</span>
-        </div>
 
         <!-- <p class="text-center text-sm mt-4 text-base-content/60">
                     Already have an account?
